@@ -9,20 +9,29 @@
             visible="true"
             id="egit-ex.actionSet">
          <menu
-               label="git-ex &amp;Menu"
-               id="git-ex">
+               label="git-ex"
+               id="gitMenu">
             <separator
                   name="gitGroup">
             </separator>
          </menu>
          <action
-               label="pull from svn"
-               icon="icons/sample.gif"
                class="egitex.actions.SvnRebaseAction"
-               tooltip="pull from svn"
-               menubarPath="git-ex Menu/gitGroup"
+               icon="icons/sample.gif"
+               id="egitex.actions.SvnRebaseAction"
+               label="pull from svn"
+               menubarPath="gitMenu/gitGroup"
                toolbarPath="gitGroup"
-               id="egitex.actions.SvnRebaseAction">
+               tooltip="pull from svn">
+         </action>
+         <action
+               label="push to svn"
+               icon="icons/sample.gif"
+               class="egitex.actions.SvnDcommitAction"
+               tooltip="push to svn"
+               menubarPath="gitMenu/gitGroup"
+               toolbarPath="gitGroup"
+               id="egitex.actions.SvnDcommitAction">
          </action>
       </actionSet>
    </extension>
