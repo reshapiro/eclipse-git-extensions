@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            label="Git Action Set"
+            visible="true"
+            id="egit-ex.actionSet">
+         <menu
+               label="git-ex &amp;Menu"
+               id="git-ex">
+            <separator
+                  name="gitGroup">
+            </separator>
+         </menu>
+         <action
+               label="pull from svn"
+               icon="icons/sample.gif"
+               class="egitex.actions.SvnRebaseAction"
+               tooltip="pull from svn"
+               menubarPath="git-ex Menu/gitGroup"
+               toolbarPath="gitGroup"
+               id="egitex.actions.SvnRebaseAction">
+         </action>
+      </actionSet>
+   </extension>
+
+</plugin>
