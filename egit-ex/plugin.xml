@@ -9,7 +9,7 @@
             visible="true"
             id="egit-ex.actionSet">
          <menu
-               label="git-ex"
+               label="Git Extras"
                id="gitMenu">
             <separator
                   name="gitGroup">
@@ -17,21 +17,30 @@
          </menu>
          <action
                class="egitex.actions.SvnRebaseAction"
-               icon="icons/sample.gif"
+               icon="icons/pull.gif"
                id="egitex.actions.SvnRebaseAction"
-               label="pull from svn"
+               label="Pull from svn"
                menubarPath="gitMenu/gitGroup"
                toolbarPath="gitGroup"
-               tooltip="pull from svn">
+               tooltip="Fetch and rebase  new commits from svn (active branch)">
          </action>
          <action
-               label="push to svn"
-               icon="icons/sample.gif"
+               label="Push to svn"
+               icon="icons/push.gif"
                class="egitex.actions.SvnDcommitAction"
-               tooltip="push to svn"
+               tooltip="Push  new commits  to svn (active branch) "
                menubarPath="gitMenu/gitGroup"
                toolbarPath="gitGroup"
                id="egitex.actions.SvnDcommitAction">
+         </action>
+         <action
+               class="egitex.actions.SvnFetchAction"
+               icon="icons/fetch.gif"
+               id="egitex.actions.SvnFetchAction"
+               label="Fetch from svn"
+               menubarPath="gitMenu/gitGroup"
+               toolbarPath="gitGroup"
+               tooltip="Fetch  new commits from svn (all branches)">
          </action>
       </actionSet>
    </extension>
