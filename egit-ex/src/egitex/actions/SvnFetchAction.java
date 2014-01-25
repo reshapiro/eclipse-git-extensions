@@ -3,12 +3,11 @@ package egitex.actions;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
 /**
- * Our sample action implements workbench action delegate.
- * The action proxy will be created by the workbench and
- * shown in the UI. When the user tries to use the action,
- * this delegate will be created and execution will be 
- * delegated to it.
- * @see IWorkbenchWindowActionDelegate
+ * Execute the Git operation that will 'fetch' any new commits from SVN on any branch
+ * to the corresponding Git branch.
+ * 
+ * @author reshapiro
+ *
  */
 public class SvnFetchAction
 		extends GitAction

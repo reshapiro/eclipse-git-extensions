@@ -10,18 +10,27 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import egit_ex.Utils;
 
 /**
- * Our sample action implements workbench action delegate.
- * The action proxy will be created by the workbench and
- * shown in the UI. When the user tries to use the action,
- * this delegate will be created and execution will be 
- * delegated to it.
- * @see IWorkbenchWindowActionDelegate
+ * Base class for all Git commands of interest
+ * @author reshapiro
+ *
  */
 abstract class GitAction implements IWorkbenchWindowActionDelegate {
+	private static final String GIT_EXEC_VAR = "git_exec";
+	private static final String EGIT_WORK_TREE_VAR = "git_work_tree";
+
 	GitAction() {
 	}
 	
+	/**
+	 * 
+	 * @return a string that will be used as the title of the displayed status or error message
+	 */
 	abstract String getOperationName();
+	
+	/**
+	 * 
+	 * @return the arguments to the Git command
+	 */
 	abstract String[] getArgs();
 
 	/**
@@ -32,14 +41,14 @@ abstract class GitAction implements IWorkbenchWindowActionDelegate {
 	 */
 	@Override
 	public void run(IAction action) {
-		String gitExec = Utils.resolveVariable("git_exec");
+		String gitExec = Utils.resolveVariable(GIT_EXEC_VAR);
 		String op = getOperationName();
 		if (gitExec.isEmpty()) {
-			Utils.displayErrorMessage(op, "git_exec is not defined");
+			Utils.displayErrorMessage(op, "You must define the String Substitution variable '" +   GIT_EXEC_VAR + "'");
 			return;
 		}
 		
-		String repoPath = Utils.resolveVariable("git_work_tree");
+		String repoPath = Utils.resolveVariable(EGIT_WORK_TREE_VAR);
 		if (repoPath.isEmpty()) {
 			Utils.displayErrorMessage(op, "No git project is selected");
 			return;
