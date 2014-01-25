@@ -77,6 +77,7 @@ abstract class GitAction
     */
    @Override
    public void selectionChanged(IAction action, ISelection selection) {
+      /* Don't currently need to do anything here */
    }
 
    /**
@@ -87,6 +88,7 @@ abstract class GitAction
     */
    @Override
    public void dispose() {
+      /* Don't currently need to do anything here */
    }
 
    /**

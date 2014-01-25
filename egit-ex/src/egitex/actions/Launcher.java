@@ -14,10 +14,11 @@ class Launcher {
       builder.directory(repoRoot);
       try {
          output = File.createTempFile("egit-ex", ".txt");
+         output.deleteOnExit();
          builder.redirectOutput(output);
          builder.redirectError(output);
       } catch (final IOException e) {
-         // fuck you
+         /* TODO  Get rid of temp file, capture output some other way, */
       }
    }
 
@@ -42,13 +43,13 @@ class Launcher {
       if (output == null) {
          return "no output";
       }
-      final StringBuilder builder = new StringBuilder();
+      final StringBuilder fileContentToText = new StringBuilder();
       try (BufferedReader reader = new BufferedReader(new FileReader(output))) {
          String line;
          while ((line = reader.readLine()) != null) {
-            builder.append(line);
+            fileContentToText.append(line);
          }
-         return builder.toString();
+         return fileContentToText.toString();
       } catch (final IOException e) {
          return "";
       } finally {
