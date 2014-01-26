@@ -2,6 +2,10 @@ package egitex.actions;
 
 import java.io.File;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -64,10 +68,21 @@ abstract class GitAction
       System.arraycopy(gitArgs, 0, fullArgs, 1, gitArgs.length);
       final Launcher launcher = new Launcher(repo, fullArgs);
       launcher.launchAndWait();
-      final String message = launcher.getOutput();
+      String message = launcher.getOutput();
+      try {
+         refreshWorkspace();
+      } catch (CoreException e) {
+         message = message + e.getMessage();
+      }
       Utils.displayInfoMessage(op, message);
    }
 
+   private void refreshWorkspace() throws CoreException {
+      for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
+         project.refreshLocal(IResource.DEPTH_ZERO, null);
+      }
+   }
+   
    /**
     * Selection in the workbench has been changed. We can change the state of
     * the 'real' action here if we want, but this can only happen after the
