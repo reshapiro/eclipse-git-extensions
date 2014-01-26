@@ -1,4 +1,4 @@
-package egit_ex;
+package egitex.actions;
 
 import java.io.IOException;
 
@@ -19,15 +19,15 @@ import org.eclipse.ui.console.IConsoleView;
 import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
 
-public final class Utils {
+final class Utils {
    private static final String CONSOLE_NAME = "git-ex-console";
 
    private Utils() {
    }
 
-   public static IWorkbenchWindow window;
+   static IWorkbenchWindow window;
 
-   public static void displayErrorMessage(String op, String message) {
+   static void displayErrorMessage(String op, String message) {
       MessageConsole console = findConsole();
       if (console != null) {
          try (MessageConsoleStream out = console.newMessageStream()) {
@@ -41,7 +41,7 @@ public final class Utils {
       }
    }
 
-   public static void displayInfoMessage(String op, String message) {
+   static void displayInfoMessage(String op, String message) {
       MessageConsole console = findConsole();
       if (console != null) {
          try (MessageConsoleStream out = console.newMessageStream()) {
@@ -54,16 +54,6 @@ public final class Utils {
       }
    }
 
-   public static String resolveVariable(String var) {
-      final IStringVariableManager manager = VariablesPlugin.getDefault().getStringVariableManager();
-      try {
-         return manager.performStringSubstitution("${" + var + "}");
-      } catch (final CoreException e) {
-         return ""; //$NON-NLS-1$
-      }
-   }
-   
-  
    
    private static MessageConsole findConsole() {
       String name = CONSOLE_NAME;

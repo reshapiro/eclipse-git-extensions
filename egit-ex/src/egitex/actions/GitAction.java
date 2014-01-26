@@ -6,12 +6,12 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.variables.IStringVariableManager;
+import org.eclipse.core.variables.VariablesPlugin;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
-
-import egit_ex.Utils;
 
 /**
  * Base class for all Git commands of interest
@@ -48,25 +48,25 @@ abstract class GitAction
     */
    @Override
    public void run(IAction action) {
-      final String gitExec = Utils.resolveVariable(GIT_EXEC_VAR);
-      final String op = getOperationName();
+      String gitExec = resolveVariable(GIT_EXEC_VAR);
+      String op = getOperationName();
       if (gitExec.isEmpty()) {
          Utils.displayErrorMessage(op, "You must define the String Substitution variable '" + GIT_EXEC_VAR + "'");
          return;
       }
 
-      final String repoPath = Utils.resolveVariable(EGIT_WORK_TREE_VAR);
+      String repoPath = resolveVariable(EGIT_WORK_TREE_VAR);
       if (repoPath.isEmpty()) {
          Utils.displayErrorMessage(op, "No git project is selected");
          return;
       }
 
-      final File repo = new File(repoPath);
-      final String[] gitArgs = getArgs();
-      final String[] fullArgs = new String[gitArgs.length + 1];
+       File repo = new File(repoPath);
+       String[] gitArgs = getArgs();
+       String[] fullArgs = new String[gitArgs.length + 1];
       fullArgs[0] = gitExec;
       System.arraycopy(gitArgs, 0, fullArgs, 1, gitArgs.length);
-      final Launcher launcher = new Launcher(repo, fullArgs);
+       Launcher launcher = new Launcher(repo, fullArgs);
       launcher.launchAndWait();
       String message = launcher.getOutput();
       try {
@@ -77,6 +77,15 @@ abstract class GitAction
       Utils.displayInfoMessage(op, message);
    }
 
+   private String resolveVariable(String var) {
+      IStringVariableManager manager = VariablesPlugin.getDefault().getStringVariableManager();
+      try {
+         return manager.performStringSubstitution("${" + var + "}");
+      } catch ( CoreException e) {
+         return "";
+      }
+   }
+      
    private void refreshWorkspace() throws CoreException {
       for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
          project.refreshLocal(IResource.DEPTH_ZERO, null);
