@@ -9,13 +9,13 @@ import egitex.actions.ConsoleWriter.MessageType;
 
 class ProcessOutputThread
       extends Thread {
-   private final ConsoleWriter messages;
+   private final Launcher launcher;
    private final InputStream in;
    private final MessageType type;
 
-   ProcessOutputThread(ConsoleWriter messages, InputStream in, MessageType type) {
+   ProcessOutputThread(Launcher launcher, InputStream in, MessageType type) {
       setDaemon(true);
-      this.messages = messages;
+      this.launcher = launcher;
       this.in = in;
       this.type = type;
    }
@@ -25,7 +25,7 @@ class ProcessOutputThread
       try (BufferedReader rdr = new BufferedReader(new InputStreamReader(in))) {
          String line;
          while ((line = rdr.readLine()) != null) {
-            messages.displayMessage(line, type);
+            launcher.displayMessage(line, type);
          }
       } catch (IOException e) {
          /* just quit */
