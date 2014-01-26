@@ -29,7 +29,7 @@ class SimpleInputDialog
    public void create() {
      super.create();
      setTitle(title);
-     setMessage("This is a TitleAreaDialog", IMessageProvider.INFORMATION);
+     setMessage("git extensions", IMessageProvider.INFORMATION);
    }
 
    @Override

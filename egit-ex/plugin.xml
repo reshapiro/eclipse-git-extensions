@@ -58,6 +58,14 @@
                toolbarPath="gitGroup"
                tooltip="Show SVN revision for Git commit">
          </action>
+         <action
+               class="egitex.actions.Svn2GitAction"
+               id="egitex.actions.Svn2GitAction"
+               label="Git SHA"
+               menubarPath="gitMenu/gitGroup"
+               toolbarPath="gitGroup"
+               tooltip="Show Git SHA for SVN revision">
+         </action>
       </actionSet>
    </extension>
 
