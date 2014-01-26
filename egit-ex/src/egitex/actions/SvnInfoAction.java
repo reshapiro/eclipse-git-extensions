@@ -4,19 +4,19 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
 /**
- * Execute the Git operation that will 'pull' and rebase any new commits on the
- * active branch from the corresponding SVN branch.
+ * Execute the Git operation that will 'push' any new commits on the active
+ * branch to the corresponding SVN branch.
  * 
  * @author reshapiro
  * 
  */
-public class SvnRebaseAction
+public class SvnInfoAction
       extends GitAction
 
       implements IWorkbenchWindowActionDelegate {
    private static final String[] ARGS = new String[] {
       "svn",
-      "rebase"
+      "info"
    };
 
    @Override

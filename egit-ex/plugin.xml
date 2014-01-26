@@ -19,16 +19,16 @@
                class="egitex.actions.SvnRebaseAction"
                icon="icons/pull.gif"
                id="egitex.actions.SvnRebaseAction"
-               label="Pull from svn"
+               label="Pull from SVN"
                menubarPath="gitMenu/gitGroup"
                toolbarPath="gitGroup"
-               tooltip="Fetch and rebase  new commits from svn (active branch)">
+               tooltip="Fetch and rebase  new commits from SVN (active branch)">
          </action>
          <action
-               label="Push to svn"
+               label="Push to SVN"
                icon="icons/push.gif"
                class="egitex.actions.SvnDcommitAction"
-               tooltip="Push  new commits  to svn (active branch) "
+               tooltip="Push  new commits  to SVN (active branch) "
                menubarPath="gitMenu/gitGroup"
                toolbarPath="gitGroup"
                id="egitex.actions.SvnDcommitAction">
@@ -37,10 +37,26 @@
                class="egitex.actions.SvnFetchAction"
                icon="icons/fetch.gif"
                id="egitex.actions.SvnFetchAction"
-               label="Fetch from svn"
+               label="Fetch from SVN"
                menubarPath="gitMenu/gitGroup"
                toolbarPath="gitGroup"
-               tooltip="Fetch  new commits from svn (all branches)">
+               tooltip="Fetch  new commits from SVN (all branches)">
+         </action>
+         <action
+               class="egitex.actions.SvnInfoAction"
+               id="egitex.actions.SvnInfoAction"
+               label="SVN info"
+               menubarPath="gitMenu/gitGroup"
+               toolbarPath="gitGroup"
+               tooltip="Show bridged SVN info">
+         </action>
+         <action
+               class="egitex.actions.Git2SvnAction"
+               id="egitex.actions.Git2SvnAction"
+               label="SVN rev"
+               menubarPath="gitMenu/gitGroup"
+               toolbarPath="gitGroup"
+               tooltip="Show SVN revision for Git commit">
          </action>
       </actionSet>
    </extension>

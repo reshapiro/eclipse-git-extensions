@@ -10,6 +10,7 @@ import org.eclipse.core.variables.IStringVariableManager;
 import org.eclipse.core.variables.VariablesPlugin;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
@@ -27,15 +28,17 @@ abstract class GitAction
    private static final String EGIT_WORK_TREE_VAR = "git_work_tree";
 
    private ConsoleWriter messages;
+   private Shell shell;
 
    GitAction() {
    }
 
    /**
     * 
+    * @param activeShell use this to prompt for args when necessary
     * @return the arguments to the Git command
     */
-   abstract String[] getArgs();
+   abstract String[] getArgs(Shell activeShell);
 
    /**
     * The action has been activated. The argument of the method represents the
@@ -58,7 +61,12 @@ abstract class GitAction
       }
 
       File repo = new File(repoPath);
-      String[] gitArgs = getArgs();
+      String[] gitArgs = getArgs(shell);
+      if (gitArgs == null) {
+         /* Some required parameter wasn't provided */
+         messages.displayMessage("Some required parameter wasn't provided", MessageType.ERROR);
+         return;
+      }
       String[] fullArgs = new String[gitArgs.length + 1];
       fullArgs[0] = gitExec;
       System.arraycopy(gitArgs, 0, fullArgs, 1, gitArgs.length);
@@ -119,5 +127,6 @@ abstract class GitAction
    @Override
    public void init(IWorkbenchWindow window) {
       this.messages = new ConsoleWriter(window);
+      this.shell = window.getShell();
    }
 }

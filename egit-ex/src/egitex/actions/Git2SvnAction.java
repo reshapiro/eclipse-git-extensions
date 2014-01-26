@@ -1,5 +1,6 @@
 package egitex.actions;
 
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
@@ -10,17 +11,27 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
  * @author reshapiro
  * 
  */
-public class SvnDcommitAction
+public class Git2SvnAction
       extends GitAction
 
       implements IWorkbenchWindowActionDelegate {
    private static final String[] ARGS = new String[] {
       "svn",
-      "dcommit"
+      "find-rev",
+      ""
    };
 
    @Override
    String[] getArgs(Shell shell) {
-      return ARGS;
+      SimpleInputDialog dialog = new SimpleInputDialog(shell, "Get SVN revision for SHA", "branch, tag or reference");
+      dialog.create();
+      if (dialog.open() == Window.OK) {
+         String sha = dialog.getInput();
+         if (sha != null) {
+            ARGS[2] = sha;
+            return ARGS;
+         }
+      }
+      return null;
    }
 }
