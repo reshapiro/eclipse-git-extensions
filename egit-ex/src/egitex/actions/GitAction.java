@@ -23,6 +23,8 @@ abstract class GitAction
       implements IWorkbenchWindowActionDelegate {
    private static final String GIT_EXEC_VAR = "git_exec";
    private static final String EGIT_WORK_TREE_VAR = "git_work_tree";
+   
+   private MessageUtils messages;
 
    GitAction() {
    }
@@ -51,13 +53,13 @@ abstract class GitAction
       String gitExec = resolveVariable(GIT_EXEC_VAR);
       String op = getOperationName();
       if (gitExec.isEmpty()) {
-         Utils.displayErrorMessage(op, "You must define the String Substitution variable '" + GIT_EXEC_VAR + "'");
+         messages.displayErrorMessage(op, "You must define the String Substitution variable '" + GIT_EXEC_VAR + "'");
          return;
       }
 
       String repoPath = resolveVariable(EGIT_WORK_TREE_VAR);
       if (repoPath.isEmpty()) {
-         Utils.displayErrorMessage(op, "No git project is selected");
+         messages.displayErrorMessage(op, "No git project is selected");
          return;
       }
 
@@ -74,7 +76,7 @@ abstract class GitAction
       } catch (CoreException e) {
          message = message + e.getMessage();
       }
-      Utils.displayInfoMessage(op, message);
+      messages.displayInfoMessage(op, message);
    }
 
    private String resolveVariable(String var) {
@@ -123,6 +125,6 @@ abstract class GitAction
     */
    @Override
    public void init(IWorkbenchWindow window) {
-      Utils.window = window;
+      this.messages = new MessageUtils(window);
    }
 }

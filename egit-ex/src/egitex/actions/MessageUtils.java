@@ -2,9 +2,6 @@ package egitex.actions;
 
 import java.io.IOException;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.variables.IStringVariableManager;
-import org.eclipse.core.variables.VariablesPlugin;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -19,15 +16,16 @@ import org.eclipse.ui.console.IConsoleView;
 import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
 
-final class Utils {
+class MessageUtils {
    private static final String CONSOLE_NAME = "git-ex-console";
-
-   private Utils() {
+   
+   private final IWorkbenchWindow window;
+   
+   MessageUtils(IWorkbenchWindow window) {
+      this.window = window;
    }
 
-   static IWorkbenchWindow window;
-
-   static void displayErrorMessage(String op, String message) {
+   void displayErrorMessage(String op, String message) {
       MessageConsole console = findConsole();
       if (console != null) {
          try (MessageConsoleStream out = console.newMessageStream()) {
@@ -41,7 +39,7 @@ final class Utils {
       }
    }
 
-   static void displayInfoMessage(String op, String message) {
+   void displayInfoMessage(String op, String message) {
       MessageConsole console = findConsole();
       if (console != null) {
          try (MessageConsoleStream out = console.newMessageStream()) {
@@ -55,7 +53,7 @@ final class Utils {
    }
 
    
-   private static MessageConsole findConsole() {
+   MessageConsole findConsole() {
       String name = CONSOLE_NAME;
       ConsolePlugin plugin = ConsolePlugin.getDefault();
       IConsoleManager conMan = plugin.getConsoleManager();
@@ -73,7 +71,7 @@ final class Utils {
       return myConsole;
    }
 
-   private static void showConsole(MessageConsole myConsole) {
+   private void showConsole(MessageConsole myConsole) {
       IWorkbench wb = PlatformUI.getWorkbench();
       IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
       IWorkbenchPage page = win.getActivePage();
