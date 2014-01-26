@@ -7,6 +7,7 @@ Bundle-Activator: egit_ex.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.variables;bundle-version="3.2.700",
- org.eclipse.core.resources;bundle-version="3.8.101"
+ org.eclipse.core.resources;bundle-version="3.8.101",
+ org.eclipse.ui.console;bundle-version="3.5.200"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
