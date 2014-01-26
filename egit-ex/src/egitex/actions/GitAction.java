@@ -13,7 +13,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
-import egitex.actions.MessageUtils.MessageType;
+import egitex.actions.ConsoleWriter.MessageType;
 
 /**
  * Base class for all Git commands of interest
@@ -26,7 +26,7 @@ abstract class GitAction
    private static final String GIT_EXEC_VAR = "git_exec";
    private static final String EGIT_WORK_TREE_VAR = "git_work_tree";
 
-   private MessageUtils messages;
+   private ConsoleWriter messages;
 
    GitAction() {
    }
@@ -118,6 +118,6 @@ abstract class GitAction
     */
    @Override
    public void init(IWorkbenchWindow window) {
-      this.messages = new MessageUtils();
+      this.messages = new ConsoleWriter(window);
    }
 }

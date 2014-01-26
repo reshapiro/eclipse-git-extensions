@@ -3,13 +3,13 @@ package egitex.actions;
 import java.io.File;
 import java.io.IOException;
 
-import egitex.actions.MessageUtils.MessageType;
+import egitex.actions.ConsoleWriter.MessageType;
 
 class Launcher {
    private final ProcessBuilder builder;
-   private final MessageUtils messages;
+   private final ConsoleWriter messages;
 
-   Launcher(File repoRoot, MessageUtils messages, String... args) {
+   Launcher(File repoRoot, ConsoleWriter messages, String... args) {
       this.messages = messages;
       builder = new ProcessBuilder(args);
       builder.directory(repoRoot);

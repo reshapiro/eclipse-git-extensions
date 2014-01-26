@@ -5,15 +5,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import egitex.actions.MessageUtils.MessageType;
+import egitex.actions.ConsoleWriter.MessageType;
 
 class ProcessOutputThread
       extends Thread {
-   private final MessageUtils messages;
+   private final ConsoleWriter messages;
    private final InputStream in;
    private final MessageType type;
 
-   ProcessOutputThread(MessageUtils messages, InputStream in, MessageType type) {
+   ProcessOutputThread(ConsoleWriter messages, InputStream in, MessageType type) {
       setDaemon(true);
       this.messages = messages;
       this.in = in;

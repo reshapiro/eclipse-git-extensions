@@ -2,11 +2,9 @@ package egitex.actions;
 
 import java.io.IOException;
 
-import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.console.ConsolePlugin;
 import org.eclipse.ui.console.IConsole;
 import org.eclipse.ui.console.IConsoleConstants;
@@ -15,12 +13,12 @@ import org.eclipse.ui.console.IConsoleView;
 import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
 
-class MessageUtils {
+class ConsoleWriter {
    private static final String CONSOLE_NAME = "git-ex-console";
-   private MessageConsole console;
+   private final IWorkbenchWindow window;
 
-   MessageUtils() {
-      console = findConsole();
+   ConsoleWriter(IWorkbenchWindow window) {
+      this.window = window;
    }
 
    enum MessageType {
@@ -29,11 +27,12 @@ class MessageUtils {
    }
    
    void displayMessage(String message, MessageType type) {
+      MessageConsole console = findConsole();
       try (MessageConsoleStream out = console.newMessageStream()) {
          /* TODO: set foreground based on type */
          out.println(message);
       } catch (IOException e) {
-         /* ignore for now */
+         e.printStackTrace();
       }
    }
 
@@ -59,16 +58,13 @@ class MessageUtils {
    }
 
    private void showConsole(MessageConsole myConsole) {
-      IWorkbench wb = PlatformUI.getWorkbench();
-      IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
-      IWorkbenchPage page = win.getActivePage();
+      IWorkbenchPage page = window.getActivePage();
       String id = IConsoleConstants.ID_CONSOLE_VIEW;
       IConsoleView view;
       try {
          view = (IConsoleView) page.showView(id);
          view.display(myConsole);
       } catch (PartInitException e) {
-         // ignore this for now
          e.printStackTrace();
       }
    }
