@@ -16,6 +16,14 @@
             </separator>
          </menu>
          <action
+               class="egitex.actions.StatusAction"
+               id="egitex.actions.StatusAction"
+               label="Git status"
+               menubarPath="gitMenu/gitGroup"
+               toolbarPath="gitGroup"
+               tooltip="Git status">
+         </action>
+         <action
                class="egitex.actions.SvnRebaseAction"
                icon="icons/pull.gif"
                id="egitex.actions.SvnRebaseAction"
