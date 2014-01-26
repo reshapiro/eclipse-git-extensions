@@ -2,7 +2,6 @@ package egitex.actions;
 
 import java.io.IOException;
 
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -18,55 +17,43 @@ import org.eclipse.ui.console.MessageConsoleStream;
 
 class MessageUtils {
    private static final String CONSOLE_NAME = "git-ex-console";
-   
-   private final IWorkbenchWindow window;
-   
-   MessageUtils(IWorkbenchWindow window) {
-      this.window = window;
+   private MessageConsole console;
+
+   MessageUtils() {
+      console = findConsole();
    }
 
-   void displayErrorMessage(String op, String message) {
-      MessageConsole console = findConsole();
-      if (console != null) {
-         try (MessageConsoleStream out = console.newMessageStream()) {
-            /* TODO: set foreground to red ? */
-            out.println(message);
-            return;
-         } catch (IOException e) {
-            //  use message dialog instead
-         }
-         MessageDialog.openError(window.getShell(), op, message);
+   enum MessageType {
+      INFO,
+      ERROR
+   }
+   
+   void displayMessage(String message, MessageType type) {
+      try (MessageConsoleStream out = console.newMessageStream()) {
+         /* TODO: set foreground based on type */
+         out.println(message);
+      } catch (IOException e) {
+         /* ignore for now */
       }
    }
 
-   void displayInfoMessage(String op, String message) {
-      MessageConsole console = findConsole();
-      if (console != null) {
-         try (MessageConsoleStream out = console.newMessageStream()) {
-            out.println(message);
-            return;
-         } catch (IOException e) {
-            //  use message dialog instead
-         }
-         MessageDialog.openInformation(window.getShell(), op, message);
-      }
-   }
-
-   
    MessageConsole findConsole() {
       String name = CONSOLE_NAME;
       ConsolePlugin plugin = ConsolePlugin.getDefault();
       IConsoleManager conMan = plugin.getConsoleManager();
       IConsole[] existing = conMan.getConsoles();
-      for (int i = 0; i < existing.length; i++)
-         if (name.equals(existing[i].getName())) {
-            MessageConsole messageConsole = (MessageConsole) existing[i];
+      for (IConsole element : existing) {
+         if (name.equals(element.getName())) {
+            MessageConsole messageConsole = (MessageConsole) element;
             showConsole(messageConsole);
             return messageConsole;
          }
-      //no console found, so create a new one
+      }
+      // no console found, so create a new one
       MessageConsole myConsole = new MessageConsole(name, null);
-      conMan.addConsoles(new IConsole[]{myConsole});
+      conMan.addConsoles(new IConsole[] {
+         myConsole
+      });
       showConsole(myConsole);
       return myConsole;
    }

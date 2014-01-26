@@ -1,25 +1,18 @@
 package egitex.actions;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 
-class Launcher {
-   private File output;
-   private final ProcessBuilder builder;
+import egitex.actions.MessageUtils.MessageType;
 
-   Launcher(File repoRoot, String... args) {
+class Launcher {
+   private final ProcessBuilder builder;
+   private final MessageUtils messages;
+
+   Launcher(File repoRoot, MessageUtils messages, String... args) {
+      this.messages = messages;
       builder = new ProcessBuilder(args);
       builder.directory(repoRoot);
-      try {
-         output = File.createTempFile("egit-ex", ".txt");
-         output.deleteOnExit();
-         builder.redirectOutput(output);
-         builder.redirectError(output);
-      } catch (IOException e) {
-         /* TODO  Get rid of temp file, capture output some other way, */
-      }
    }
 
    void launchAndWait() {
@@ -29,6 +22,8 @@ class Launcher {
       } catch (IOException e) {
          throw new IllegalStateException("Failed to start process");
       }
+      new ProcessOutputThread(messages, process.getInputStream(), MessageType.INFO).start();
+      new ProcessOutputThread(messages, process.getErrorStream(), MessageType.ERROR).start();
       while (true) {
          try {
             process.exitValue();
@@ -36,24 +31,6 @@ class Launcher {
          } catch (IllegalThreadStateException e) {
             // keep waiting
          }
-      }
-   }
-
-   public String getOutput() {
-      if (output == null) {
-         return "no output";
-      }
-      StringBuilder fileContentToText = new StringBuilder();
-      try (BufferedReader reader = new BufferedReader(new FileReader(output))) {
-         String line;
-         while ((line = reader.readLine()) != null) {
-            fileContentToText.append(line);
-         }
-         return fileContentToText.toString();
-      } catch (IOException e) {
-         return "";
-      } finally {
-         output.delete();
       }
    }
 }

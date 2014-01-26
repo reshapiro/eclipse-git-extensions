@@ -13,16 +13,10 @@ public class SvnRebaseAction
       extends GitAction
 
       implements IWorkbenchWindowActionDelegate {
-   private static final String OPERATION_NAME = "pull from svn";
    private static final String[] ARGS = new String[] {
       "svn",
       "rebase"
    };
-
-   @Override
-   String getOperationName() {
-      return OPERATION_NAME;
-   }
 
    @Override
    String[] getArgs() {
