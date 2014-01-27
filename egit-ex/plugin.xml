@@ -24,13 +24,13 @@
                tooltip="Git status">
          </action>
          <action
-               label="Push to SVN"
-               icon="icons/push.gif"
-               class="egitex.actions.SvnDcommitAction"
-               tooltip="Push new commits to SVN (active branch) "
+               class="egitex.actions.SvnRebaseAction"
+               icon="icons/pull.gif"
+               id="egitex.actions.SvnRebaseAction"
+               label="Pull from SVN"
                menubarPath="gitMenu/gitGroup"
                toolbarPath="gitGroup"
-               id="egitex.actions.SvnDcommitAction">
+               tooltip="Fetch and rebase new commits from SVN (active branch)">
          </action>
          <action
                class="egitex.actions.SvnFetchAction"
@@ -42,13 +42,13 @@
                tooltip="Fetch new commits from SVN (all branches)">
          </action>
          <action
-               class="egitex.actions.SvnRebaseAction"
-               icon="icons/pull.gif"
-               id="egitex.actions.SvnRebaseAction"
-               label="Pull from SVN"
+               class="egitex.actions.SvnDcommitAction"
+               icon="icons/push.gif"
+               id="egitex.actions.SvnDcommitAction"
+               label="Push to SVN"
                menubarPath="gitMenu/gitGroup"
                toolbarPath="gitGroup"
-               tooltip="Fetch and rebase new commits from SVN (active branch)">
+               tooltip="Push new commits to SVN (active branch) ">
          </action>
          <action
                class="egitex.actions.SvnInfoAction"
