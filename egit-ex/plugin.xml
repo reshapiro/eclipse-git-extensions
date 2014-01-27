@@ -14,13 +14,16 @@
             <separator
                   name="gitGroup">
             </separator>
+            <separator
+                  name="svnGroup">
+            </separator>
          </menu>
          <action
                class="egitex.actions.StatusAction"
                id="egitex.actions.StatusAction"
                label="Git status"
                menubarPath="gitMenu/gitGroup"
-               toolbarPath="gitGroup"
+               toolbarPath="toolbarGroup"
                tooltip="Git status">
          </action>
          <action
@@ -28,8 +31,8 @@
                icon="icons/pull.gif"
                id="egitex.actions.SvnRebaseAction"
                label="Pull from SVN"
-               menubarPath="gitMenu/gitGroup"
-               toolbarPath="gitGroup"
+               menubarPath="gitMenu/svnGroup"
+               toolbarPath="toolbarGroup"
                tooltip="Fetch and rebase new commits from SVN (active branch)">
          </action>
          <action
@@ -37,8 +40,8 @@
                icon="icons/fetch.gif"
                id="egitex.actions.SvnFetchAction"
                label="Fetch from SVN"
-               menubarPath="gitMenu/gitGroup"
-               toolbarPath="gitGroup"
+               menubarPath="gitMenu/svnGroup"
+               toolbarPath="toolbarGroup"
                tooltip="Fetch new commits from SVN (all branches)">
          </action>
          <action
@@ -46,32 +49,29 @@
                icon="icons/push.gif"
                id="egitex.actions.SvnDcommitAction"
                label="Push to SVN"
-               menubarPath="gitMenu/gitGroup"
-               toolbarPath="gitGroup"
+               menubarPath="gitMenu/svnGroup"
+               toolbarPath="toolbarGroup"
                tooltip="Push new commits to SVN (active branch) ">
          </action>
          <action
                class="egitex.actions.SvnInfoAction"
                id="egitex.actions.SvnInfoAction"
                label="SVN info"
-               menubarPath="gitMenu/gitGroup"
-               toolbarPath="gitGroup"
+               menubarPath="gitMenu/svnGroup"
                tooltip="Show bridged SVN info">
          </action>
          <action
                class="egitex.actions.Git2SvnAction"
                id="egitex.actions.Git2SvnAction"
                label="SVN rev"
-               menubarPath="gitMenu/gitGroup"
-               toolbarPath="gitGroup"
+               menubarPath="gitMenu/svnGroup"
                tooltip="Show SVN revision for Git commit">
          </action>
          <action
                class="egitex.actions.Svn2GitAction"
                id="egitex.actions.Svn2GitAction"
                label="Git SHA"
-               menubarPath="gitMenu/gitGroup"
-               toolbarPath="gitGroup"
+               menubarPath="gitMenu/svnGroup"
                tooltip="Show Git SHA for SVN revision">
          </action>
       </actionSet>
