@@ -14,7 +14,6 @@ import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 class ConsoleWriter {
-   private static final String CONSOLE_NAME = "git-ex-console";
    private final IWorkbenchWindow window;
 
    ConsoleWriter(IWorkbenchWindow window) {
@@ -37,7 +36,7 @@ class ConsoleWriter {
    }
 
    MessageConsole findConsole() {
-      String name = CONSOLE_NAME;
+      String name = "";
       ConsolePlugin plugin = ConsolePlugin.getDefault();
       IConsoleManager conMan = plugin.getConsoleManager();
       IConsole[] existing = conMan.getConsoles();
@@ -62,7 +61,7 @@ class ConsoleWriter {
       String id = IConsoleConstants.ID_CONSOLE_VIEW;
       IConsoleView view;
       try {
-         view = (IConsoleView) page.showView(id);
+         view = (IConsoleView) page.showView(id, null, IWorkbenchPage.VIEW_VISIBLE);
          view.display(myConsole);
       } catch (PartInitException e) {
          e.printStackTrace();
