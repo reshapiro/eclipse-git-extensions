@@ -36,7 +36,6 @@ class Launcher {
             try {
                waitLock.wait();
                showPendingMessages();
-               Thread.yield();
             } catch (InterruptedException e) {
                // keep waiting
             }
@@ -95,7 +94,7 @@ class Launcher {
                }
             }
             try {
-               Thread.sleep(10);
+               Thread.sleep(100);
             } catch (InterruptedException e) {
                // don't care if sleep interrupted
             }
