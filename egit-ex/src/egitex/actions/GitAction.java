@@ -6,6 +6,12 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.IJobChangeEvent;
+import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.core.variables.IStringVariableManager;
 import org.eclipse.core.variables.VariablesPlugin;
 import org.eclipse.jface.action.IAction;
@@ -23,12 +29,13 @@ import egitex.actions.ConsoleWriter.MessageType;
  * 
  */
 abstract class GitAction
-      implements IWorkbenchWindowActionDelegate {
+   implements IWorkbenchWindowActionDelegate {
    private static final String GIT_EXEC_VAR = "git_exec";
    private static final String EGIT_WORK_TREE_VAR = "git_work_tree";
 
    private ConsoleWriter messages;
    private Shell shell;
+   private IStatus jobStatus;
 
    GitAction() {
    }
@@ -40,6 +47,7 @@ abstract class GitAction
     */
    abstract String[] getArgs(Shell activeShell);
 
+   
    /**
     * The action has been activated. The argument of the method represents the
     * 'real' action sitting in the workbench UI.
@@ -70,8 +78,21 @@ abstract class GitAction
       String[] fullArgs = new String[gitArgs.length + 1];
       fullArgs[0] = gitExec;
       System.arraycopy(gitArgs, 0, fullArgs, 1, gitArgs.length);
+      
       Launcher launcher = new Launcher(repo, fullArgs);
-      launcher.launchAndWait();
+      Job job = new GitJob("Launched Git command", launcher);
+      job.addJobChangeListener(new Listener());
+      synchronized (job) {
+         jobStatus = null;
+         job.schedule();
+         while (jobStatus == null) {
+            try {
+               job.wait();
+            } catch (InterruptedException e) {
+               /* keep waiting */
+            }
+         }
+      }
       messages.displayMessage(launcher.getOutput(), MessageType.INFO);
       try {
          refreshWorkspace();
@@ -116,7 +137,7 @@ abstract class GitAction
     */
    @Override
    public void dispose() {
-      /* Don't currently need to do anything here */
+      /* Don't think there's anything to dispose here */
    }
 
    /**
@@ -129,5 +150,34 @@ abstract class GitAction
    public void init(IWorkbenchWindow window) {
       this.messages = new ConsoleWriter(window);
       this.shell = window.getShell();
+   }
+   
+   private final class Listener
+         extends JobChangeAdapter {
+      
+      @Override
+      public void done(IJobChangeEvent event) {
+         Job job = event.getJob();
+         synchronized (job) {
+            jobStatus = event.getResult();
+            job.notify();
+         }
+      }
+   }
+
+   private final class GitJob
+         extends Job {
+      private final Launcher launcher;
+   
+      private GitJob(String name, Launcher launcher) {
+         super(name);
+         this.launcher = launcher;
+      }
+   
+      @Override
+      protected IStatus run(IProgressMonitor monitor) {
+         launcher.launchAndWait();
+         return monitor.isCanceled() ? Status.CANCEL_STATUS : Status.OK_STATUS;
+      }
    }
 }

@@ -34,13 +34,10 @@ class Launcher {
       }
       while (true) {
          try {
-            Thread.sleep(10);
-            process.exitValue();
+            process.waitFor();
             return;
-         } catch (IllegalThreadStateException e) {
-            /* not done yet, keep trying */
          } catch (InterruptedException e) {
-            /* ignore these, they don't matter. */
+            /* keep waiting. */
          }
       }
    }
