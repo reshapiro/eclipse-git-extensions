@@ -97,15 +97,15 @@ abstract class GitAction
    }
 
    /**
-    * Selection in the workbench has been changed. We can change the state of
-    * the 'real' action here if we want, but this can only happen after the
-    * delegate has been created.
+    * Selection in the workbench has been changed.
+    * Enable the action iff the new selection is in a Git repository.
     * 
     * @see IWorkbenchWindowActionDelegate#selectionChanged
     */
    @Override
    public void selectionChanged(IAction action, ISelection selection) {
-      /* Don't currently need to do anything here */
+      String repoPath = resolveVariable(EGIT_WORK_TREE_VAR);
+      action.setEnabled(!repoPath.isEmpty());
    }
 
    /**
