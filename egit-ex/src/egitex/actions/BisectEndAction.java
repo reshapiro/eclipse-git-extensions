@@ -14,7 +14,8 @@ public class BisectEndAction
 
       implements IWorkbenchWindowActionDelegate {
    private static final String[] ARGS = new String[] {
-      "bisect reset"
+      "bisect",
+      "reset"
    };
 
    @Override

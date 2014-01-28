@@ -14,7 +14,8 @@ public class BisectStartAction
 
       implements IWorkbenchWindowActionDelegate {
    private static final String[] ARGS = new String[] {
-      "bisect start"
+      "bisect",
+      "start"
    };
 
    @Override

@@ -14,7 +14,8 @@ public class BisectGoodAction
 
       implements IWorkbenchWindowActionDelegate {
    private static final String[] ARGS = new String[] {
-      "bisect good"
+      "bisect",
+      "good"
    };
 
    @Override
