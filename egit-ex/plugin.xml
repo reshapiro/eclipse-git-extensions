@@ -74,6 +74,34 @@
                menubarPath="gitMenu/svnGroup"
                tooltip="Show Git SHA for SVN revision">
          </action>
+         <action
+               class="egitex.actions.BisectEndAction"
+               id="egitex.actions.BisectEndAction"
+               label="End bisect"
+               menubarPath="gitMenu/bisectGroup"
+               tooltip="End a bisect">
+         </action>
+         <action
+               class="egitex.actions.BisectBadAction"
+               id="egitex.actions.BisectBadAction"
+               label="Mark as bad"
+               menubarPath="gitMenu/bisectGroup"
+               tooltip="Mark HEAD as bad in a bisect">
+         </action>
+         <action
+               class="egitex.actions.BisectGoodAction"
+               id="egitex.actions.BisectGoodAction"
+               label="Mark as good"
+               menubarPath="gitMenu/bisectGroup"
+               tooltip="Mark HEAD as good in a bisect">
+         </action>
+         <action
+               class="egitex.actions.BisectStartAction"
+               id="egitex.actions.BisectStartAction"
+               label="Start bisect"
+               menubarPath="gitMenu/bisectGroup"
+               tooltip="Begin a bisect">
+         </action>
       </actionSet>
    </extension>
 
