@@ -41,21 +41,21 @@ class SimpleInputDialog
      container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
      container.setLayout(layout);
 
-     createFirstName(container);
+     createInputBox(container);
 
      return area;
    }
 
-   private void createFirstName(Composite container) {
-     Label lbtFirstName = new Label(container, SWT.NONE);
-     lbtFirstName.setText(param);
+   private void createInputBox(Composite container) {
+     Label label = new Label(container, SWT.NONE);
+     label.setText(param);
 
-     GridData dataFirstName = new GridData();
-     dataFirstName.grabExcessHorizontalSpace = true;
-     dataFirstName.horizontalAlignment = GridData.FILL;
+     GridData data = new GridData();
+     data.grabExcessHorizontalSpace = true;
+     data.horizontalAlignment = GridData.FILL;
 
      inputText = new Text(container, SWT.BORDER);
-     inputText.setLayoutData(dataFirstName);
+     inputText.setLayoutData(data);
    }
    
    @Override
