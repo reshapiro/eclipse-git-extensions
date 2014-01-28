@@ -1,104 +1,66 @@
 package egitex.actions;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import egitex.actions.ConsoleWriter.MessageType;
+import java.io.Reader;
 
 class Launcher {
+   private File output;
    private final ProcessBuilder builder;
-   private final ConsoleWriter messageWriter;
-   private final List<Message> pendingMessages = new ArrayList<>();
-   private final Object waitLock = "wait for process completion";
-   private boolean processCompleted;
-   private Process process;
 
-   Launcher(File repoRoot, ConsoleWriter messages, String... args) {
-      this.messageWriter = messages;
+   Launcher(File repoRoot, String... args) {
       builder = new ProcessBuilder(args);
       builder.directory(repoRoot);
+      try {
+         output = File.createTempFile("egit-ex", ".txt");
+      } catch (IOException e) {
+         output = null;
+      }
+      if (output != null) {
+         output.deleteOnExit();
+         builder.redirectOutput(output);
+         builder.redirectError(output);
+      }
    }
 
    void launchAndWait() {
+      Process process;
       try {
          process = builder.start();
       } catch (IOException e) {
          throw new IllegalStateException("Failed to start process");
       }
-      new Checker().start();
-      new ProcessOutputThread(this, process.getInputStream(), MessageType.INFO).start();
-      new ProcessOutputThread(this, process.getErrorStream(), MessageType.ERROR).start();
-      
-      synchronized (waitLock) {
-         while (!processCompleted) {
-            try {
-               waitLock.wait();
-               showPendingMessages();
-            } catch (InterruptedException e) {
-               // keep waiting
-            }
+      while (true) {
+         try {
+            process.exitValue();
+            return;
+         } catch (IllegalThreadStateException e) {
+            // keep waiting
          }
       }
    }
    
-   void displayMessage(String text, ConsoleWriter.MessageType type) {
-      synchronized (pendingMessages) {
-         pendingMessages.add(new Message(text, type));
+   String getOutput() {
+      if (output == null) {
+         return "No output, failed to create temp file";
       }
-   }
-   
-   private void showPendingMessages() {
-      synchronized (pendingMessages) {
-         for (Message message : pendingMessages) {
-            message.show();
-         }
-         pendingMessages.clear();
-      }
-   }
-   
-   private class Message {
-      String message;
-      ConsoleWriter.MessageType type;
-      
-      Message(String message, ConsoleWriter.MessageType type) {
-         this.message = message;
-         this.type = type;
-      }
-      
-      void show() {
-         messageWriter.displayMessage(message, type);
-      }
-   }
-   
-   private class Checker
-         extends Thread {
-      
-      Checker() {
-         setDaemon(true);
-      }
-      
-      @Override
-      public void run() {
-         while (!processCompleted) {
-            synchronized (waitLock) {
-               waitLock.notify();
-            }
-            if (process != null) {
-               try {
-                  process.exitValue();
-                  processCompleted = true;
-               } catch (IllegalThreadStateException e) {
-                  // keep waiting
-               }
-            }
-            try {
-               Thread.sleep(100);
-            } catch (InterruptedException e) {
-               // don't care if sleep interrupted
+      StringBuilder fileContentToText = new StringBuilder();
+      try (Reader reader = new BufferedReader(new FileReader(output))) {
+         char[] buffer = new char[1000];
+         int bytesRead = 0;
+         while (bytesRead >= 0) {
+            bytesRead = reader.read(buffer);
+            if (bytesRead > 0) {
+               fileContentToText.append(buffer, 0, bytesRead);
             }
          }
+         return fileContentToText.toString();
+      } catch (IOException e) {
+         return "Failed to read process output";
+      } finally {
+         output.delete();
       }
    }
 }

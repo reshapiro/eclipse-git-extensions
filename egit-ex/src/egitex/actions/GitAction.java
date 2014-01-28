@@ -70,8 +70,9 @@ abstract class GitAction
       String[] fullArgs = new String[gitArgs.length + 1];
       fullArgs[0] = gitExec;
       System.arraycopy(gitArgs, 0, fullArgs, 1, gitArgs.length);
-      Launcher launcher = new Launcher(repo, messages, fullArgs);
+      Launcher launcher = new Launcher(repo, fullArgs);
       launcher.launchAndWait();
+      messages.displayMessage(launcher.getOutput(), MessageType.INFO);
       try {
          refreshWorkspace();
       } catch (CoreException e) {
