@@ -97,7 +97,7 @@ abstract class GitAction
       try {
          refreshWorkspace();
       } catch (CoreException e) {
-         /* ignore for now */
+         messages.displayMessage("Refresh failed: " + e.getMessage(), MessageType.ERROR);
       }
    }
 
@@ -176,7 +176,7 @@ abstract class GitAction
    
       @Override
       protected IStatus run(IProgressMonitor monitor) {
-         launcher.launchAndWait();
+         launcher.launchAndWait(monitor);
          return monitor.isCanceled() ? Status.CANCEL_STATUS : Status.OK_STATUS;
       }
    }

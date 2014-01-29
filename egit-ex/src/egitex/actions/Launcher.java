@@ -6,9 +6,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+
 class Launcher {
    private File output;
    private final ProcessBuilder builder;
+   private IOException launchException;
 
    Launcher(File repoRoot, String... args) {
       builder = new ProcessBuilder(args);
@@ -25,24 +28,51 @@ class Launcher {
       }
    }
 
-   void launchAndWait() {
+   /**
+    * Launch a process to run the Git command. Wait for completion or
+    * cancellation.
+    * 
+    * The waiting does not use process.waitFor() by design, since it does not
+    * want to block the thread.
+    * 
+    * @param monitor used to check for cancellation.
+    */
+   void launchAndWait(IProgressMonitor monitor) {
       Process process;
       try {
          process = builder.start();
       } catch (IOException e) {
-         throw new IllegalStateException("Failed to start process");
+         launchException = e;
+         return;
       }
       while (true) {
+         /* First check for user cancellation. */
+         if (monitor.isCanceled()) {
+            /* User cancelled.  Kill the process and exit */
+            process.destroy();
+            break;
+         }
+         /* Next check for process completion via side-effect. */
          try {
-            process.waitFor();
-            return;
+            process.exitValue();
+            /* If we get here the process is done */
+            break;
+         } catch (IllegalThreadStateException e) {
+            /* If we get here the launched process is still running */
+         }
+         /* Still waiting for completion, sleep a bit */
+         try {
+            Thread.sleep(50);
          } catch (InterruptedException e) {
-            /* keep waiting. */
+            /* interrupts aren't relevant here. */
          }
       }
    }
    
    String getOutput() {
+      if (launchException != null) {
+         return launchException.getMessage();
+      }
       if (output == null) {
          return "No output, failed to create temp file";
       }
