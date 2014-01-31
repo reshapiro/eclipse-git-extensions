@@ -50,16 +50,17 @@ abstract class GitAction
     */
    abstract String getJobName();
    
+   /**
+    * Override to return false if no refresh is required
+    * @return
+    */
    boolean touch() {
       return true;
    }
 
    
    /**
-    * The action has been activated. The argument of the method represents the
-    * 'real' action sitting in the workbench UI.
-    * 
-    * @see IWorkbenchWindowActionDelegate#run
+    * Run the Git command if possible
     */
    @Override
    public void run(IAction action) {
