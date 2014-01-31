@@ -22,4 +22,10 @@ public class BisectStartAction
    String[] getArgs(Shell shell) {
       return ARGS;
    }
+   
+   @Override
+   String getJobName() {
+      return "Start bisect";
+   }
+
 }

@@ -23,4 +23,9 @@ public class SvnRebaseAction
    String[] getArgs(Shell shell) {
       return ARGS;
    }
+
+   @Override
+   String getJobName() {
+      return "'Pull' new commits from SVN";
+   }
 }

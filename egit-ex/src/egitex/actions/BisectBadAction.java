@@ -22,4 +22,9 @@ public class BisectBadAction
    String[] getArgs(Shell shell) {
       return ARGS;
    }
+
+   @Override
+   String getJobName() {
+      return "Mark bisect checkout as bad";
+   }
 }

@@ -23,4 +23,9 @@ public class SvnDcommitAction
    String[] getArgs(Shell shell) {
       return ARGS;
    }
+
+   @Override
+   String getJobName() {
+      return "'Push' new commits to SVN";
+   }
 }

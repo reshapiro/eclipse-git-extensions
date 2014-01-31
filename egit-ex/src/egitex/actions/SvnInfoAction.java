@@ -22,4 +22,9 @@ public class SvnInfoAction
    String[] getArgs(Shell shell) {
       return ARGS;
    }
+
+   @Override
+   String getJobName() {
+      return "Show the status of the bridged SVN repo";
+   }
 }

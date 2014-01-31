@@ -33,4 +33,9 @@ public class Svn2GitAction
       }
       return null;
    }
+
+   @Override
+   String getJobName() {
+      return "Display the SHA for a given SVN revision";
+   }
 }

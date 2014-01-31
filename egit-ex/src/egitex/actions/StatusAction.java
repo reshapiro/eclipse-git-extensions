@@ -22,4 +22,9 @@ public class StatusAction
    String[] getArgs(Shell shell) {
       return ARGS;
    }
+
+   @Override
+   String getJobName() {
+      return "Show repo status";
+   }
 }

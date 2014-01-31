@@ -46,6 +46,12 @@ abstract class GitAction
     * @return the arguments to the Git command
     */
    abstract String[] getArgs(Shell activeShell);
+   
+   /**
+    * 
+    * @return the name shown in the progress area.
+    */
+   abstract String getJobName();
 
    
    /**
@@ -80,7 +86,7 @@ abstract class GitAction
       System.arraycopy(gitArgs, 0, fullArgs, 1, gitArgs.length);
       
       Launcher launcher = new Launcher(repo, fullArgs);
-      Job job = new GitJob("Launched Git command", launcher);
+      Job job = new GitJob(getJobName(), launcher);
       job.addJobChangeListener(new Listener());
       synchronized (job) {
          jobStatus = null;
@@ -176,7 +182,9 @@ abstract class GitAction
    
       @Override
       protected IStatus run(IProgressMonitor monitor) {
+         monitor.beginTask(getName(), IProgressMonitor.UNKNOWN);
          launcher.launchAndWait(monitor);
+         monitor.done();
          return monitor.isCanceled() ? Status.CANCEL_STATUS : Status.OK_STATUS;
       }
    }

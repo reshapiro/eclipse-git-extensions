@@ -23,4 +23,9 @@ public class SvnFetchAction
    String[] getArgs(Shell shell) {
       return ARGS;
    }
+   
+   @Override
+   String getJobName() {
+      return "'Fetch' new commits from SVN";
+   }
 }
