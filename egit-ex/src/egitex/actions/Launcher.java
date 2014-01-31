@@ -60,7 +60,6 @@ class Launcher {
          } catch (IllegalThreadStateException e) {
             /* If we get here the launched process is still running */
          }
-         monitor.worked(10);
          /* Still waiting for completion, sleep a bit */
          try {
             Thread.sleep(50);

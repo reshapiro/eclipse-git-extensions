@@ -38,4 +38,9 @@ public class Svn2GitAction
    String getJobName() {
       return "Display the SHA for a given SVN revision";
    }
+   
+   @Override
+   boolean touch() {
+      return false;
+   }
 }

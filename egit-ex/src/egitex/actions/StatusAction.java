@@ -27,4 +27,9 @@ public class StatusAction
    String getJobName() {
       return "Show repo status";
    }
+   
+   @Override
+   boolean touch() {
+      return false;
+   }
 }

@@ -27,4 +27,9 @@ public class SvnInfoAction
    String getJobName() {
       return "Show the status of the bridged SVN repo";
    }
+   
+   @Override
+   boolean touch() {
+      return false;
+   }
 }

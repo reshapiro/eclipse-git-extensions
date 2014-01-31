@@ -3,7 +3,6 @@ package egitex.actions;
 import java.io.File;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -52,6 +51,10 @@ abstract class GitAction
     * @return the name shown in the progress area.
     */
    abstract String getJobName();
+   
+   boolean touch() {
+      return true;
+   }
 
    
    /**
@@ -100,11 +103,6 @@ abstract class GitAction
          }
       }
       messages.displayMessage(launcher.getOutput(), MessageType.INFO);
-      try {
-         refreshWorkspace();
-      } catch (CoreException e) {
-         messages.displayMessage("Refresh failed: " + e.getMessage(), MessageType.ERROR);
-      }
    }
 
    private String resolveVariable(String var) {
@@ -116,10 +114,10 @@ abstract class GitAction
       }
    }
 
-   private void refreshWorkspace()
+   private void refreshWorkspace(IProgressMonitor monitor)
          throws CoreException {
       for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
-         project.refreshLocal(IResource.DEPTH_ZERO, null);
+         project.touch(monitor);
       }
    }
 
@@ -185,6 +183,13 @@ abstract class GitAction
          monitor.beginTask(getName(), IProgressMonitor.UNKNOWN);
          launcher.launchAndWait(monitor);
          monitor.done();
+         if (touch()) {
+            try {
+               refreshWorkspace(monitor);
+            } catch (CoreException e) {
+               messages.displayMessage("Refresh failed: " + e.getMessage(), MessageType.ERROR);
+            }
+         }
          return monitor.isCanceled() ? Status.CANCEL_STATUS : Status.OK_STATUS;
       }
    }
