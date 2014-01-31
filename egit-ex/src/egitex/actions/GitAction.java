@@ -8,13 +8,12 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.core.variables.IStringVariableManager;
 import org.eclipse.core.variables.VariablesPlugin;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
@@ -34,7 +33,6 @@ abstract class GitAction
 
    private ConsoleWriter messages;
    private Shell shell;
-   private IStatus jobStatus;
 
    GitAction() {
    }
@@ -90,19 +88,7 @@ abstract class GitAction
       
       Launcher launcher = new Launcher(repo, fullArgs);
       Job job = new GitJob(getJobName(), launcher);
-      job.addJobChangeListener(new Listener());
-      synchronized (job) {
-         jobStatus = null;
-         job.schedule();
-         while (jobStatus == null) {
-            try {
-               job.wait();
-            } catch (InterruptedException e) {
-               /* keep waiting */
-            }
-         }
-      }
-      messages.displayMessage(launcher.getOutput(), MessageType.INFO);
+      job.schedule();
    }
 
    private String resolveVariable(String var) {
@@ -156,19 +142,6 @@ abstract class GitAction
       this.shell = window.getShell();
    }
    
-   private final class Listener
-         extends JobChangeAdapter {
-      
-      @Override
-      public void done(IJobChangeEvent event) {
-         Job job = event.getJob();
-         synchronized (job) {
-            jobStatus = event.getResult();
-            job.notify();
-         }
-      }
-   }
-
    private final class GitJob
          extends Job {
       private final Launcher launcher;
@@ -181,16 +154,27 @@ abstract class GitAction
       @Override
       protected IStatus run(IProgressMonitor monitor) {
          monitor.beginTask(getName(), IProgressMonitor.UNKNOWN);
+         
+         Runnable showCommandOutput = new Runnable() {
+            @Override
+            public void run() {
+               messages.displayMessage(launcher.getOutput(), MessageType.INFO);
+            }
+         };
          launcher.launchAndWait(monitor);
-         monitor.done();
-         if (touch()) {
-            try {
-               refreshWorkspace(monitor);
-            } catch (CoreException e) {
-               messages.displayMessage("Refresh failed: " + e.getMessage(), MessageType.ERROR);
+         boolean canceled = monitor.isCanceled();
+         if (!canceled) {
+            Display.getDefault().asyncExec(showCommandOutput);
+            if (touch()) {
+               try {
+                  refreshWorkspace(monitor);
+               } catch (CoreException e) {
+                  /* I don't know what to do here */
+               }
             }
          }
-         return monitor.isCanceled() ? Status.CANCEL_STATUS : Status.OK_STATUS;
+         monitor.done();
+         return canceled ? Status.CANCEL_STATUS : Status.OK_STATUS;
       }
    }
 }
