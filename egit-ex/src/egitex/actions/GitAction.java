@@ -13,12 +13,9 @@ import org.eclipse.core.variables.IStringVariableManager;
 import org.eclipse.core.variables.VariablesPlugin;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
-
-import egitex.actions.ConsoleWriter.MessageType;
 
 /**
  * Base class for all Git commands of interest
@@ -66,13 +63,13 @@ abstract class GitAction
    public void run(IAction action) {
       String gitExec = resolveVariable(GIT_EXEC_VAR);
       if (gitExec.isEmpty()) {
-         messages.displayMessage("You must define the String Substitution variable '" + GIT_EXEC_VAR + "'", MessageType.ERROR);
+         messages.displayMessage("You must define the String Substitution variable '" + GIT_EXEC_VAR + "'\n");
          return;
       }
 
       String repoPath = resolveVariable(EGIT_WORK_TREE_VAR);
       if (repoPath.isEmpty()) {
-         messages.displayMessage("No git project is selected", MessageType.ERROR);
+         messages.displayMessage("No git project is selected\n");
          return;
       }
 
@@ -80,14 +77,14 @@ abstract class GitAction
       String[] gitArgs = getArgs(shell);
       if (gitArgs == null) {
          /* Some required parameter wasn't provided */
-         messages.displayMessage("Some required parameter wasn't provided", MessageType.ERROR);
+         messages.displayMessage("Some required parameter wasn't provided\n");
          return;
       }
       String[] fullArgs = new String[gitArgs.length + 1];
       fullArgs[0] = gitExec;
       System.arraycopy(gitArgs, 0, fullArgs, 1, gitArgs.length);
       
-      Launcher launcher = new Launcher(repo, fullArgs);
+      Launcher launcher = new Launcher(repo, messages, fullArgs);
       Job job = new GitJob(getJobName(), launcher);
       job.schedule();
    }
@@ -155,23 +152,13 @@ abstract class GitAction
       @Override
       protected IStatus run(IProgressMonitor monitor) {
          monitor.beginTask(getName(), IProgressMonitor.UNKNOWN);
-         
-         Runnable showCommandOutput = new Runnable() {
-            @Override
-            public void run() {
-               messages.displayMessage(launcher.getOutput(), MessageType.INFO);
-            }
-         };
          launcher.launchAndWait(monitor);
          boolean canceled = monitor.isCanceled();
-         if (!canceled) {
-            Display.getDefault().asyncExec(showCommandOutput);
-            if (touch()) {
-               try {
-                  refreshWorkspace(monitor);
-               } catch (CoreException e) {
-                  /* I don't know what to do here */
-               }
+         if (!canceled && touch()) {
+            try {
+               refreshWorkspace(monitor);
+            } catch (CoreException e) {
+               /* I don't know what to do here */
             }
          }
          monitor.done();

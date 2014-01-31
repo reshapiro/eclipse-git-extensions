@@ -20,16 +20,11 @@ class ConsoleWriter {
       this.window = window;
    }
 
-   enum MessageType {
-      INFO,
-      ERROR
-   }
-   
-   void displayMessage(String message, MessageType type) {
+   void displayMessage(String message) {
       MessageConsole console = findConsole();
       try (MessageConsoleStream out = console.newMessageStream()) {
          /* TODO: set foreground based on type */
-         out.println(message);
+         out.print(message);
       } catch (IOException e) {
          e.printStackTrace();
       }

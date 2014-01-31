@@ -1,31 +1,20 @@
 package egitex.actions;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
+import java.io.InputStream;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.swt.widgets.Display;
 
 class Launcher {
-   private File output;
+   private final ConsoleWriter messages;
    private final ProcessBuilder builder;
-   private IOException launchException;
 
-   Launcher(File repoRoot, String... args) {
+   Launcher(File repoRoot, ConsoleWriter messages, String... args) {
+      this.messages = messages;
       builder = new ProcessBuilder(args);
       builder.directory(repoRoot);
-      try {
-         output = File.createTempFile("egit-ex", ".txt");
-      } catch (IOException e) {
-         output = null;
-      }
-      if (output != null) {
-         output.deleteOnExit();
-         builder.redirectOutput(output);
-         builder.redirectError(builder.redirectOutput());
-      }
    }
 
    /**
@@ -41,8 +30,8 @@ class Launcher {
       Process process;
       try {
          process = builder.start();
+         new Writer(monitor, process.getInputStream()).start();
       } catch (IOException e) {
-         launchException = e;
          return;
       }
       while (true) {
@@ -69,28 +58,47 @@ class Launcher {
       }
    }
    
-   String getOutput() {
-      if (launchException != null) {
-         return launchException.getMessage();
+   private final class Sender
+         implements Runnable {
+      
+      private final String message;
+      
+      Sender(String message) {
+         this.message = message;
       }
-      if (output == null) {
-         return "No output, failed to create temp file";
+
+      @Override
+      public void run() {
+         messages.displayMessage(message);
       }
-      StringBuilder fileContentToText = new StringBuilder();
-      try (Reader reader = new BufferedReader(new FileReader(output))) {
-         char[] buffer = new char[1000];
-         int bytesRead = 0;
-         while (bytesRead >= 0) {
-            bytesRead = reader.read(buffer);
-            if (bytesRead > 0) {
-               fileContentToText.append(buffer, 0, bytesRead);
+      
+   }
+   
+
+   private final class Writer
+         extends Thread {
+         private final byte[] buffer = new byte[50];
+         final private InputStream in;
+         Writer(IProgressMonitor monitor, InputStream in) {
+            setDaemon(true);
+            this.in = in;
+         }
+         
+         @Override
+         public void run() {
+            while (true) {
+               try {
+                  int count = in.read(buffer);
+                  if (count < 0) {
+                     return;
+                  } else if (count > 0) {
+                     String text = new String(buffer, 0, count);
+                     Display.getDefault().asyncExec(new Sender(text));
+                  }
+               } catch (IOException e) {
+                 return;
+               }
             }
          }
-         return fileContentToText.toString();
-      } catch (IOException e) {
-         return "Failed to read process output";
-      } finally {
-         output.delete();
-      }
    }
 }
