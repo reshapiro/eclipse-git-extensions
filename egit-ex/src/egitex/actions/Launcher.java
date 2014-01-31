@@ -24,7 +24,7 @@ class Launcher {
       if (output != null) {
          output.deleteOnExit();
          builder.redirectOutput(output);
-         builder.redirectError(output);
+         builder.redirectError(builder.redirectOutput());
       }
    }
 
