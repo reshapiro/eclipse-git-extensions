@@ -18,7 +18,7 @@ public class PruneAction
       implements IWorkbenchWindowActionDelegate {
    private static final String[] ARGS = new String[] {
       "remote",
-      "find-prune",
+      "prune",
       ""
    };
 
