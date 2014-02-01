@@ -1,10 +1,15 @@
-This repository defines a simple Eclipse pluging designed to support
-some Git operations that are not yet supported by JGit/Egit.  The
-implementation is trivial: a process is launched that will run
-command-line Git.  Users must therefore tell Eclipse where  the
-command-line Git executable lives. Do this with a StringSubstitution
-variable in the Run/Debug settings.
+This repository defines a simple Eclipse plugin designed to support
+some Git operations that are not yet supported by JGit/Egit.
+The currently supported operations are as follows:
 
-This is an experiment in a very early stage - use with caution!
+- Basic SVN bridging: svn rebase, dcommit, fetch, rebase --local, info, mapping SHAs to SVN revs and vice-versa
 
+- Basic Bisect: start, good, bad, reset
 
+- Pruning obsolete remote references
+
+- Creating simple tags
+
+Requires Java 7 and an installation of command-line Git.
+Also requires the workspace to include a definition of the String Substitution variable 'git_exec'
+which should point at the absolute path of Git. 
