@@ -1,5 +1,7 @@
 package egitex.actions;
 
+import java.util.List;
+
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
@@ -25,10 +27,13 @@ public class PruneAction
       SimpleInputDialog dialog = new SimpleInputDialog(shell, "Prune remote refs", "remote", "origin");
       dialog.create();
       if (dialog.open() == Window.OK) {
-         String remote = dialog.getInput();
-         if (remote != null) {
-            ARGS[2] = remote;
-            return ARGS;
+         List<String> inputs = dialog.getInputs();
+         if (inputs != null && !inputs.isEmpty()) {
+            String remote = inputs.get(0);
+            if (remote != null) {
+               ARGS[2] = remote;
+               return ARGS;
+            }
          }
       }
       return null;

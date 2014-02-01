@@ -1,5 +1,7 @@
 package egitex.actions;
 
+import java.util.List;
+
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
@@ -25,10 +27,13 @@ public class Svn2GitAction
       SimpleInputDialog dialog = new SimpleInputDialog(shell, "Get Git commit for SVN revison", "rev");
       dialog.create();
       if (dialog.open() == Window.OK) {
-         String sha = dialog.getInput();
-         if (sha != null) {
-            ARGS[2] = "r"+sha;
-            return ARGS;
+         List<String> inputs = dialog.getInputs();
+         if (inputs != null && !inputs.isEmpty()) {
+            String rev = inputs.get(0);
+            if (rev != null) {
+               ARGS[2] = "r"+rev;
+               return ARGS;
+            }
          }
       }
       return null;
