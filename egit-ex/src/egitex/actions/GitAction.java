@@ -98,10 +98,22 @@ abstract class GitAction
       }
    }
 
-   private void refreshWorkspace(IProgressMonitor monitor)
-         throws CoreException {
+   /*
+    * Refresh each open project.
+    * 
+    * FIXME this will only reliably refresh one project, though it works fine in debug mode.
+    * 
+    * Possibly a new progress monitor is needed for each?
+    */
+   private void refreshWorkspace(IProgressMonitor monitor) {
       for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
-         project.touch(monitor);
+         if (project.isOpen()) {
+            try {
+               project.touch(monitor);
+            } catch (CoreException e) {
+               // oh well
+            }
+         }
       }
    }
 
@@ -155,11 +167,7 @@ abstract class GitAction
          launcher.launchAndWait(monitor);
          boolean canceled = monitor.isCanceled();
          if (!canceled && touch()) {
-            try {
-               refreshWorkspace(monitor);
-            } catch (CoreException e) {
-               /* I don't know what to do here */
-            }
+            refreshWorkspace(monitor);
          }
          monitor.done();
          return canceled ? Status.CANCEL_STATUS : Status.OK_STATUS;
