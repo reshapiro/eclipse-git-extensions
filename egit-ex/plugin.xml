@@ -19,11 +19,17 @@
             </separator>
          </menu>
          <action
+               class="egitex.actions.PruneAction"
+               id="egitex.actions.PruneAction"
+               label="Prune..."
+               menubarPath="gitMenu/gitGroup"
+               tooltip="Prune remote refs">
+         </action>
+         <action
                class="egitex.actions.StatusAction"
                id="egitex.actions.StatusAction"
-               label="Git status"
+               label="Status"
                menubarPath="gitMenu/gitGroup"
-               toolbarPath="toolbarGroup"
                tooltip="Git status">
          </action>
          <action
@@ -34,6 +40,13 @@
                menubarPath="gitMenu/svnGroup"
                toolbarPath="toolbarGroup"
                tooltip="Fetch and rebase new commits from SVN (active branch)">
+         </action>
+         <action
+               class="egitex.actions.SvnRebaseLocalAction"
+               id="egitex.actions.SvnRebaseLocalAction"
+               label="SVN Local Rebase"
+               menubarPath="gitMenu/svnGroup"
+               tooltip="Update active branch from fetched SVN commits">
          </action>
          <action
                class="egitex.actions.SvnFetchAction"
@@ -63,16 +76,16 @@
          <action
                class="egitex.actions.Git2SvnAction"
                id="egitex.actions.Git2SvnAction"
-               label="SVN rev"
+               label="SVN rev for Git SHA"
                menubarPath="gitMenu/svnGroup"
                tooltip="Show SVN revision for Git commit">
          </action>
          <action
                class="egitex.actions.Svn2GitAction"
                id="egitex.actions.Svn2GitAction"
-               label="Git SHA"
+               label="Git SHA for SVN rev..."
                menubarPath="gitMenu/svnGroup"
-               tooltip="Show Git SHA for SVN revision">
+               tooltip="Show Git SHA for SVN revision...">
          </action>
          <action
                class="egitex.actions.BisectEndAction"

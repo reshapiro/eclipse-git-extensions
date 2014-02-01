@@ -16,15 +16,21 @@ class SimpleInputDialog
 
    private final String title;
    private final String param;
+   private final String defautValue;
    private Text inputText;
    private String input;
    
    SimpleInputDialog(Shell parentShell, String title, String param) {
+      this(parentShell, title, param, null);
+   }
+
+   SimpleInputDialog(Shell parentShell, String title, String param, String defaultValue) {
       super(parentShell);
       this.title = title;
       this.param = param;
+      this.defautValue = defaultValue;
+      
    }
-
    @Override
    public void create() {
      super.create();
@@ -56,6 +62,9 @@ class SimpleInputDialog
 
      inputText = new Text(container, SWT.BORDER);
      inputText.setLayoutData(data);
+     if (defautValue != null) {
+        inputText.setText(defautValue);
+     }
    }
    
    @Override
