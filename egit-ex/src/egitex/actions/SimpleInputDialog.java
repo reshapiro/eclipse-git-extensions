@@ -17,8 +17,8 @@ import org.eclipse.swt.widgets.Text;
 
 /**
  * Very simple input dialog.
- * 
- * Eventually it will support multiple parameters, for now only one.
+ * Any number of parameters can be provided, with or without default values.
+ * They will displayed as one text-box per row, with a fixed width for the box.
  * @author reshapiro
  *
  */
@@ -32,14 +32,44 @@ class SimpleInputDialog
    private final List<Text> inputTexts;
    private final List<String> inputs;
    
+   /**
+    * 
+    * This variant will display one text box, with no default value.
+    * 
+    * @param parentShell root window
+    * @param title The title of the dialog.
+    * @param param The name of a single parameter.
+    * 
+    */
    SimpleInputDialog(Shell parentShell, String title, String param) {
       this(parentShell, title, Collections.singletonList(param), EMPTY);
    }
    
+   /**
+    * 
+    * This variant will display one text box, with a default value.
+    * 
+    * @param parentShell root window.
+    * @param title The title of the dialog.
+    * @param param The name of a single parameter.
+    * @param defaultValue The default value for this parameter.
+    * 
+    */
    SimpleInputDialog(Shell parentShell, String title, String param, String defaultValue) {
       this(parentShell, title, Collections.singletonList(param), Collections.singletonList(defaultValue));
    }
 
+   /**
+    * This variant will display as many boxes as there are parameters.
+    * 
+    * @param parentShell root window.
+    * @param title The title of the dialog
+    * @param params The parameter names, in order.
+    * @param defaultValues Parallel list of default values. A value of null is
+    *        ok here, it simply means no defaults. Similarly if an entry in this
+    *        list is null or missing, the corresponding parameter has no
+    *        default value.
+    */
    SimpleInputDialog(Shell parentShell, String title, List<String> params, List<String> defaultValues) {
       super(parentShell);
       int size = params.size();
@@ -77,8 +107,9 @@ class SimpleInputDialog
      data.grabExcessHorizontalSpace = true;
      data.horizontalAlignment = GridData.FILL;
 
-     /* For now create one box, later create all */
-     addInputBox(container, data, 0);
+     for (int i=0; i < params.size(); i++) {
+        addInputBox(container, data, i);
+     }
    }
 
    private void addInputBox(Composite container, GridData data, int index) {
@@ -86,8 +117,8 @@ class SimpleInputDialog
       label.setText(params.get(index));
       Text inputText = new Text(container, SWT.BORDER);
       inputText.setLayoutData(data);
-      if (defautValues.size() > 0) {
-         String defaultValue = defautValues.get(0);
+      if (defautValues != null && defautValues.size() >= index) {
+         String defaultValue = defautValues.get(index);
          if (defaultValue != null) {
             inputText.setText(defaultValue);
          }
