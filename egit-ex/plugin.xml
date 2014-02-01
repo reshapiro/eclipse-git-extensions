@@ -5,9 +5,10 @@
    <extension
          point="org.eclipse.ui.actionSets">
       <actionSet
+            id="egit-ex.actionSet"
             label="Git Action Set"
-            visible="true"
-            id="egit-ex.actionSet">
+            sibling_order="&lt;action&#x0A;               class=&quot;egitex.actions.PruneAction&quot;&#x0A;               id=&quot;egitex.actions.PruneAction&quot;&#x0A;               label=&quot;Prune...&quot;&#x0A;               menubarPath=&quot;gitMenu/gitGroup&quot;&#x0A;               tooltip=&quot;Prune remote refs&quot;&gt;&#x0A;         &lt;/action&gt;"
+            visible="true">
          <menu
                label="Git Extras"
                id="gitMenu">
@@ -22,6 +23,13 @@
                class="egitex.actions.PruneAction"
                id="egitex.actions.PruneAction"
                label="Prune..."
+               menubarPath="gitMenu/gitGroup"
+               tooltip="Prune remote refs">
+         </action>
+         <action
+               class="egitex.actions.SimpleTagAction"
+               id="egitex.actions.SimpleTagAction"
+               label="Tag..."
                menubarPath="gitMenu/gitGroup"
                tooltip="Prune remote refs">
          </action>
