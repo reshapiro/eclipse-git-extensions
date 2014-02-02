@@ -18,6 +18,14 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
+import egit_ex.util.ConsoleWriter;
+import egit_ex.util.FileInputDialog;
+import egit_ex.util.Launcher;
+import egit_ex.util.MissingRequiredParameterException;
+import egit_ex.util.ParameterSet;
+import egit_ex.util.PromptCancelledException;
+import egit_ex.util.SimpleInputDialog;
+
 /**
  * Base class for all Git commands of interest
  * 

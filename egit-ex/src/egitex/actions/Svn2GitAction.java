@@ -2,6 +2,11 @@ package egitex.actions;
 
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
+import egit_ex.util.MissingRequiredParameterException;
+import egit_ex.util.Parameter;
+import egit_ex.util.ParameterSet;
+import egit_ex.util.PromptCancelledException;
+
 /**
  * Execute the Git operation that will show the Git SHA for a given SVN revision.
  * 

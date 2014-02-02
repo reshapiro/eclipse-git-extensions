@@ -1,4 +1,4 @@
-package egitex.actions;
+package egit_ex.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +15,13 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * Very simple input dialog.
+ * Very simple text input dialog.
  * Any number of parameters can be provided, with or without default values.
  * They will displayed as one text-box per row, with a fixed width for the box.
  * @author reshapiro
  *
  */
-class SimpleInputDialog
+public class SimpleInputDialog
       extends TitleAreaDialog {
 
    private final ParameterSet parameters;
@@ -34,7 +34,7 @@ class SimpleInputDialog
     * @param title The title of the dialog
     * @param parameters The parameter specifications
     */
-   SimpleInputDialog(Shell parentShell,ParameterSet parameters) {
+   public SimpleInputDialog(Shell parentShell,ParameterSet parameters) {
       super(parentShell);
       parameters.init();
       this.parameters = parameters;

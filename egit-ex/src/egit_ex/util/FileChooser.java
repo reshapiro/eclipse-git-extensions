@@ -1,4 +1,4 @@
-package egitex.actions;
+package egit_ex.util;
 
 import java.io.File;
 
@@ -11,69 +11,59 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Text;
- 
-public class FileChooser extends Composite {
- 
-   Text mText;
-   Button mButton;
-   String title = null;
- 
-   public FileChooser(Composite parent) {
+
+/**
+ * A file chooser cribbed from the web
+ * Ugly but functional
+ *
+ */
+public class FileChooser
+      extends Composite {
+
+   private Text mText;
+   private Button mButton;
+   FileChooser(Composite parent) {
       super(parent, SWT.NULL);
       createContent();
    }
- 
-   public void createContent() {
+
+   File getFile() {
+      String text = mText.getText();
+      if (text.length() == 0) {
+         return null;
+      }
+      return new File(text);
+   }
+
+   void createContent() {
       GridLayout layout = new GridLayout(2, false);
       setLayout(layout);
- 
+
       mText = new Text(this, SWT.SINGLE | SWT.BORDER);
       GridData gd = new GridData(GridData.FILL_BOTH);
       gd.grabExcessHorizontalSpace = true;
       gd.horizontalAlignment = GridData.FILL;
       mText.setLayoutData(gd);
- 
- 
+
       mButton = new Button(this, SWT.NONE);
       mButton.setText("...");
       mButton.addSelectionListener(new SelectionListener() {
- 
+
          @Override
          public void widgetDefaultSelected(SelectionEvent e) {
             /* no-op for now */
          }
- 
+
          @Override
          public void widgetSelected(SelectionEvent e) {
-            FileDialog dlg = new FileDialog(mButton.getShell(),  SWT.OPEN  );
+            FileDialog dlg = new FileDialog(mButton.getShell(), SWT.OPEN);
             dlg.setText("Open");
             String path = dlg.open();
-            if (path == null) return;
+            if (path == null) {
+               return;
+            }
             mText.setText(path);
          }
       });
-   }
- 
-   public String getText() {
-      return mText.getText();
- 
-   }
- 
-   public Text getTextControl() {
-      return mText;     
-   }
- 
-   public File getFile() {
-      String text = mText.getText();
-      if (text.length() == 0) return null;
-      return new File(text);
-   }
- 
-   public String getTitle() {
-      return title;
-   }
- 
-   public void setTitle(String title) {
-      this.title = title;
    }
 }

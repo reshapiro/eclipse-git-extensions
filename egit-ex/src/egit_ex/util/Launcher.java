@@ -1,4 +1,4 @@
-package egitex.actions;
+package egit_ex.util;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,11 +6,18 @@ import java.io.InputStream;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 
-class Launcher {
+public class Launcher {
    private final ConsoleWriter console;
    private final ProcessBuilder builder;
 
-   Launcher(File repoRoot, ConsoleWriter console, String... args) {
+   /**
+    * Handles process launching
+    * 
+    * @param repoRoot the repository root.
+    * @param console where to show the process output
+    * @param args Git command arguments
+    */
+   public Launcher(File repoRoot, ConsoleWriter console, String... args) {
       this.console = console;
       builder = new ProcessBuilder(args);
       builder.directory(repoRoot);
@@ -25,7 +32,7 @@ class Launcher {
     * 
     * @param monitor used to check for cancellation.
     */
-   void launchAndWait(IProgressMonitor monitor) {
+   public void launchAndWait(IProgressMonitor monitor) {
       Process process;
       try {
          process = builder.start();

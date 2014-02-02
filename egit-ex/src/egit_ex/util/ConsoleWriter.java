@@ -1,4 +1,4 @@
-package egitex.actions;
+package egit_ex.util;
 
 import java.io.IOException;
 
@@ -14,26 +14,35 @@ import org.eclipse.ui.console.IConsoleView;
 import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
 
-class ConsoleWriter {
+/**
+ * Handles all output to the console.
+ * @author reshapiro
+ *
+ */
+public class ConsoleWriter {
    private final IWorkbenchWindow window;
    private final Display display;
 
-   ConsoleWriter(IWorkbenchWindow window) {
+   public ConsoleWriter(IWorkbenchWindow window) {
       this.window = window;
       this.display = Display.getDefault();
    }
 
-   void run(Runnable runnable) {
-      display.asyncExec(runnable);
-   }
-   
-   void displayLine(String line) {
+   /**
+    * Display a single line to the console
+    * @param line typically an error message.
+    */
+   public void displayLine(String line) {
       MessageConsole console = findConsole();
       try (MessageConsoleStream out = console.newMessageStream()) {
          out.println(line);
       } catch (IOException e) {
          e.printStackTrace();
       }
+   }
+
+   void run(Runnable runnable) {
+      display.asyncExec(runnable);
    }
    
    void displayMessage(String message) {

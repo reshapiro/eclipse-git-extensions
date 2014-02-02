@@ -1,4 +1,4 @@
-package egitex.actions;
+package egit_ex.util;
 
 import java.io.File;
 
@@ -11,16 +11,32 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 
-class FileInputDialog
+/**
+ * Dialog for showing a file chooser.
+ * 
+ * Not used yet, will be soon for bundle operations.
+ * 
+ * @author reshapiro
+ *
+ */
+public class FileInputDialog
       extends TitleAreaDialog {
    
    private final String title;
    private FileChooser chooser;
    private File selectedFile;
 
-   FileInputDialog(String title, Shell shell) {
+   public FileInputDialog(String title, Shell shell) {
       super(shell);
       this.title = title;
+   }
+
+   /**
+    * 
+    * @return the selected file.
+    */
+   public File getSelectedFile() {
+      return selectedFile;
    }
 
    @Override
@@ -48,9 +64,5 @@ class FileInputDialog
    protected void okPressed() {
      selectedFile = chooser.getFile();
      super.okPressed();
-   }
-   
-   File getSelectedFile() {
-      return selectedFile;
    }
 }
