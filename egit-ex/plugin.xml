@@ -84,7 +84,7 @@
          <action
                class="egitex.actions.Git2SvnAction"
                id="egitex.actions.Git2SvnAction"
-               label="SVN rev for Git SHA"
+               label="SVN rev for Git SHA..."
                menubarPath="gitMenu/svnGroup"
                tooltip="Show SVN revision for Git commit">
          </action>
