@@ -20,6 +20,15 @@ class ConsoleWriter {
       this.window = window;
    }
 
+   void displayLine(String line) {
+      MessageConsole console = findConsole();
+      try (MessageConsoleStream out = console.newMessageStream()) {
+         out.println(line);
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+   }
+   
    void displayMessage(String message) {
       MessageConsole console = findConsole();
       try (MessageConsoleStream out = console.newMessageStream()) {

@@ -4,6 +4,6 @@ package egitex.actions;
 class MissingRequiredParameterException
       extends Exception {
    MissingRequiredParameterException(Parameter param) {
-      super("The required parameter " + param.getName() + " was not provided\n");
+      super("The required parameter " + param.getName() + " was not provided");
    }
 }

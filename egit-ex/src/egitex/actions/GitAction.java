@@ -28,8 +28,8 @@ abstract class GitAction
    implements IWorkbenchWindowActionDelegate {
    private static final String GIT_EXEC_VAR = "git_exec";
    private static final String EGIT_WORK_TREE_VAR = "git_work_tree";
-   private static final String NO_GIT_PROJECT_IS_SELECTED_MSG = "No git project is selected\n";
-   private static final String NO_GIT_EXEC_VAR_MSG = "You must define the String Substitution variable '" + GIT_EXEC_VAR + "'\n";
+   private static final String NO_GIT_PROJECT_IS_SELECTED_MSG = "No git project is selected";
+   private static final String NO_GIT_EXEC_VAR_MSG = "You must define the String Substitution variable '" + GIT_EXEC_VAR + "'";
 
    private ConsoleWriter messages;
    private Shell shell;
@@ -78,13 +78,13 @@ abstract class GitAction
    public void run(IAction action) {
       String gitExec = resolveVariable(GIT_EXEC_VAR);
       if (gitExec.isEmpty()) {
-         messages.displayMessage(NO_GIT_EXEC_VAR_MSG);
+         messages.displayLine(NO_GIT_EXEC_VAR_MSG);
          return;
       }
 
       String repoPath = resolveVariable(EGIT_WORK_TREE_VAR);
       if (repoPath.isEmpty()) {
-         messages.displayMessage(NO_GIT_PROJECT_IS_SELECTED_MSG);
+         messages.displayLine(NO_GIT_PROJECT_IS_SELECTED_MSG);
          return;
       }
 
@@ -103,7 +103,7 @@ abstract class GitAction
          /* User cancelled out of prompt dialog */
          return;
       } catch (MissingRequiredParameterException e) {
-         messages.displayMessage(e.getMessage());
+         messages.displayLine(e.getMessage());
       }
       
    }
