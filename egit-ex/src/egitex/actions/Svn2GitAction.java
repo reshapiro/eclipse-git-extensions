@@ -1,9 +1,5 @@
 package egitex.actions;
 
-import java.util.List;
-
-import org.eclipse.jface.window.Window;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
 /**
@@ -16,27 +12,27 @@ public class Svn2GitAction
       extends GitAction
 
       implements IWorkbenchWindowActionDelegate {
+   
+   private static final Parameter SVN_REV_PARAM = new Parameter("SVN rev", 2, true);
+   private static final ParameterSet PARAMS = 
+         new ParameterSet("Show Git commit for SVN revison", SVN_REV_PARAM);
+   
    private static final String[] ARGS = new String[] {
       "svn",
       "find-rev",
-      ""
+      null
    };
 
    @Override
-   String[] getArgs(Shell shell) {
-      SimpleInputDialog dialog = new SimpleInputDialog(shell, "Get Git commit for SVN revison", "rev");
-      dialog.create();
-      if (dialog.open() == Window.OK) {
-         List<String> inputs = dialog.getInputs();
-         if (inputs != null && !inputs.isEmpty()) {
-            String rev = inputs.get(0);
-            if (rev != null) {
-               ARGS[2] = "r"+rev;
-               return ARGS;
-            }
-         }
+   String[] getArgs()
+            throws PromptCancelledException, MissingRequiredParameterException {
+      promptForParameters(PARAMS, ARGS);
+      String rev = PARAMS.getParameterValue(SVN_REV_PARAM);
+      if (!rev.startsWith("r")) {
+         ARGS[SVN_REV_PARAM.getIndex()] = "r" + rev;
       }
-      return null;
+      
+      return ARGS;
    }
 
    @Override

@@ -23,8 +23,8 @@ class ConsoleWriter {
    void displayMessage(String message) {
       MessageConsole console = findConsole();
       try (MessageConsoleStream out = console.newMessageStream()) {
-         /* TODO: set foreground based on type */
          out.print(message);
+         out.flush();
       } catch (IOException e) {
          e.printStackTrace();
       }

@@ -1,6 +1,5 @@
 package egitex.actions;
 
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
 /**
@@ -21,7 +20,7 @@ public class SvnRebaseLocalAction
    };
 
    @Override
-   String[] getArgs(Shell shell) {
+   String[] getArgs() {
       return ARGS;
    }
 

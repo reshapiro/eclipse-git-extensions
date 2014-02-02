@@ -13,6 +13,7 @@ import org.eclipse.core.variables.IStringVariableManager;
 import org.eclipse.core.variables.VariablesPlugin;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
@@ -27,6 +28,8 @@ abstract class GitAction
    implements IWorkbenchWindowActionDelegate {
    private static final String GIT_EXEC_VAR = "git_exec";
    private static final String EGIT_WORK_TREE_VAR = "git_work_tree";
+   private static final String NO_GIT_PROJECT_IS_SELECTED_MSG = "No git project is selected\n";
+   private static final String NO_GIT_EXEC_VAR_MSG = "You must define the String Substitution variable '" + GIT_EXEC_VAR + "'\n";
 
    private ConsoleWriter messages;
    private Shell shell;
@@ -36,10 +39,11 @@ abstract class GitAction
 
    /**
     * 
-    * @param activeShell use this to prompt for args when necessary
     * @return the arguments to the Git command
+    * @throws PromptCancelledException 
     */
-   abstract String[] getArgs(Shell activeShell);
+   abstract String[] getArgs()
+         throws PromptCancelledException, MissingRequiredParameterException;
    
    /**
     * 
@@ -55,6 +59,17 @@ abstract class GitAction
       return true;
    }
 
+   void promptForParameters(ParameterSet parameters, String[] args)
+         throws PromptCancelledException, MissingRequiredParameterException {
+      SimpleInputDialog dialog = new SimpleInputDialog(shell, parameters);
+      dialog.create();
+      int status = dialog.open();
+      if (status == Window.CANCEL) {
+         throw new PromptCancelledException();
+      }
+      
+      parameters.splice(args);
+   }
    
    /**
     * Run the Git command if possible
@@ -63,30 +78,34 @@ abstract class GitAction
    public void run(IAction action) {
       String gitExec = resolveVariable(GIT_EXEC_VAR);
       if (gitExec.isEmpty()) {
-         messages.displayMessage("You must define the String Substitution variable '" + GIT_EXEC_VAR + "'\n");
+         messages.displayMessage(NO_GIT_EXEC_VAR_MSG);
          return;
       }
 
       String repoPath = resolveVariable(EGIT_WORK_TREE_VAR);
       if (repoPath.isEmpty()) {
-         messages.displayMessage("No git project is selected\n");
+         messages.displayMessage(NO_GIT_PROJECT_IS_SELECTED_MSG);
          return;
       }
 
       File repo = new File(repoPath);
-      String[] gitArgs = getArgs(shell);
-      if (gitArgs == null) {
-         /* Some required parameter wasn't provided */
-         messages.displayMessage("Some required parameter wasn't provided\n");
+      String[] gitArgs;
+      try {
+         gitArgs = getArgs();
+         String[] fullArgs = new String[gitArgs.length + 1];
+         fullArgs[0] = gitExec;
+         System.arraycopy(gitArgs, 0, fullArgs, 1, gitArgs.length);
+         
+         Launcher launcher = new Launcher(repo, messages, fullArgs);
+         Job job = new GitJob(getJobName(), launcher);
+         job.schedule();
+      } catch (PromptCancelledException e) {
+         /* User cancelled out of prompt dialog */
          return;
+      } catch (MissingRequiredParameterException e) {
+         messages.displayMessage(e.getMessage());
       }
-      String[] fullArgs = new String[gitArgs.length + 1];
-      fullArgs[0] = gitExec;
-      System.arraycopy(gitArgs, 0, fullArgs, 1, gitArgs.length);
       
-      Launcher launcher = new Launcher(repo, messages, fullArgs);
-      Job job = new GitJob(getJobName(), launcher);
-      job.schedule();
    }
 
    private String resolveVariable(String var) {
