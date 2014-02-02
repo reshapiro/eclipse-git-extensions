@@ -25,7 +25,7 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
  * 
  */
 abstract class GitAction
-   implements IWorkbenchWindowActionDelegate {
+      implements IWorkbenchWindowActionDelegate {
    private static final String GIT_EXEC_VAR = "git_exec";
    private static final String EGIT_WORK_TREE_VAR = "git_work_tree";
    private static final String NO_GIT_PROJECT_IS_SELECTED_MSG = "No git project is selected";
@@ -40,23 +40,35 @@ abstract class GitAction
    /**
     * 
     * @return the arguments to the Git command
-    * @throws PromptCancelledException 
+    * @throws PromptCancelledException
     */
    abstract String[] getArgs()
          throws PromptCancelledException, MissingRequiredParameterException;
-   
+
    /**
     * 
     * @return the name shown in the progress area.
     */
    abstract String getJobName();
-   
+
    /**
     * Override to return false if no refresh is required
+    * 
     * @return
     */
    boolean touch() {
       return true;
+   }
+
+   File promptForFile()
+         throws PromptCancelledException {
+      FileInputDialog dialog = new FileInputDialog("Select a file", shell);
+      dialog.create();
+      int status = dialog.open();
+      if (status == Window.CANCEL) {
+         throw new PromptCancelledException();
+      }
+      return dialog.getSelectedFile();
    }
 
    void promptForParameters(ParameterSet parameters, String[] args)
@@ -67,10 +79,10 @@ abstract class GitAction
       if (status == Window.CANCEL) {
          throw new PromptCancelledException();
       }
-      
+
       parameters.splice(args);
    }
-   
+
    /**
     * Run the Git command if possible
     */
@@ -95,7 +107,7 @@ abstract class GitAction
          String[] fullArgs = new String[gitArgs.length + 1];
          fullArgs[0] = gitExec;
          System.arraycopy(gitArgs, 0, fullArgs, 1, gitArgs.length);
-         
+
          Launcher launcher = new Launcher(repo, console, fullArgs);
          Job job = new GitJob(getJobName(), launcher);
          job.schedule();
@@ -105,7 +117,7 @@ abstract class GitAction
       } catch (MissingRequiredParameterException e) {
          console.displayLine(e.getMessage());
       }
-      
+
    }
 
    private String resolveVariable(String var) {
@@ -120,7 +132,8 @@ abstract class GitAction
    /*
     * Refresh each open project.
     * 
-    * FIXME this will only reliably refresh one project, though it works fine in debug mode.
+    * FIXME this will only reliably refresh one project, though it works fine in
+    * debug mode.
     * 
     * Possibly a new progress monitor is needed for each?
     */
@@ -137,8 +150,8 @@ abstract class GitAction
    }
 
    /**
-    * Selection in the workbench has been changed.
-    * Enable the action iff the new selection is in a Git repository.
+    * Selection in the workbench has been changed. Enable the action iff the new
+    * selection is in a Git repository.
     * 
     * @see IWorkbenchWindowActionDelegate#selectionChanged
     */
@@ -170,16 +183,16 @@ abstract class GitAction
       this.console = new ConsoleWriter(window);
       this.shell = window.getShell();
    }
-   
+
    private final class GitJob
          extends Job {
       private final Launcher launcher;
-   
+
       private GitJob(String name, Launcher launcher) {
          super(name);
          this.launcher = launcher;
       }
-   
+
       @Override
       protected IStatus run(IProgressMonitor monitor) {
          monitor.beginTask(getName(), IProgressMonitor.UNKNOWN);
