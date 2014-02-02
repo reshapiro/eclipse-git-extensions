@@ -31,7 +31,7 @@ abstract class GitAction
    private static final String NO_GIT_PROJECT_IS_SELECTED_MSG = "No git project is selected";
    private static final String NO_GIT_EXEC_VAR_MSG = "You must define the String Substitution variable '" + GIT_EXEC_VAR + "'";
 
-   private ConsoleWriter messages;
+   private ConsoleWriter console;
    private Shell shell;
 
    GitAction() {
@@ -78,13 +78,13 @@ abstract class GitAction
    public void run(IAction action) {
       String gitExec = resolveVariable(GIT_EXEC_VAR);
       if (gitExec.isEmpty()) {
-         messages.displayLine(NO_GIT_EXEC_VAR_MSG);
+         console.displayLine(NO_GIT_EXEC_VAR_MSG);
          return;
       }
 
       String repoPath = resolveVariable(EGIT_WORK_TREE_VAR);
       if (repoPath.isEmpty()) {
-         messages.displayLine(NO_GIT_PROJECT_IS_SELECTED_MSG);
+         console.displayLine(NO_GIT_PROJECT_IS_SELECTED_MSG);
          return;
       }
 
@@ -96,14 +96,14 @@ abstract class GitAction
          fullArgs[0] = gitExec;
          System.arraycopy(gitArgs, 0, fullArgs, 1, gitArgs.length);
          
-         Launcher launcher = new Launcher(repo, messages, fullArgs);
+         Launcher launcher = new Launcher(repo, console, fullArgs);
          Job job = new GitJob(getJobName(), launcher);
          job.schedule();
       } catch (PromptCancelledException e) {
          /* User cancelled out of prompt dialog */
          return;
       } catch (MissingRequiredParameterException e) {
-         messages.displayLine(e.getMessage());
+         console.displayLine(e.getMessage());
       }
       
    }
@@ -167,7 +167,7 @@ abstract class GitAction
     */
    @Override
    public void init(IWorkbenchWindow window) {
-      this.messages = new ConsoleWriter(window);
+      this.console = new ConsoleWriter(window);
       this.shell = window.getShell();
    }
    

@@ -2,6 +2,7 @@ package egitex.actions;
 
 import java.io.IOException;
 
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
@@ -15,11 +16,17 @@ import org.eclipse.ui.console.MessageConsoleStream;
 
 class ConsoleWriter {
    private final IWorkbenchWindow window;
+   private final Display display;
 
    ConsoleWriter(IWorkbenchWindow window) {
       this.window = window;
+      this.display = Display.getDefault();
    }
 
+   void run(Runnable runnable) {
+      display.asyncExec(runnable);
+   }
+   
    void displayLine(String line) {
       MessageConsole console = findConsole();
       try (MessageConsoleStream out = console.newMessageStream()) {

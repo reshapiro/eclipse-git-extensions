@@ -5,14 +5,13 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.swt.widgets.Display;
 
 class Launcher {
-   private final ConsoleWriter messages;
+   private final ConsoleWriter console;
    private final ProcessBuilder builder;
 
-   Launcher(File repoRoot, ConsoleWriter messages, String... args) {
-      this.messages = messages;
+   Launcher(File repoRoot, ConsoleWriter console, String... args) {
+      this.console = console;
       builder = new ProcessBuilder(args);
       builder.directory(repoRoot);
    }
@@ -30,7 +29,7 @@ class Launcher {
       Process process;
       try {
          process = builder.start();
-         new Writer(monitor, process.getInputStream()).start();
+         new Writer(process.getInputStream()).start();
       } catch (IOException e) {
          return;
       }
@@ -60,26 +59,23 @@ class Launcher {
    
    private final class Sender
          implements Runnable {
-      
-      private final String message;
-      
+      final String message;
+
       Sender(String message) {
          this.message = message;
       }
-
       @Override
       public void run() {
-         messages.displayMessage(message);
+         console.displayMessage(message);
       }
-      
    }
-   
 
    private final class Writer
          extends Thread {
          private final byte[] buffer = new byte[50];
          final private InputStream in;
-         Writer(IProgressMonitor monitor, InputStream in) {
+         
+         Writer(InputStream in) {
             setDaemon(true);
             this.in = in;
          }
@@ -92,8 +88,13 @@ class Launcher {
                   if (count < 0) {
                      return;
                   } else if (count > 0) {
-                     String text = new String(buffer, 0, count);
-                     Display.getDefault().asyncExec(new Sender(text));
+                     Sender sender = new Sender(new String(buffer, 0, count));
+                     console.run(sender);
+                     try {
+                        Thread.sleep(1);
+                     } catch (InterruptedException e) {
+                        /* interrupts are ok */
+                     }
                   }
                } catch (IOException e) {
                  return;
