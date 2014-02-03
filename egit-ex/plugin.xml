@@ -123,6 +123,27 @@
                menubarPath="gitMenu/bisectGroup"
                tooltip="Begin a bisect">
          </action>
+         <action
+               class="egitex.actions.BundleFetchAction"
+               id="egitex.actions.BundleFetchAction"
+               label="Fetch from bundle"
+               menubarPath="gitMenu/bundleGroup"
+               tooltip="Fetch commits from a bundle file">
+         </action>
+         <action
+               class="egitex.actions.BundlePullAction"
+               id="egitex.actions.BundlePullAction"
+               label="Pull from bundle"
+               menubarPath="gitMenu/bundleGroup"
+               tooltip="Pull commits from a bundle file">
+         </action>
+         <action
+               class="egitex.actions.BundleCreateAction"
+               id="egitex.actions.BundleCreateAction"
+               label="Create bundle"
+               menubarPath="gitMenu/bundleGroup"
+               tooltip="Create a bundle file">
+         </action>
       </actionSet>
    </extension>
 
