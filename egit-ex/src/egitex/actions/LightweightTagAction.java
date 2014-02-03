@@ -14,7 +14,7 @@ import egit_ex.util.PromptCancelledException;
  * @author reshapiro
  * 
  */
-public class SimpleTagAction
+public class LightweightTagAction
       extends GitAction
 
       implements IWorkbenchWindowActionDelegate {
@@ -38,7 +38,7 @@ public class SimpleTagAction
 
    @Override
    String getJobName() {
-      return "Create Simple Tag";
+      return "Create Lightweight Tag";
    }
 
    @Override

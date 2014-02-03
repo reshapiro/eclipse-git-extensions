@@ -27,9 +27,9 @@
                tooltip="Prune remote refs">
          </action>
          <action
-               class="egitex.actions.SimpleTagAction"
-               id="egitex.actions.SimpleTagAction"
-               label="Tag..."
+               class="egitex.actions.LightweightTagAction"
+               id="egitex.actions.LightweightTagAction"
+               label="Lightweight Tag..."
                menubarPath="gitMenu/gitGroup"
                tooltip="Prune remote refs">
          </action>
