@@ -8,10 +8,10 @@ The currently supported operations are as follows:
 
 - Pruning obsolete remote references
 
-- Creating simple tags
+- Creating Lightweight tags
 
 - Basic bundle support: create bundle file, fetch from bundle file, pull from bundle file.
 
 Requires Java 7 and an installation of command-line Git.
 Also requires the workspace to include a definition of the String Substitution variable 'git_exec'
-which should point at the absolute path of Git. 
+which should point at the absolute path of Git executable. 
