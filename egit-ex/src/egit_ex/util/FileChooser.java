@@ -13,17 +13,19 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * A file chooser cribbed from the web
- * Ugly but functional
- *
+ * A file chooser widget cribbed from the we.  Ugly but functional
+ * 
  */
 public class FileChooser
       extends Composite {
 
    private Text mText;
    private Button mButton;
-   FileChooser(Composite parent) {
+   private final int type;
+
+   FileChooser(Composite parent, int type) {
       super(parent, SWT.NULL);
+      this.type = type;
       createContent();
    }
 
@@ -56,8 +58,8 @@ public class FileChooser
 
          @Override
          public void widgetSelected(SelectionEvent e) {
-            FileDialog dlg = new FileDialog(mButton.getShell(), SWT.OPEN);
-            dlg.setText("Open");
+            FileDialog dlg = new FileDialog(mButton.getShell(), type);
+            dlg.setText(type == SWT.OPEN ? "Open" : "Save");
             String path = dlg.open();
             if (path == null) {
                return;

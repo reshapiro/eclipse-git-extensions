@@ -1,5 +1,7 @@
 package egit_ex.util;
 
+import org.eclipse.swt.widgets.Composite;
+
 /**
  * The description of s parameter provided by the user through a dialog.
  * @author reshapiro
@@ -34,6 +36,14 @@ public class Parameter {
       this.required = required;
       this.defaultValue = defaultValue;
       this.index = index;
+   }
+   
+   ParameterType getParameterType() {
+      return ParameterType.STRING;
+   }
+   
+   FileChooser getFileChooser(Composite container) {
+      return null;
    }
    
    /**

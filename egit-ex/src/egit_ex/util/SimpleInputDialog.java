@@ -1,5 +1,6 @@
 package egit_ex.util;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class SimpleInputDialog
 
    private final ParameterSet parameters;
    private final List<Text> inputTexts;
+   private final List<FileChooser> choosers;
    
    /**
     * This variant will display as many boxes as there are parameters.
@@ -34,12 +36,13 @@ public class SimpleInputDialog
     * @param title The title of the dialog
     * @param parameters The parameter specifications
     */
-   public SimpleInputDialog(Shell parentShell,ParameterSet parameters) {
+   public SimpleInputDialog(Shell parentShell, ParameterSet parameters) {
       super(parentShell);
       parameters.init();
       this.parameters = parameters;
       int size = parameters.size();
       this.inputTexts = new ArrayList<>(size);
+      this.choosers = new ArrayList<>(size);
    }
    
    @Override
@@ -78,13 +81,22 @@ public class SimpleInputDialog
       Label label = new Label(container, SWT.NONE);
       Parameter parameter = parameters.getParameter(index);
       label.setText(parameter.getName());
-      Text inputText = new Text(container, SWT.BORDER);
-      inputText.setLayoutData(data);
-      String defaultValue = parameters.getParameterValue(parameter);
-      if (defaultValue != null) {
-         inputText.setText(defaultValue);
+      switch (parameter.getParameterType()) {
+         case FILE:
+            choosers.add(parameter.getFileChooser(container));
+            break;
+         case STRING:
+            Text inputText = new Text(container, SWT.BORDER);
+            inputText.setLayoutData(data);
+            String defaultValue = parameters.getParameterValue(parameter);
+            if (defaultValue != null) {
+               inputText.setText(defaultValue);
+            }
+            inputTexts.add(inputText);
+            break;
+         default:
+            /* ignore */
       }
-      inputTexts.add(inputText);
    }
    
    @Override
@@ -95,10 +107,23 @@ public class SimpleInputDialog
    // save content of the Text fields because they get disposed
    // as soon as the Dialog closes
    private void saveInput() {
+      int textIndex = 0;
+      int fileIndex = 0;
       for (int i=0; i < parameters.size(); i++) {
          Parameter parameter = parameters.getParameter(i);
-         String text = inputTexts.get(i).getText();
-         parameters.setParameterValue(parameter, text);
+         switch (parameter.getParameterType()) {
+            case STRING:
+               String text = inputTexts.get(textIndex++).getText();
+               parameters.setParameterValue(parameter, text);
+               break;
+               
+            case FILE:
+               File file = choosers.get(fileIndex++).getFile();
+               parameters.setParameterValue(parameter, file.getAbsolutePath());
+               break;
+               
+            default:
+         }
       }
    }
 

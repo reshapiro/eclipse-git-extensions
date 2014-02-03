@@ -19,7 +19,6 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
 import egit_ex.util.ConsoleWriter;
-import egit_ex.util.FileInputDialog;
 import egit_ex.util.Launcher;
 import egit_ex.util.MissingRequiredParameterException;
 import egit_ex.util.ParameterSet;
@@ -53,6 +52,10 @@ abstract class GitAction
    abstract String[] getArgs()
          throws PromptCancelledException, MissingRequiredParameterException;
 
+   Shell getShell() {
+      return shell;
+   }
+   
    /**
     * 
     * @return the name shown in the progress area.
@@ -68,16 +71,6 @@ abstract class GitAction
       return true;
    }
 
-   File promptForFile()
-         throws PromptCancelledException {
-      FileInputDialog dialog = new FileInputDialog("Select a file", shell);
-      dialog.create();
-      int status = dialog.open();
-      if (status == Window.CANCEL) {
-         throw new PromptCancelledException();
-      }
-      return dialog.getSelectedFile();
-   }
 
    void promptForParameters(ParameterSet parameters, String[] args)
          throws PromptCancelledException, MissingRequiredParameterException {
