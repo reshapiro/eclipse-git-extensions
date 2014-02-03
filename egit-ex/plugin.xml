@@ -42,9 +42,8 @@
          </action>
          <action
                class="egitex.actions.SvnRebaseAction"
-               icon="icons/pull.gif"
                id="egitex.actions.SvnRebaseAction"
-               label="Pull from SVN"
+               label="SVN Pull"
                menubarPath="gitMenu/svnGroup"
                toolbarPath="toolbarGroup"
                tooltip="Fetch and rebase new commits from SVN (active branch)">
@@ -58,18 +57,16 @@
          </action>
          <action
                class="egitex.actions.SvnFetchAction"
-               icon="icons/fetch.gif"
                id="egitex.actions.SvnFetchAction"
-               label="Fetch from SVN"
+               label="SVN Fetch"
                menubarPath="gitMenu/svnGroup"
                toolbarPath="toolbarGroup"
                tooltip="Fetch new commits from SVN (all branches)">
          </action>
          <action
                class="egitex.actions.SvnDcommitAction"
-               icon="icons/push.gif"
                id="egitex.actions.SvnDcommitAction"
-               label="Push to SVN"
+               label="SVN Push"
                menubarPath="gitMenu/svnGroup"
                toolbarPath="toolbarGroup"
                tooltip="Push new commits to SVN (active branch) ">
