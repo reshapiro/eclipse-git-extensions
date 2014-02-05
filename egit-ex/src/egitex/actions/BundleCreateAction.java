@@ -26,21 +26,30 @@ public class BundleCreateAction
       null
    };
    
-   private static final ParameterSet PARAMS = new ParameterSet("Bundle file",
-                                                               new SaveFileParameter("bundle file", 2, true),
-                                                               new Parameter("Start", 3, true),
-                                                               new Parameter("End", 4, true));
+   private static final String[] ACTUAL_ARGS = new String[] {
+      "bundle",
+      "create",
+      null,
+      null
+   };
+   
+   private static final ParameterSet PARAMS = new ParameterSet("Bundle Spec",
+                                                               new SaveFileParameter("Bundle file", 2, true),
+                                                               new Parameter("Start commit", 3, true),
+                                                               new Parameter("End commit", 4, true));
 
    @Override
    String[] getArgs() 
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMS, ARGS);
-      return ARGS;
+         ACTUAL_ARGS[2] = ARGS[2];
+         ACTUAL_ARGS[3]  = ARGS[3] + ".." + ARGS[4];
+         return ACTUAL_ARGS;
    }
 
    @Override
    String getJobName() {
-      return "Pull from bundle";
+      return "Create bundle";
    }
 
    @Override
