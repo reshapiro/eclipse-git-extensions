@@ -34,7 +34,7 @@ public class BundleCreateAction
    };
    
    private static final ParameterSet PARAMS = new ParameterSet("Bundle Spec",
-                                                               new SaveFileParameter("Bundle file", 2, true),
+                                                               new SaveFileParameter("Save to bundle file", 2, true),
                                                                new Parameter("Start commit", 3, true),
                                                                new Parameter("End commit", 4, true));
 

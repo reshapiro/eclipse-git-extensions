@@ -24,7 +24,7 @@ public class BundlePullAction
    };
    
    private static final ParameterSet PARAMS = 
-         new ParameterSet("Bundle file", new FileParameter("Bundle file", 1, true));
+         new ParameterSet("Bundle file", new FileParameter("Pull from bundle file", 1, true));
 
    @Override
    String[] getArgs() 

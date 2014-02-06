@@ -17,7 +17,7 @@ public class FileParameter
 
    @Override
    FileChooser getFileChooser(Composite container) {
-      return new FileChooser(container, SWT.OPEN);
+      return new FileChooser(container, SWT.OPEN, getName());
    }
 
 }

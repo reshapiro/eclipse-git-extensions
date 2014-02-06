@@ -3,8 +3,8 @@ package egit_ex.util;
 import java.io.File;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -19,18 +19,20 @@ import org.eclipse.swt.widgets.Text;
 public class FileChooser
       extends Composite {
 
-   private Text mText;
-   private Button mButton;
+   private Text filePath;
+   private Button activationButton;
    private final int type;
+   private final String title;
 
-   FileChooser(Composite parent, int type) {
+   FileChooser(Composite parent, int type,String title) {
       super(parent, SWT.NULL);
       this.type = type;
+      this.title = title;
       createContent();
    }
 
    File getFile() {
-      String text = mText.getText();
+      String text = filePath.getText();
       if (text.length() == 0) {
          return null;
       }
@@ -41,30 +43,24 @@ public class FileChooser
       GridLayout layout = new GridLayout(2, false);
       setLayout(layout);
 
-      mText = new Text(this, SWT.SINGLE | SWT.BORDER);
-      GridData gd = new GridData(GridData.FILL_BOTH);
+      filePath = new Text(this, SWT.SINGLE | SWT.BORDER);
+      GridData gd = new GridData(SWT.FILL, SWT.FILL, true, true);
       gd.grabExcessHorizontalSpace = true;
       gd.horizontalAlignment = GridData.FILL;
-      mText.setLayoutData(gd);
+      filePath.setLayoutData(gd);
 
-      mButton = new Button(this, SWT.NONE);
-      mButton.setText("...");
-      mButton.addSelectionListener(new SelectionListener() {
-
-         @Override
-         public void widgetDefaultSelected(SelectionEvent e) {
-            /* no-op for now */
-         }
-
+      activationButton = new Button(this, SWT.NONE);
+      activationButton.setText("...");
+      activationButton.addSelectionListener(new SelectionAdapter() {
          @Override
          public void widgetSelected(SelectionEvent e) {
-            FileDialog dlg = new FileDialog(mButton.getShell(), type);
-            dlg.setText(type == SWT.OPEN ? "Open" : "Save");
+            FileDialog dlg = new FileDialog(activationButton.getShell(), type);
+            dlg.setText(title);
             String path = dlg.open();
             if (path == null) {
                return;
             }
-            mText.setText(path);
+            filePath.setText(path);
          }
       });
    }

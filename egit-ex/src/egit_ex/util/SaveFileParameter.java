@@ -12,7 +12,7 @@ public class SaveFileParameter
 
    @Override
    FileChooser getFileChooser(Composite container) {
-      return new FileChooser(container, SWT.SAVE);
+      return new FileChooser(container, SWT.SAVE, getName());
    }
 
 }
