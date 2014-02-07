@@ -20,6 +20,13 @@
             </separator>
          </menu>
          <action
+               class="egitex.actions.ListOrphanedCommitsAction"
+               id="egitex.actions.ListOrphanedCommitsAction"
+               label="List Orphaned commits"
+               menubarPath="gitMenu/gitGroup"
+               tooltip="List orphan commits">
+         </action>
+         <action
                class="egitex.actions.PruneAction"
                id="egitex.actions.PruneAction"
                label="Prune..."
