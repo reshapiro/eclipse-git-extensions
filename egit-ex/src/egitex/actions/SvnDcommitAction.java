@@ -13,9 +13,9 @@ public class SvnDcommitAction
       extends GitAction
 
       implements IWorkbenchWindowActionDelegate {
+   
    private static final String[] ARGS = new String[] {
-      "svn",
-      "dcommit"
+      "svn", "dcommit"
    };
 
    @Override

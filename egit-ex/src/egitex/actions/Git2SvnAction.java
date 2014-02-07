@@ -22,9 +22,7 @@ public class Git2SvnAction
          new ParameterSet("Show SVN revision for SHA", new Parameter("branch, tag or reference", 2, true));
    
    private static final String[] ARGS = new String[] {
-      "svn",
-      "find-rev",
-      null
+      "svn", "find-rev",  null
    };
 
    @Override

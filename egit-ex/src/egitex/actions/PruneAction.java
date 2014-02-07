@@ -21,9 +21,7 @@ public class PruneAction
    private static final ParameterSet PARAMS = new ParameterSet("Prune remote refs", new Parameter("Remote", 2, true, "origin"));
    
    private static final String[] ARGS = new String[] {
-      "remote",
-      "prune",
-      ""
+      "remote", "prune", null
    };
 
    

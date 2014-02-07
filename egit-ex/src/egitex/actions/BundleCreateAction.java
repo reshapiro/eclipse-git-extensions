@@ -18,19 +18,13 @@ public class BundleCreateAction
       extends GitAction
 
       implements IWorkbenchWindowActionDelegate {
+   
    private static final String[] ARGS = new String[] {
-      "bundle",
-      "create",
-      null,
-      null,
-      null
+      "bundle", "create",  null, null, null
    };
    
    private static final String[] ACTUAL_ARGS = new String[] {
-      "bundle",
-      "create",
-      null,
-      null
+      "bundle", "create", null, null
    };
    
    private static final ParameterSet PARAMS = new ParameterSet("Bundle Spec",

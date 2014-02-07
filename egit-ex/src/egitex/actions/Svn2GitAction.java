@@ -19,13 +19,12 @@ public class Svn2GitAction
       implements IWorkbenchWindowActionDelegate {
    
    private static final Parameter SVN_REV_PARAM = new Parameter("SVN rev", 2, true);
+   
    private static final ParameterSet PARAMS = 
          new ParameterSet("Show Git commit for SVN revison", SVN_REV_PARAM);
    
    private static final String[] ARGS = new String[] {
-      "svn",
-      "find-rev",
-      null
+      "svn", "find-rev", null
    };
 
    @Override

@@ -12,9 +12,9 @@ public class SvnInfoAction
       extends GitAction
 
       implements IWorkbenchWindowActionDelegate {
+   
    private static final String[] ARGS = new String[] {
-      "svn",
-      "info"
+      "svn", "info"
    };
 
    @Override

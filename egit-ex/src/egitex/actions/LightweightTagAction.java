@@ -20,9 +20,7 @@ public class LightweightTagAction
       implements IWorkbenchWindowActionDelegate {
 
    private static final String[] ARGS = new String[] {
-      "tag",
-      null,
-      null
+      "tag", null, null
    };
 
    private static final ParameterSet PARAMS = 

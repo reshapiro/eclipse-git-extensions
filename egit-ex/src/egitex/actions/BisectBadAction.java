@@ -12,9 +12,9 @@ public class BisectBadAction
       extends GitAction
 
       implements IWorkbenchWindowActionDelegate {
+   
    private static final String[] ARGS = new String[] {
-      "bisect",
-      "bad"
+      "bisect", "bad"
    };
 
    @Override

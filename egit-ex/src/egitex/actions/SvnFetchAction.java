@@ -13,9 +13,9 @@ public class SvnFetchAction
       extends GitAction
 
       implements IWorkbenchWindowActionDelegate {
+   
    private static final String[] ARGS = new String[] {
-      "svn",
-      "fetch"
+      "svn", "fetch"
    };
 
    @Override

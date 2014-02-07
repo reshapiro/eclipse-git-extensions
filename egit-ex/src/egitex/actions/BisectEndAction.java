@@ -12,9 +12,9 @@ public class BisectEndAction
       extends GitAction
 
       implements IWorkbenchWindowActionDelegate {
+   
    private static final String[] ARGS = new String[] {
-      "bisect",
-      "reset"
+      "bisect", "reset"
    };
 
    @Override

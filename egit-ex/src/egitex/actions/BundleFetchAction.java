@@ -19,8 +19,7 @@ public class BundleFetchAction
       implements IWorkbenchWindowActionDelegate {
    
    private static final String[] ARGS = new String[] {
-      "fetch",
-      null
+      "fetch", null
    };
 
    private static final ParameterSet PARAMS = 

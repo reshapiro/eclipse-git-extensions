@@ -13,10 +13,9 @@ public class SvnRebaseLocalAction
       extends GitAction
 
       implements IWorkbenchWindowActionDelegate {
+   
    private static final String[] ARGS = new String[] {
-      "svn",
-      "rebase",
-      "--local"
+      "svn", "rebase", "--local"
    };
 
    @Override

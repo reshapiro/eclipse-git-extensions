@@ -13,9 +13,9 @@ public class SvnRebaseAction
       extends GitAction
 
       implements IWorkbenchWindowActionDelegate {
+   
    private static final String[] ARGS = new String[] {
-      "svn",
-      "rebase"
+      "svn", "rebase"
    };
 
    @Override

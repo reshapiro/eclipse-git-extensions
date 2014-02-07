@@ -19,8 +19,7 @@ public class BundlePullAction
       implements IWorkbenchWindowActionDelegate {
    
    private static final String[] ARGS = new String[] {
-      "pull",
-      null
+      "pull", null
    };
    
    private static final ParameterSet PARAMS = 

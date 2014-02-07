@@ -13,6 +13,7 @@ public class StatusAction
       extends GitAction
 
       implements IWorkbenchWindowActionDelegate {
+   
    private static final String[] ARGS = new String[] {
       "status"
    };
