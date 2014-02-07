@@ -3,9 +3,9 @@ package egitex.actions;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
 import egit_ex.util.MissingRequiredParameterException;
-import egit_ex.util.Parameter;
 import egit_ex.util.ParameterSet;
 import egit_ex.util.PromptCancelledException;
+import egit_ex.util.RefParameter;
 import egit_ex.util.SaveFileParameter;
 
 /**
@@ -29,8 +29,8 @@ public class BundleCreateAction
    
    private static final ParameterSet PARAMS = new ParameterSet("Bundle Spec",
                                                                new SaveFileParameter("Save to bundle file", 2, true),
-                                                               new Parameter("Start commit", 3, true),
-                                                               new Parameter("End commit", 4, true));
+                                                               new RefParameter("Start commit", 3),
+                                                               new RefParameter("End commit", 4));
 
    @Override
    String[] getArgs() 

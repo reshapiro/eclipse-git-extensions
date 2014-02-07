@@ -3,9 +3,9 @@ package egitex.actions;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
 import egit_ex.util.MissingRequiredParameterException;
-import egit_ex.util.Parameter;
 import egit_ex.util.ParameterSet;
 import egit_ex.util.PromptCancelledException;
+import egit_ex.util.RefParameter;
 
 /**
  * Execute the Git operation that will find the SVN revision for a given Git Commit
@@ -18,8 +18,7 @@ public class Git2SvnAction
 
       implements IWorkbenchWindowActionDelegate {
    
-   private static final ParameterSet PARAMS = 
-         new ParameterSet("Show SVN revision for SHA", new Parameter("branch, tag or reference", 2, true));
+   private static final ParameterSet PARAMS = new ParameterSet("Show SVN revision for SHA", new RefParameter(2));
    
    private static final String[] ARGS = new String[] {
       "svn", "find-rev",  null

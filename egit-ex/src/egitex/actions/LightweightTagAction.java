@@ -6,6 +6,7 @@ import egit_ex.util.MissingRequiredParameterException;
 import egit_ex.util.Parameter;
 import egit_ex.util.ParameterSet;
 import egit_ex.util.PromptCancelledException;
+import egit_ex.util.RefParameter;
 
 /**
  * Execute the Git operation that will find the SVN revision for a given Git
@@ -24,7 +25,7 @@ public class LightweightTagAction
    };
 
    private static final ParameterSet PARAMS = 
-         new ParameterSet("Simple Tag", new Parameter("Name", 1, true), new Parameter("Reference", 2, true));
+         new ParameterSet("Lightweight Tag", new Parameter("Name", 1, true), new RefParameter(2));
 
    @Override
    String[] getArgs() 
