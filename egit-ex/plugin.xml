@@ -107,6 +107,34 @@
                tooltip="End a bisect">
          </action>
          <action
+               class="egitex.actions.BisectLogAction"
+               id="egitex.actions.BisectLogAction"
+               label="Log bisect"
+               menubarPath="gitMenu/bisectGroup"
+               tooltip="Log bisect">
+         </action>
+         <action
+               class="egitex.actions.BisectReplayAction"
+               id="egitex.actions.BisectReplayAction"
+               label="Replay bisect"
+               menubarPath="gitMenu/bisectGroup"
+               tooltip="Replay a bisect">
+         </action>
+         <action
+               class="egitex.actions.BisectSkipAction"
+               id="egitex.actions.BisectSkipAction"
+               label="Skip bisect"
+               menubarPath="gitMenu/bisectGroup"
+               tooltip="Skip a bisect">
+         </action>
+         <action
+               class="egitex.actions.BisectRunAction"
+               id="egitex.actions.BisectRunAction"
+               label="Bisect run"
+               menubarPath="gitMenu/bisectGroup"
+               tooltip="Bisect run">
+         </action>
+         <action
                class="egitex.actions.BisectBadAction"
                id="egitex.actions.BisectBadAction"
                label="Mark as bad"
