@@ -119,7 +119,7 @@ public class SimpleInputDialog
                
             case FILE:
                File file = choosers.get(fileIndex++).getFile();
-               parameters.setParameterValue(parameter, file.getAbsolutePath());
+               parameters.setParameterValue(parameter, file != null ? file.getAbsolutePath() : null);
                break;
                
             default:

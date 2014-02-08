@@ -71,6 +71,13 @@ abstract class GitAction
       return true;
    }
 
+   /**
+    * Override to have process output go to a given file
+    * @return
+    */
+   File getOutputFile() {
+      return null;
+   }
 
    void promptForParameters(ParameterSet parameters, String[] args)
          throws PromptCancelledException, MissingRequiredParameterException {
@@ -109,7 +116,13 @@ abstract class GitAction
          fullArgs[0] = gitExec;
          System.arraycopy(gitArgs, 0, fullArgs, 1, gitArgs.length);
 
-         Launcher launcher = new Launcher(repo, console, fullArgs);
+         Launcher launcher;
+         File output = getOutputFile();
+         if (output != null) {
+            launcher = new Launcher(repo, output, fullArgs);
+         } else {
+            launcher = new Launcher(repo, console, fullArgs);
+         }
          Job job = new GitJob(getJobName(), launcher);
          job.schedule();
       } catch (PromptCancelledException e) {

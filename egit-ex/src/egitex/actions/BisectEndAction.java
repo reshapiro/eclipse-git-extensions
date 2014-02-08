@@ -33,7 +33,7 @@ public class BisectEndAction
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMETERS, FULL_ARGS);
       String resetTo = FULL_ARGS[2];
-      if (resetTo == null) {
+      if (resetTo == null || resetTo.isEmpty()) {
          return SIMPLE_ARGS;
       }
       return FULL_ARGS;

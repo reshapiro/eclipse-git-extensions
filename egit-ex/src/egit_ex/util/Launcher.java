@@ -1,17 +1,21 @@
 package egit_ex.util;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 
 public class Launcher {
    private final ConsoleWriter console;
+   private final File saveTo;
    private final ProcessBuilder builder;
+   private OutputStream fileOut;
 
    /**
-    * Handles process launching
+    * Handles process launching.  Process output goes to console
     * 
     * @param repoRoot the repository root.
     * @param console where to show the process output
@@ -19,6 +23,21 @@ public class Launcher {
     */
    public Launcher(File repoRoot, ConsoleWriter console, String... args) {
       this.console = console;
+      this.saveTo = null;
+      builder = new ProcessBuilder(args);
+      builder.directory(repoRoot);
+   }
+   
+   /**
+    * Handles process launching.  Process output goes to a file
+    * 
+    * @param repoRoot the repository root.
+    * @param saveTo where to show the process output
+    * @param args Git command arguments
+    */
+   public Launcher(File repoRoot, File saveTo, String... args) {
+      this.console = null;
+      this.saveTo = saveTo;
       builder = new ProcessBuilder(args);
       builder.directory(repoRoot);
    }
@@ -36,6 +55,9 @@ public class Launcher {
       Process process;
       try {
          process = builder.start();
+         if (saveTo != null) {
+            fileOut = new FileOutputStream(saveTo);
+         }
          new Writer(process.getInputStream()).start();
       } catch (IOException e) {
          return;
@@ -60,6 +82,17 @@ public class Launcher {
             Thread.sleep(50);
          } catch (InterruptedException e) {
             /* interrupts aren't relevant here. */
+         }
+      }
+      cleanup();
+   }
+
+   private void cleanup() {
+      if (fileOut != null) {
+         try {
+            fileOut.close();
+         } catch (IOException e) {
+            // best-effort
          }
       }
    }
@@ -95,16 +128,27 @@ public class Launcher {
                   if (count < 0) {
                      return;
                   } else if (count > 0) {
-                     Sender sender = new Sender(new String(buffer, 0, count));
-                     console.run(sender);
-                     try {
-                        Thread.sleep(1);
-                     } catch (InterruptedException e) {
-                        /* interrupts are ok */
-                     }
+                     offerText(count);
                   }
                } catch (IOException e) {
                  return;
+               }
+            }
+         }
+
+         private void offerText(int count)
+               throws IOException {
+            if (fileOut != null) {
+               fileOut.write(buffer, 0, count);
+               fileOut.flush();
+               
+            } else {
+               Sender sender = new Sender(new String(buffer, 0, count));
+               console.run(sender);
+               try {
+                  Thread.sleep(1);
+               } catch (InterruptedException e) {
+                  /* interrupts are ok */
                }
             }
          }
