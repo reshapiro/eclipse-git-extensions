@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/egit_extensions_feature_1.0.0.201402090853.jar" id="egit_extensions_feature" version="1.0.0.201402090853">
+   <feature url="features/egit_extensions_feature_1.0.0.201402090958.jar" id="egit_extensions_feature" version="1.0.0.201402090958">
       <category name="egit-extensions"/>
    </feature>
    <category-def name="egit-extensions" label="egit-extensions">
