@@ -2,15 +2,17 @@ This repository defines a simple Eclipse plugin designed to support
 some Git operations that are not yet supported by JGit/Egit.
 The currently supported operations are as follows:
 
-- Basic SVN bridging: svn rebase, dcommit, fetch, rebase --local, info, mapping SHAs to SVN revs and vice-versa
+-SVN bridging: pull commits from SVN; push commits to SVN; fetch commits from SVN; SVN info; ref -> SVN rev; SVN rev -> SHA
 
-- Basic Bisect: start, good, bad, reset
+- Bisect: start (optional bad & good commits); mark good; mark bad; mark from run; skip; log (optional file); replay; reset
 
 - Pruning obsolete remote references
 
 - Creating Lightweight tags
 
-- Basic bundle support: create bundle file, fetch from bundle file, pull from bundle file.
+- Listing orphan commits
+
+- Basic bundle support: create bundle file; fetch from bundle file; pull from bundle file.
 
 Requires Java 7 and an installation of command-line Git.
 Also requires the workspace to include a definition of the String Substitution variable 'git_exec'
