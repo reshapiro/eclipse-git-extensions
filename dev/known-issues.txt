@@ -1,0 +1,14 @@
+- egit_ex.util.FileChooser.java display issue
+
+The file-chooser dialog component I copied from the web doesn't behave quite right
+at least in OS X. Specifically, the text component that shows the path of the selected
+file does not resize itself unless the dialog as a whole is manually resized.  I don't
+know enough SWT to see what the issue is here, The component description looks at least
+plausible.
+
+
+- Actions are Deprecated
+
+The extensions are all defined as 'action' elements in an 'actionSet', since that's what
+the Eclipse plugin tutorial uses. Apparently the action/action-set API has been deprecated
+but so far I haven't been able to find a usable description of how to port it to the new API.

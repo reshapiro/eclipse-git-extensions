@@ -1,0 +1,5 @@
+To build a local update site you need a site.xml file in the update-site directory. But since every build will modify
+that file (because the version tag changes), I decided to .gitignore it, rather than creating a new commit for
+every build.
+
+To bootstrap this process, simply copy the site.xml file in this directory to update-site.
