@@ -9,6 +9,10 @@ import java.io.OutputStream;
 import org.eclipse.core.runtime.IProgressMonitor;
 
 public class Launcher {
+   
+   private static final int COMPLETION_CHECK_MILLIS = 50;
+   private static final int STREAMING_TEXT_BUFFER_SIZE = 10;
+
    private final ConsoleWriter console;
    private final File saveTo;
    private final ProcessBuilder builder;
@@ -79,7 +83,7 @@ public class Launcher {
          }
          /* Still waiting for completion, sleep a bit */
          try {
-            Thread.sleep(50);
+            Thread.sleep(COMPLETION_CHECK_MILLIS);
          } catch (InterruptedException e) {
             /* interrupts aren't relevant here. */
          }
@@ -112,7 +116,7 @@ public class Launcher {
 
    private final class Writer
          extends Thread {
-         private final byte[] buffer = new byte[50];
+         private final byte[] buffer = new byte[STREAMING_TEXT_BUFFER_SIZE];
          final private InputStream in;
          
          Writer(InputStream in) {
