@@ -133,6 +133,7 @@ public class Launcher {
                throws IOException {
             Sender sender = new Sender(new String(buffer, 0, count));
             console.run(sender);
+            /* Sleep in order to give the gui thread a chance to run. A yield is not sufficient. */
             try {
                Thread.sleep(1);
             } catch (InterruptedException e) {
