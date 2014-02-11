@@ -66,6 +66,7 @@ public class Launcher {
          } else {
             new Writer(process.getInputStream()).start();
          }
+         new Writer(process.getErrorStream()).start();
       } catch (IOException e) {
          return;
       }
