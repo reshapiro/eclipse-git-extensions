@@ -1,10 +1,10 @@
 package egit_ex.util;
 
+import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
+import java.lang.ProcessBuilder.Redirect;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 
@@ -15,9 +15,6 @@ public class Launcher {
 
    private final ConsoleWriter console;
    private final ProcessBuilder builder;
-   private final File saveTo;
-   private OutputStream fileOut;
-
    /**
     * Handles process launching.  Process output goes to console
     * 
@@ -42,8 +39,11 @@ public class Launcher {
    
    private Launcher(File repoRoot, ConsoleWriter console, File saveTo,  String... args) {
       this.console = console;
-      this.saveTo = saveTo;
       builder = new ProcessBuilder(args);
+      if (saveTo != null) {
+         builder.redirectOutput(saveTo);
+      }
+      builder.redirectErrorStream(true);
       builder.directory(repoRoot);
    }
 
@@ -60,13 +60,9 @@ public class Launcher {
       Process process;
       try {
          process = builder.start();
-         if (saveTo != null) {
-            fileOut = new FileOutputStream(saveTo);
-            new FileWriter(process.getInputStream()).start();
-         } else {
-            new Writer(process.getInputStream()).start();
+         if (builder.redirectInput() == Redirect.PIPE) {
+            new ConsoleRedirect(process).start();
          }
-         new Writer(process.getErrorStream()).start();
       } catch (IOException e) {
          return;
       }
@@ -92,19 +88,8 @@ public class Launcher {
             /* interrupts aren't relevant here. */
          }
       }
-      cleanup();
    }
 
-   private void cleanup() {
-      if (fileOut != null) {
-         try {
-            fileOut.close();
-         } catch (IOException e) {
-            // best-effort
-         }
-      }
-   }
-   
    private final class Sender
          implements Runnable {
       final String message;
@@ -118,14 +103,14 @@ public class Launcher {
       }
    }
 
-   private  class Writer
+   private  class ConsoleRedirect
          extends Thread {
       final byte[] buffer = new byte[STREAMING_TEXT_BUFFER_SIZE];
          private final InputStream in;
          
-         Writer(InputStream in) {
+         ConsoleRedirect(Process process) {
             setDaemon(true);
-            this.in = in;
+            this.in = new BufferedInputStream(process.getInputStream());
          }
          
          @Override
@@ -154,20 +139,5 @@ public class Launcher {
                /* interrupts are ok */
             }
          }
-   }
-   
-   private final class FileWriter
-         extends Writer {
-
-      FileWriter(InputStream in) {
-         super(in);
-      }
-
-      
-      @Override
-      void offerText(int count) throws IOException {
-         fileOut.write(buffer, 0, count);
-         fileOut.flush();
-      }
    }
 }
