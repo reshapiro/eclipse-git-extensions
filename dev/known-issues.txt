@@ -1,3 +1,13 @@
+- Possible threading bug
+
+The somewhat complicated threading that handles streaming process output text to the console
+might be the source of a very occasional hang in operations that produce a lot of text, for
+example the core git svn operations.  I've encountered this problem once, and another user
+has as well, but I can't replicate it.
+
+Possibly there's a cleaner, built-in way to stream text?
+ 
+
 - egit_ex.util.FileChooser.java display issue
 
 The file-chooser dialog component I copied from the web doesn't behave quite right
