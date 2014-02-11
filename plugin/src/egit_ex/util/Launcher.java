@@ -14,8 +14,8 @@ public class Launcher {
    private static final int STREAMING_TEXT_BUFFER_SIZE = 10;
 
    private final ConsoleWriter console;
-   private final File saveTo;
    private final ProcessBuilder builder;
+   private final File saveTo;
    private OutputStream fileOut;
 
    /**
@@ -26,10 +26,7 @@ public class Launcher {
     * @param args Git command arguments
     */
    public Launcher(File repoRoot, ConsoleWriter console, String... args) {
-      this.console = console;
-      this.saveTo = null;
-      builder = new ProcessBuilder(args);
-      builder.directory(repoRoot);
+      this(repoRoot, console, null, args);
    }
    
    /**
@@ -40,7 +37,11 @@ public class Launcher {
     * @param args Git command arguments
     */
    public Launcher(File repoRoot, File saveTo, String... args) {
-      this.console = null;
+      this(repoRoot, null, saveTo, args);
+   }
+   
+   private Launcher(File repoRoot, ConsoleWriter console, File saveTo,  String... args) {
+      this.console = console;
       this.saveTo = saveTo;
       builder = new ProcessBuilder(args);
       builder.directory(repoRoot);
@@ -61,8 +62,10 @@ public class Launcher {
          process = builder.start();
          if (saveTo != null) {
             fileOut = new FileOutputStream(saveTo);
+            new FileWriter(process.getInputStream()).start();
+         } else {
+            new Writer(process.getInputStream()).start();
          }
-         new Writer(process.getInputStream()).start();
       } catch (IOException e) {
          return;
       }
@@ -114,10 +117,10 @@ public class Launcher {
       }
    }
 
-   private final class Writer
+   private  class Writer
          extends Thread {
-         private final byte[] buffer = new byte[STREAMING_TEXT_BUFFER_SIZE];
-         final private InputStream in;
+      final byte[] buffer = new byte[STREAMING_TEXT_BUFFER_SIZE];
+         private final InputStream in;
          
          Writer(InputStream in) {
             setDaemon(true);
@@ -140,21 +143,30 @@ public class Launcher {
             }
          }
 
-         private void offerText(int count)
+         void offerText(int count)
                throws IOException {
-            if (fileOut != null) {
-               fileOut.write(buffer, 0, count);
-               fileOut.flush();
-               
-            } else {
-               Sender sender = new Sender(new String(buffer, 0, count));
-               console.run(sender);
-               try {
-                  Thread.sleep(1);
-               } catch (InterruptedException e) {
-                  /* interrupts are ok */
-               }
+            Sender sender = new Sender(new String(buffer, 0, count));
+            console.run(sender);
+            try {
+               Thread.sleep(1);
+            } catch (InterruptedException e) {
+               /* interrupts are ok */
             }
          }
+   }
+   
+   private final class FileWriter
+         extends Writer {
+
+      FileWriter(InputStream in) {
+         super(in);
+      }
+
+      
+      @Override
+      void offerText(int count) throws IOException {
+         fileOut.write(buffer, 0, count);
+         fileOut.flush();
+      }
    }
 }
