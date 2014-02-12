@@ -5,6 +5,7 @@ import java.io.File;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -25,9 +26,6 @@ import org.eclipse.swt.widgets.Text;
 public class FileChooser
       extends Composite {
 
-   /* TODO Handle this with FontMetrics? */
-   private static final int PIXELS_PER_CHAR = 8;
-   
    private Text filePath;
    private final int type;
    private final String title;
@@ -50,6 +48,23 @@ public class FileChooser
       return new File(text);
    }
 
+   /* Hack to resize the text box, which is supposed to happen automatically */
+   private void resizeTextBox(String path) {
+      GC gc = new GC(filePath);
+      gc.setFont(getFont());
+      
+      /* Start with a bit of spacing */
+      int stringWidth = gc.getFontMetrics().getAverageCharWidth() * 2;
+      for (int i=0; i< path.length(); i++) {
+         stringWidth += gc.getCharWidth(path.charAt(i));
+      }
+      gc.dispose();
+      Rectangle rectangle = getBounds();
+      rectangle.width = stringWidth;
+      setBounds(rectangle);
+      update();
+   }
+
    private void createContent() {
       setLayout(new GridLayout(2, false));
       
@@ -69,11 +84,7 @@ public class FileChooser
                return;
             }
             filePath.setText(path);
-            /* Hack to resize the text box, which is supposed to happen automatically */
-            Rectangle rectangle = getBounds();
-            rectangle.width = (path.length() * PIXELS_PER_CHAR);
-            setBounds(rectangle);
-            update();
+            resizeTextBox(path);
          }
       });
    }

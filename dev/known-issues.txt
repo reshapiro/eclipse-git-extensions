@@ -5,17 +5,9 @@ might be the source of a very occasional hang in operations that produce a lot o
 example the core git svn operations.  I've encountered this problem once, and another user
 has as well, but I can't replicate it.
 
-Possibly there's a cleaner, built-in way to stream text?
+[followup: maybe fixed now?]
+
  
-
-- egit_ex.util.FileChooser.java display issue
-
-The file-chooser dialog component I copied from the web doesn't behave quite right
-at least in OS X. Specifically, the text component that shows the path of the selected
-file does not resize itself unless the dialog as a whole is manually resized.  I don't
-know enough SWT to see what the issue is here, The component description looks at least
-plausible.
-
 
 - Actions are Deprecated
 
