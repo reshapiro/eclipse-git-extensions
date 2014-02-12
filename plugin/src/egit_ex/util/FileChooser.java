@@ -5,6 +5,7 @@ import java.io.File;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -18,10 +19,15 @@ import org.eclipse.swt.widgets.Text;
  * The GridData for the {@link #filePath} text box is supposed to resize as needed,
  * but that isn't working unless the containing dialog is itself resized manually.
  * 
+ * For now the resizing is forced by changing the bounds.
+ * 
  */
 public class FileChooser
       extends Composite {
 
+   /* TODO Handle this with FontMetrics? */
+   private static final int PIXELS_PER_CHAR = 8;
+   
    private Text filePath;
    private final int type;
    private final String title;
@@ -63,6 +69,11 @@ public class FileChooser
                return;
             }
             filePath.setText(path);
+            /* Hack to resize the text box, which is supposed to happen automatically */
+            Rectangle rectangle = getBounds();
+            rectangle.width = (path.length() * PIXELS_PER_CHAR);
+            setBounds(rectangle);
+            update();
          }
       });
    }
