@@ -13,14 +13,16 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * A file chooser widget cribbed from the we.  Ugly but functional
+ * A file chooser widget from the web (cleaned up)
+ * 
+ * The GridData for the {@link #filePath} text box is supposed to resize as needed,
+ * but that isn't working unless the containing dialog is itself resized manually.
  * 
  */
 public class FileChooser
       extends Composite {
 
    private Text filePath;
-   private Button activationButton;
    private final int type;
    private final String title;
 
@@ -31,6 +33,9 @@ public class FileChooser
       createContent();
    }
 
+   /**
+    * @return the selected file, or null if none.
+    */
    File getFile() {
       String text = filePath.getText();
       if (text.length() == 0) {
@@ -39,22 +44,19 @@ public class FileChooser
       return new File(text);
    }
 
-   void createContent() {
-      GridLayout layout = new GridLayout(2, false);
-      setLayout(layout);
-
+   private void createContent() {
+      setLayout(new GridLayout(2, false));
+      
       filePath = new Text(this, SWT.SINGLE | SWT.BORDER);
-      GridData gd = new GridData(SWT.FILL, SWT.FILL, true, true);
-      gd.grabExcessHorizontalSpace = true;
-      gd.horizontalAlignment = GridData.FILL;
-      filePath.setLayoutData(gd);
-
-      activationButton = new Button(this, SWT.NONE);
+      filePath.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+      
+      Button activationButton = new Button(this, SWT.NONE);
       activationButton.setText("...");
       activationButton.addSelectionListener(new SelectionAdapter() {
          @Override
          public void widgetSelected(SelectionEvent e) {
-            FileDialog dlg = new FileDialog(activationButton.getShell(), type);
+            Button src = (Button) e.getSource();
+            FileDialog dlg = new FileDialog(src.getShell(), type);
             dlg.setText(title);
             String path = dlg.open();
             if (path == null) {
