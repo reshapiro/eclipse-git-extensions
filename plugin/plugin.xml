@@ -11,184 +11,115 @@
             name="Git">
       </category>
       <command
+            defaultHandler="egitex.handlers.StatusCommand"
             id="egitex.handlers.StatusCommand"
             name="show git status">
       </command>
       <command
+            defaultHandler="egitex.handlers.BisectEndCommand"
             id="egitex.handlers.BisectEndCommand"
             name="end git bisect">
       </command>
       <command
+            defaultHandler="egitex.handlers.BisectGoodCommand"
             id="egitex.handlers.BisectGoodCommand"
             name="mark good">
       </command>
       <command
+            defaultHandler="egitex.handlers.BisectBadCommand"
             id="egitex.handlers.BisectBadCommand"
             name="mark bad">
       </command>
       <command
+            defaultHandler="egitex.handlers.BisectReplayCommand"
             id="egitex.handlers.BisectReplayCommand"
-            name="egitex.handlers.BisectReplayCommand">
+            name="replay bisect">
       </command>
       <command
+            defaultHandler="egitex.handlers.BisectRunCommand"
             id="egitex.handlers.BisectRunCommand"
             name="mark good/bad from run">
       </command>
       <command
+            defaultHandler="egitex.handlers.BisectSkipCommand"
             id="egitex.handlers.BisectSkipCommand"
-            name="egitex.handlers.BisectSkipCommand">
+            name="skip bisect">
       </command>
       <command
+            defaultHandler="egitex.handlers.BisectStartCommand"
             id="egitex.handlers.BisectStartCommand"
             name="start bisect">
       </command>
       <command
+            defaultHandler="egitex.handlers.BisectLogCommand"
             id="egitex.handlers.BisectLogCommand"
             name="log bisect">
       </command>
       <command
+            defaultHandler="egitex.handlers.BundleCreateCommand"
             id="egitex.handlers.BundleCreateCommand"
             name="create bundle">
       </command>
       <command
+            defaultHandler="egitex.handlers.BundlePullCommand"
             id="egitex.handlers.BundlePullCommand"
             name="pull from bundle">
       </command>
       <command
+            defaultHandler="egitex.handlers.BundleFetchCommand"
             id="egitex.handlers.BundleFetchCommand"
             name="fetch from bundle">
       </command>
       <command
+            defaultHandler="egitex.handlers.Git2SvnHandler"
             id="egitex.handlers.Git2SvnHandler"
             name="show svn rev for git commit">
       </command>
       <command
+            defaultHandler="egitex.handlers.LightweightTagCommand"
             id="egitex.handlers.LightweightTagCommand"
             name="create  lightweight tag">
       </command>
       <command
+            defaultHandler="egitex.handlers.PruneCommand"
             id="egitex.handlers.PruneCommand"
             name="prune dead remote refs">
       </command>
       <command
+            defaultHandler="egitex.handlers.Svn2GitCommand"
             id="egitex.handlers.Svn2GitCommand"
             name="show git SHA for svn rev">
       </command>
       <command
+            defaultHandler="egitex.handlers.SvnDcommitCommand"
             id="egitex.handlers.SvnDcommitCommand"
             name="push commits to svn">
       </command>
       <command
+            defaultHandler="egitex.handlers.ListOrphanedCommitsCommand"
             id="egitex.handlers.ListOrphanedCommitsCommand"
             name="list orphan commits">
       </command>
       <command
+            defaultHandler="egitex.handlers.SvnInfoCommand"
             id="egitex.handlers.SvnInfoCommand"
             name="show svn info">
       </command>
       <command
+            defaultHandler="egitex.handlers.SvnRebaseCommand"
             id="egitex.handlers.SvnRebaseCommand"
             name="pull from svn">
       </command>
       <command
+            defaultHandler="egitex.handlers.SvnRebaseLocalCommand"
             id="egitex.handlers.SvnRebaseLocalCommand"
             name="merge fetched svn commits">
       </command>
       <command
+            defaultHandler="egitex.handlers.SvnFetchCommand"
             id="egitex.handlers.SvnFetchCommand"
             name="fetch from svn">
       </command>
-   </extension>
-   <extension
-         point="org.eclipse.ui.handlers">
-      <handler
-            class="egitex.handlers.BisectBadCommand"
-            commandId="egitex.handlers.BisectBadCommand">
-      </handler>
-      <handler
-            class="egitex.handlers.BisectEndCommand"
-            commandId="egitex.handlers.BisectEndCommand">
-      </handler>
-      <handler
-            class="egitex.handlers.BisectGoodCommand"
-            commandId="egitex.handlers.BisectGoodCommand">
-      </handler>
-      <handler
-            class="egitex.handlers.BisectLogCommand"
-            commandId="egitex.handlers.BisectLogCommand">
-      </handler>
-      <handler
-            class="egitex.handlers.BisectReplayCommand"
-            commandId="egitex.handlers.BisectReplayCommand">
-      </handler>
-      <handler
-            class="egitex.handlers.BisectRunCommand"
-            commandId="egitex.handlers.BisectRunCommand">
-      </handler>
-      <handler
-            class="egitex.handlers.BisectSkipCommand"
-            commandId="egitex.handlers.BisectSkipCommand">
-      </handler>
-      <handler
-            class="egitex.handlers.BisectStartCommand"
-            commandId="egitex.handlers.BisectStartCommand">
-      </handler>
-      <handler
-            class="egitex.handlers.BundleCreateCommand"
-            commandId="egitex.handlers.BundleCreateCommand">
-      </handler>
-      <handler
-            class="egitex.handlers.BundleFetchCommand"
-            commandId="egitex.handlers.BundleFetchCommand">
-      </handler>
-      <handler
-            class="egitex.handlers.BundlePullCommand"
-            commandId="egitex.handlers.BundlePullCommand">
-      </handler>
-      <handler
-            class="egitex.handlers.Git2SvnHandler"
-            commandId="egitex.handlers.Git2SvnHandler">
-      </handler>
-      <handler
-            class="egitex.handlers.LightweightTagCommand"
-            commandId="egitex.handlers.LightweightTagCommand">
-      </handler>
-      <handler
-            class="egitex.handlers.ListOrphanedCommitsCommand"
-            commandId="egitex.handlers.ListOrphanedCommitsCommand">
-      </handler>
-      <handler
-            class="egitex.handlers.PruneCommand"
-            commandId="egitex.handlers.PruneCommand">
-      </handler>
-      <handler
-            class="egitex.handlers.StatusCommand"
-            commandId="egitex.handlers.StatusCommand">
-      </handler>
-      <handler
-            class="egitex.handlers.Svn2GitCommand"
-            commandId="egitex.handlers.Svn2GitCommand">
-      </handler>
-      <handler
-            class="egitex.handlers.SvnDcommitCommand"
-            commandId="egitex.handlers.SvnDcommitCommand">
-      </handler>
-      <handler
-            class="egitex.handlers.SvnFetchCommand"
-            commandId="egitex.handlers.SvnFetchCommand">
-      </handler>
-      <handler
-            class="egitex.handlers.SvnInfoCommand"
-            commandId="egitex.handlers.SvnInfoCommand">
-      </handler>
-      <handler
-            class="egitex.handlers.SvnRebaseCommand"
-            commandId="egitex.handlers.SvnRebaseCommand">
-      </handler>
-      <handler
-            class="egitex.handlers.SvnRebaseLocalCommand"
-            commandId="egitex.handlers.SvnRebaseLocalCommand">
-      </handler>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
