@@ -36,13 +36,11 @@ abstract class GitCommandHandler
    private ConsoleWriter console;
    private Shell shell;
 
-   GitCommandHandler() {
+   @Override
+   public boolean isEnabled() {
+      return !resolveVariable(EGIT_WORK_TREE_VAR).isEmpty();
    }
-   
-   /**
-    * the command has been executed, so extract extract the needed information
-    * from the application context.
-    */
+
    @Override
    public Object execute(ExecutionEvent event)
          throws ExecutionException {
@@ -106,11 +104,6 @@ abstract class GitCommandHandler
     */
    abstract String getJobName();
    
-   @Override
-   public boolean isEnabled() {
-      return !resolveVariable(EGIT_WORK_TREE_VAR).isEmpty();
-   }
-
    /**
     * Override to return false if no refresh is required
     * 
