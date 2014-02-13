@@ -8,114 +8,136 @@
       <category
             description="Extended Git Commands"
             id="egit-ex.commands.category"
-            name="Git">
+            name="More Git commands">
       </category>
       <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.StatusCommand"
             id="egitex.handlers.StatusCommand"
             name="show git status">
       </command>
       <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.BisectEndCommand"
             id="egitex.handlers.BisectEndCommand"
             name="end git bisect">
       </command>
       <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.BisectGoodCommand"
             id="egitex.handlers.BisectGoodCommand"
             name="mark good">
       </command>
       <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.BisectBadCommand"
             id="egitex.handlers.BisectBadCommand"
             name="mark bad">
       </command>
       <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.BisectReplayCommand"
             id="egitex.handlers.BisectReplayCommand"
             name="replay bisect">
       </command>
       <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.BisectRunCommand"
             id="egitex.handlers.BisectRunCommand"
             name="mark good/bad from run">
       </command>
       <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.BisectSkipCommand"
             id="egitex.handlers.BisectSkipCommand"
             name="skip bisect">
       </command>
       <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.BisectStartCommand"
             id="egitex.handlers.BisectStartCommand"
             name="start bisect">
       </command>
       <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.BisectLogCommand"
             id="egitex.handlers.BisectLogCommand"
             name="log bisect">
       </command>
       <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.BundleCreateCommand"
             id="egitex.handlers.BundleCreateCommand"
             name="create bundle">
       </command>
       <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.BundlePullCommand"
             id="egitex.handlers.BundlePullCommand"
             name="pull from bundle">
       </command>
       <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.BundleFetchCommand"
             id="egitex.handlers.BundleFetchCommand"
             name="fetch from bundle">
       </command>
       <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.Git2SvnHandler"
             id="egitex.handlers.Git2SvnHandler"
             name="show svn rev for git commit">
       </command>
       <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.LightweightTagCommand"
             id="egitex.handlers.LightweightTagCommand"
             name="create  lightweight tag">
       </command>
       <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.PruneCommand"
             id="egitex.handlers.PruneCommand"
             name="prune dead remote refs">
       </command>
       <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.Svn2GitCommand"
             id="egitex.handlers.Svn2GitCommand"
             name="show git SHA for svn rev">
       </command>
       <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.SvnDcommitCommand"
             id="egitex.handlers.SvnDcommitCommand"
             name="push commits to svn">
       </command>
       <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.ListOrphanedCommitsCommand"
             id="egitex.handlers.ListOrphanedCommitsCommand"
             name="list orphan commits">
       </command>
       <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.SvnInfoCommand"
             id="egitex.handlers.SvnInfoCommand"
             name="show svn info">
       </command>
       <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.SvnRebaseCommand"
             id="egitex.handlers.SvnRebaseCommand"
             name="pull from svn">
       </command>
       <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.SvnRebaseLocalCommand"
             id="egitex.handlers.SvnRebaseLocalCommand"
             name="merge fetched svn commits">
       </command>
       <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.SvnFetchCommand"
             id="egitex.handlers.SvnFetchCommand"
             name="fetch from svn">
@@ -127,8 +149,7 @@
             locationURI="menu:org.eclipse.ui.main.menu?after=additions">
          <menu
                id="egit-ex.menus.git"
-               label="Git Extensions"
-               mnemonic="M">
+               label="Git Extensions">
             <command
                   commandId="egitex.handlers.StatusCommand"
                   label="Git Status">
