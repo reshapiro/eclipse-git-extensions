@@ -37,7 +37,6 @@ abstract class GitCommandHandler
    private Shell shell;
 
    GitCommandHandler() {
-      /* TODO: register with some selection event manager */
    }
    
    /**
