@@ -9,11 +9,11 @@ has as well, but I can't replicate it.
 
 
 - Enabling/Disabling commands
-I'm not understanding this model.
-
 Currently I rely on isEnabled().  This works in general but not at startup.
 Or rather, it works logically at startup  but in that context the the menu
-and tool-bar widgets show as enabled when they're not. The widgets only show
-the enabled state correctly once the user attempts to run one of the disabled
-commands that look enabled. That of course fails, but from that point on the
-widgets display correctly.
+and tool-bar widgets show as enabled when they're not. Once the user attempts
+to run one of the disabled commands that look enabled, the command of course
+fails and shows the dialog saying "The chosen operation is not enabled". From
+from that point on the widgets show the enabled status correctly.
+
+I can't figure out how to get the widgets to display properly from the start.
