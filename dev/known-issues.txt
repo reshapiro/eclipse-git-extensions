@@ -7,3 +7,13 @@ has as well, but I can't replicate it.
 
 [followup: maybe fixed now?]
 
+
+- Enabling/Disabling commands
+I'm not understanding this model.
+
+Currently I rely on isEnabled().  This works in general but not at startup.
+Or rather, it works logically at startup  but in that context the the menu
+and tool-bar widgets show as enabled when they're not. The widgets only show
+the enabled state correctly once the user attempts to run one of the disabled
+commands that look enabled. That of course fails, but from that point on the
+widgets display correctly.
