@@ -45,8 +45,10 @@ abstract class GitCommandHandler
    public Object execute(ExecutionEvent event)
          throws ExecutionException {
       IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
-      this.console = new ConsoleWriter(window);
-      this.shell = window.getShell();
+      if (console == null) {
+         console = new ConsoleWriter(window);
+      }
+      shell = window.getShell();
       String gitExec = resolveVariable(GIT_EXEC_VAR);
       if (gitExec.isEmpty()) {
          console.displayLine(NO_GIT_EXEC_VAR_MSG);
