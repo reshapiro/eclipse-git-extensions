@@ -1,6 +1,5 @@
-package egitex.actions;
+package egitex.handlers;
 
-import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
 /**
  * Execute the Git operation that skips the next bisect step
@@ -8,10 +7,8 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
  * @author reshapiro
  * 
  */
-public class BisectSkipAction
-      extends GitAction
-
-      implements IWorkbenchWindowActionDelegate {
+public class BisectSkipCommand
+      extends GitCommandHandler {
    
    private static final String[] ARGS = new String[] {
       "bisect", "skip"

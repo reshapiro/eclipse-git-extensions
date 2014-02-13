@@ -1,29 +1,25 @@
-package egitex.actions;
+package egitex.handlers;
 
-import org.eclipse.ui.IWorkbenchWindowActionDelegate;
-
-import egit_ex.util.FileParameter;
 import egit_ex.util.MissingRequiredParameterException;
+import egit_ex.util.Parameter;
 import egit_ex.util.ParameterSet;
 import egit_ex.util.PromptCancelledException;
 
 /**
- * Fetch commits from a bundle file
+ * Execute the Git operation that will find the SVN revision for a given Git Commit
  * 
  * @author reshapiro
  * 
  */
-public class BundleFetchAction
-      extends GitAction
-
-      implements IWorkbenchWindowActionDelegate {
+public class PruneCommand
+      extends GitCommandHandler {
+   
+   private static final ParameterSet PARAMS = new ParameterSet("Prune remote refs", new Parameter("Remote", 2, true, "origin"));
    
    private static final String[] ARGS = new String[] {
-      "fetch", null
+      "remote", "prune", null
    };
 
-   private static final ParameterSet PARAMS = 
-         new ParameterSet("Bundle file", new FileParameter("Fetch from bundle file", 1, true));
    
    @Override
    String[] getArgs()
@@ -34,6 +30,11 @@ public class BundleFetchAction
 
    @Override
    String getJobName() {
-      return "Fetch from bundle";
+      return "Delete obsolete remote refs";
+   }
+
+   @Override
+   boolean touch() {
+      return false;
    }
 }

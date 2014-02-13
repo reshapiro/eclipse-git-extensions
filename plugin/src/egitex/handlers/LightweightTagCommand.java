@@ -1,6 +1,4 @@
-package egitex.actions;
-
-import org.eclipse.ui.IWorkbenchWindowActionDelegate;
+package egitex.handlers;
 
 import egit_ex.util.MissingRequiredParameterException;
 import egit_ex.util.Parameter;
@@ -15,10 +13,8 @@ import egit_ex.util.RefParameter;
  * @author reshapiro
  * 
  */
-public class LightweightTagAction
-      extends GitAction
-
-      implements IWorkbenchWindowActionDelegate {
+public class LightweightTagCommand
+      extends GitCommandHandler {
 
    private static final String[] ARGS = new String[] {
       "tag", null, null

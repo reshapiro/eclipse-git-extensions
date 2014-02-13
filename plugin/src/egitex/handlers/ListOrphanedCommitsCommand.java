@@ -1,6 +1,4 @@
-package egitex.actions;
-
-import org.eclipse.ui.IWorkbenchWindowActionDelegate;
+package egitex.handlers;
 
 import egit_ex.util.MissingRequiredParameterException;
 import egit_ex.util.ParameterSet;
@@ -12,10 +10,8 @@ import egit_ex.util.PromptCancelledException;
  * @author reshapiro
  * 
  */
-public class ListOrphanedCommitsAction
-      extends GitAction
-
-      implements IWorkbenchWindowActionDelegate {
+public class ListOrphanedCommitsCommand
+      extends GitCommandHandler {
    
    private static final String[] ARGS = new String[] {
       "fsck", "--lost-found"

@@ -1,6 +1,5 @@
-package egitex.actions;
+package egitex.handlers;
 
-import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
 /**
  * Execute the Git operation that will show the  current status.  This Git operation also
@@ -9,10 +8,8 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
  * @author reshapiro
  * 
  */
-public class StatusAction
-      extends GitAction
-
-      implements IWorkbenchWindowActionDelegate {
+public class StatusCommand
+      extends GitCommandHandler {
    
    private static final String[] ARGS = new String[] {
       "status"

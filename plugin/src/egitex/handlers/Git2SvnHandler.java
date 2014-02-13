@@ -1,6 +1,4 @@
-package egitex.actions;
-
-import org.eclipse.ui.IWorkbenchWindowActionDelegate;
+package egitex.handlers;
 
 import egit_ex.util.MissingRequiredParameterException;
 import egit_ex.util.ParameterSet;
@@ -13,10 +11,8 @@ import egit_ex.util.RefParameter;
  * @author reshapiro
  * 
  */
-public class Git2SvnAction
-      extends GitAction
-
-      implements IWorkbenchWindowActionDelegate {
+public class Git2SvnHandler
+      extends GitCommandHandler {
    
    private static final ParameterSet PARAMS = new ParameterSet("Show SVN revision for SHA", new RefParameter(2));
    

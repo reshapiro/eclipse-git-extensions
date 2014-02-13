@@ -1,6 +1,5 @@
-package egitex.actions;
+package egitex.handlers;
 
-import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
 /**
  * Execute the Git operation that will 'fetch' any new commits from SVN on any
@@ -9,10 +8,8 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
  * @author reshapiro
  * 
  */
-public class SvnFetchAction
-      extends GitAction
-
-      implements IWorkbenchWindowActionDelegate {
+public class SvnFetchCommand
+      extends GitCommandHandler {
    
    private static final String[] ARGS = new String[] {
       "svn", "fetch"

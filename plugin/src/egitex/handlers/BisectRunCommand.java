@@ -1,6 +1,4 @@
-package egitex.actions;
-
-import org.eclipse.ui.IWorkbenchWindowActionDelegate;
+package egitex.handlers;
 
 import egit_ex.util.MissingRequiredParameterException;
 import egit_ex.util.Parameter;
@@ -14,10 +12,8 @@ import egit_ex.util.PromptCancelledException;
  * @author reshapiro
  * 
  */
-public class BisectRunAction
-      extends GitAction
-
-      implements IWorkbenchWindowActionDelegate {
+public class BisectRunCommand
+      extends GitCommandHandler {
    
    private static final Parameter CMD_ARGS_PARAM = new Parameter("Command", 0, true);
    private static final ParameterSet PARAMETERS = new ParameterSet("Bisect Command args", CMD_ARGS_PARAM);

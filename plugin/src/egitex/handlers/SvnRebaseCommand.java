@@ -1,6 +1,5 @@
-package egitex.actions;
+package egitex.handlers;
 
-import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
 /**
  * Execute the Git operation that will 'pull' and rebase any new commits on the
@@ -9,13 +8,11 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
  * @author reshapiro
  * 
  */
-public class SvnRebaseLocalAction
-      extends GitAction
-
-      implements IWorkbenchWindowActionDelegate {
+public class SvnRebaseCommand
+      extends GitCommandHandler {
    
    private static final String[] ARGS = new String[] {
-      "svn", "rebase", "--local"
+      "svn", "rebase"
    };
 
    @Override
@@ -25,6 +22,6 @@ public class SvnRebaseLocalAction
 
    @Override
    String getJobName() {
-      return "'Rebase' from fectched SVN commits";
+      return "'Pull' new commits from SVN";
    }
 }

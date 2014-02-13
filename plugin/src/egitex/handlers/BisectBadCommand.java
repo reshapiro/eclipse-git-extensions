@@ -1,6 +1,5 @@
-package egitex.actions;
+package egitex.handlers;
 
-import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
 /**
  * Execute the Git operation that will mark the HEAD as bad in a bisect
@@ -8,10 +7,8 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
  * @author reshapiro
  * 
  */
-public class BisectBadAction
-      extends GitAction
-
-      implements IWorkbenchWindowActionDelegate {
+public class BisectBadCommand
+      extends GitCommandHandler {
    
    private static final String[] ARGS = new String[] {
       "bisect", "bad"

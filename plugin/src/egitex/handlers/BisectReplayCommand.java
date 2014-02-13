@@ -1,6 +1,4 @@
-package egitex.actions;
-
-import org.eclipse.ui.IWorkbenchWindowActionDelegate;
+package egitex.handlers;
 
 import egit_ex.util.FileParameter;
 import egit_ex.util.MissingRequiredParameterException;
@@ -13,10 +11,8 @@ import egit_ex.util.PromptCancelledException;
  * @author reshapiro
  * 
  */
-public class BisectReplayAction
-      extends GitAction
-
-      implements IWorkbenchWindowActionDelegate {
+public class BisectReplayCommand
+      extends GitCommandHandler {
    
    private final ParameterSet PARAMETERS = new ParameterSet("Replay bisect", new FileParameter("Log file", 2, true));
    

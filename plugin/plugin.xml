@@ -3,180 +3,348 @@
 <plugin>
 
    <extension
-         point="org.eclipse.ui.actionSets">
-      <actionSet
-            id="egit-ex.actionSet"
-            label="Git Action Set"
-            sibling_order="&lt;action&#x0A;               class=&quot;egitex.actions.PruneAction&quot;&#x0A;               id=&quot;egitex.actions.PruneAction&quot;&#x0A;               label=&quot;Prune...&quot;&#x0A;               menubarPath=&quot;gitMenu/gitGroup&quot;&#x0A;               tooltip=&quot;Prune remote refs&quot;&gt;&#x0A;         &lt;/action&gt;"
-            visible="true">
+         id="git-command-set"
+         point="org.eclipse.ui.commands">
+      <category
+            description="Extended Git Commands"
+            id="egit-ex.commands.category"
+            name="Git">
+      </category>
+      <command
+            id="egitex.handlers.StatusCommand"
+            name="show git status">
+      </command>
+      <command
+            id="egitex.handlers.BisectEndCommand"
+            name="end git bisect">
+      </command>
+      <command
+            id="egitex.handlers.BisectGoodCommand"
+            name="mark good">
+      </command>
+      <command
+            id="egitex.handlers.BisectBadCommand"
+            name="mark bad">
+      </command>
+      <command
+            id="egitex.handlers.BisectReplayCommand"
+            name="egitex.handlers.BisectReplayCommand">
+      </command>
+      <command
+            id="egitex.handlers.BisectRunCommand"
+            name="mark good/bad from run">
+      </command>
+      <command
+            id="egitex.handlers.BisectSkipCommand"
+            name="egitex.handlers.BisectSkipCommand">
+      </command>
+      <command
+            id="egitex.handlers.BisectStartCommand"
+            name="start bisect">
+      </command>
+      <command
+            id="egitex.handlers.BisectLogCommand"
+            name="log bisect">
+      </command>
+      <command
+            id="egitex.handlers.BundleCreateCommand"
+            name="create bundle">
+      </command>
+      <command
+            id="egitex.handlers.BundlePullCommand"
+            name="pull from bundle">
+      </command>
+      <command
+            id="egitex.handlers.BundleFetchCommand"
+            name="fetch from bundle">
+      </command>
+      <command
+            id="egitex.handlers.Git2SvnHandler"
+            name="show svn rev for git commit">
+      </command>
+      <command
+            id="egitex.handlers.LightweightTagCommand"
+            name="create  lightweight tag">
+      </command>
+      <command
+            id="egitex.handlers.PruneCommand"
+            name="prune dead remote refs">
+      </command>
+      <command
+            id="egitex.handlers.Svn2GitCommand"
+            name="show git SHA for svn rev">
+      </command>
+      <command
+            id="egitex.handlers.SvnDcommitCommand"
+            name="push commits to svn">
+      </command>
+      <command
+            id="egitex.handlers.ListOrphanedCommitsCommand"
+            name="list orphan commits">
+      </command>
+      <command
+            id="egitex.handlers.SvnInfoCommand"
+            name="show svn info">
+      </command>
+      <command
+            id="egitex.handlers.SvnRebaseCommand"
+            name="pull from svn">
+      </command>
+      <command
+            id="egitex.handlers.SvnRebaseLocalCommand"
+            name="merge fetched svn commits">
+      </command>
+      <command
+            id="egitex.handlers.SvnFetchCommand"
+            name="fetch from svn">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="egitex.handlers.BisectBadCommand"
+            commandId="egitex.handlers.BisectBadCommand">
+      </handler>
+      <handler
+            class="egitex.handlers.BisectEndCommand"
+            commandId="egitex.handlers.BisectEndCommand">
+      </handler>
+      <handler
+            class="egitex.handlers.BisectGoodCommand"
+            commandId="egitex.handlers.BisectGoodCommand">
+      </handler>
+      <handler
+            class="egitex.handlers.BisectLogCommand"
+            commandId="egitex.handlers.BisectLogCommand">
+      </handler>
+      <handler
+            class="egitex.handlers.BisectReplayCommand"
+            commandId="egitex.handlers.BisectReplayCommand">
+      </handler>
+      <handler
+            class="egitex.handlers.BisectRunCommand"
+            commandId="egitex.handlers.BisectRunCommand">
+      </handler>
+      <handler
+            class="egitex.handlers.BisectSkipCommand"
+            commandId="egitex.handlers.BisectSkipCommand">
+      </handler>
+      <handler
+            class="egitex.handlers.BisectStartCommand"
+            commandId="egitex.handlers.BisectStartCommand">
+      </handler>
+      <handler
+            class="egitex.handlers.BundleCreateCommand"
+            commandId="egitex.handlers.BundleCreateCommand">
+      </handler>
+      <handler
+            class="egitex.handlers.BundleFetchCommand"
+            commandId="egitex.handlers.BundleFetchCommand">
+      </handler>
+      <handler
+            class="egitex.handlers.BundlePullCommand"
+            commandId="egitex.handlers.BundlePullCommand">
+      </handler>
+      <handler
+            class="egitex.handlers.Git2SvnHandler"
+            commandId="egitex.handlers.Git2SvnHandler">
+      </handler>
+      <handler
+            class="egitex.handlers.LightweightTagCommand"
+            commandId="egitex.handlers.LightweightTagCommand">
+      </handler>
+      <handler
+            class="egitex.handlers.ListOrphanedCommitsCommand"
+            commandId="egitex.handlers.ListOrphanedCommitsCommand">
+      </handler>
+      <handler
+            class="egitex.handlers.PruneCommand"
+            commandId="egitex.handlers.PruneCommand">
+      </handler>
+      <handler
+            class="egitex.handlers.StatusCommand"
+            commandId="egitex.handlers.StatusCommand">
+      </handler>
+      <handler
+            class="egitex.handlers.Svn2GitCommand"
+            commandId="egitex.handlers.Svn2GitCommand">
+      </handler>
+      <handler
+            class="egitex.handlers.SvnDcommitCommand"
+            commandId="egitex.handlers.SvnDcommitCommand">
+      </handler>
+      <handler
+            class="egitex.handlers.SvnFetchCommand"
+            commandId="egitex.handlers.SvnFetchCommand">
+      </handler>
+      <handler
+            class="egitex.handlers.SvnInfoCommand"
+            commandId="egitex.handlers.SvnInfoCommand">
+      </handler>
+      <handler
+            class="egitex.handlers.SvnRebaseCommand"
+            commandId="egitex.handlers.SvnRebaseCommand">
+      </handler>
+      <handler
+            class="egitex.handlers.SvnRebaseLocalCommand"
+            commandId="egitex.handlers.SvnRebaseLocalCommand">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
          <menu
-               label="Git Extras"
-               id="gitMenu">
+               id="egit-ex.menus.git"
+               label="Git Extensions"
+               mnemonic="M">
+            <command
+                  commandId="egitex.handlers.StatusCommand"
+                  label="Git Status">
+            </command>
+            <command
+                  commandId="egitex.handlers.PruneCommand"
+                  id="egitex.handlers.PruneCommand"
+                  label="Prune obsolete remote refs">
+            </command>
+            <command
+                  commandId="egitex.handlers.ListOrphanedCommitsCommand"
+                  id="egitex.handlers.ListOrphanedCommitsCommand"
+                  label="List orphan commits">
+            </command>
+            <command
+                  commandId="egitex.handlers.LightweightTagCommand"
+                  id="egitex.handlers.LightweightTagCommand"
+                  label="Create lightweight tag">
+            </command>
             <separator
-                  name="gitGroup">
+                  name="bisect"
+                  visible="true">
             </separator>
+            <command
+                  commandId="egitex.handlers.BisectStartCommand"
+                  id="egitex.handlers.BisectStartCommand"
+                  label="Start bisect">
+            </command>
+            <command
+                  commandId="egitex.handlers.BisectBadCommand"
+                  id="egitex.handlers.BisectBadCommand"
+                  label="Mark as bad">
+            </command>
+            <command
+                  commandId="egitex.handlers.BisectGoodCommand"
+                  id="egitex.handlers.BisectGoodCommand"
+                  label="Mark as good">
+            </command>
+            <command
+                  commandId="egitex.handlers.BisectRunCommand"
+                  id="egitex.handlers.BisectRunCommand"
+                  label="Mark from run">
+            </command>
+            <command
+                  commandId="egitex.handlers.BisectSkipCommand"
+                  id="egitex.handlers.BisectSkipCommand"
+                  label="Skip bisect">
+            </command>
+            <command
+                  commandId="egitex.handlers.BisectLogCommand"
+                  id="egitex.handlers.BisectLogCommand"
+                  label="Log bisect">
+            </command>
+            <command
+                  commandId="egitex.handlers.BisectReplayCommand"
+                  id="egitex.handlers.BisectReplayCommand"
+                  label="Replay bisect">
+            </command>
+            <command
+                  commandId="egitex.handlers.BisectEndCommand"
+                  id="egitex.handlers.BisectEndCommand"
+                  label="End bisect">
+            </command>
             <separator
-                  name="svnGroup">
+                  name="bundle"
+                  visible="true">
             </separator>
+            <command
+                  commandId="egitex.handlers.BundleCreateCommand"
+                  id="egitex.handlers.BundleCreateCommand"
+                  label="Create bundle file">
+            </command>
+            <command
+                  commandId="egitex.handlers.BundleFetchCommand"
+                  id="egitex.handlers.BundleFetchCommand"
+                  label="Fetch from bundle file">
+            </command>
+            <command
+                  commandId="egitex.handlers.BundlePullCommand"
+                  id="egitex.handlers.BundlePullCommand"
+                  label="Pull from bundle file">
+            </command>
+            <separator
+                  name="svn bridge"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="egitex.handlers.SvnRebaseCommand"
+                  id="egitex.handlers.SvnRebaseCommand"
+                  label="Pull from SVN">
+            </command>
+            <command
+                  commandId="egitex.handlers.StatusCommand"
+                  id="egitex.handlers.SvnRebaseLocalCommand"
+                  label="SVN Local Rebase">
+            </command>
+            <command
+                  commandId="egitex.handlers.SvnFetchCommand"
+                  id="egitex.handlers.SvnFetchCommand"
+                  label="Fetch from SVN">
+            </command>
+            <command
+                  commandId="egitex.handlers.SvnDcommitCommand"
+                  id="egitex.handlers.SvnDcommitCommand"
+                  label="Push to SVN">
+            </command>
+            <command
+                  commandId="egitex.handlers.SvnInfoCommand"
+                  id="egitex.handlers.SvnInfoCommand"
+                  label="Show SVN info">
+            </command>
+            <command
+                  commandId="egitex.handlers.Git2SvnHandler"
+                  id="egitex.handlers.Git2SvnHandler"
+                  label="SVN rev for Git SHA">
+            </command>
+            <command
+                  commandId="egitex.handlers.Svn2GitCommand"
+                  id="egitex.handlers.Svn2GitCommand"
+                  label="Git SHA for SVN rev">
+            </command>
          </menu>
-         <action
-               class="egitex.actions.ListOrphanedCommitsAction"
-               id="egitex.actions.ListOrphanedCommitsAction"
-               label="List Orphaned commits"
-               menubarPath="gitMenu/gitGroup"
-               tooltip="List orphan commits">
-         </action>
-         <action
-               class="egitex.actions.PruneAction"
-               id="egitex.actions.PruneAction"
-               label="Prune..."
-               menubarPath="gitMenu/gitGroup"
-               tooltip="Prune remote refs">
-         </action>
-         <action
-               class="egitex.actions.LightweightTagAction"
-               id="egitex.actions.LightweightTagAction"
-               label="Lightweight Tag..."
-               menubarPath="gitMenu/gitGroup"
-               tooltip="Prune remote refs">
-         </action>
-         <action
-               class="egitex.actions.StatusAction"
-               id="egitex.actions.StatusAction"
-               label="Status"
-               menubarPath="gitMenu/gitGroup"
-               tooltip="Git status">
-         </action>
-         <action
-               class="egitex.actions.SvnRebaseAction"
-               id="egitex.actions.SvnRebaseAction"
-               label="SVN Pull"
-               menubarPath="gitMenu/svnGroup"
-               toolbarPath="toolbarGroup"
-               tooltip="Fetch and rebase new commits from SVN (active branch)">
-         </action>
-         <action
-               class="egitex.actions.SvnRebaseLocalAction"
-               id="egitex.actions.SvnRebaseLocalAction"
-               label="SVN Local Rebase"
-               menubarPath="gitMenu/svnGroup"
-               tooltip="Update active branch from fetched SVN commits">
-         </action>
-         <action
-               class="egitex.actions.SvnFetchAction"
-               id="egitex.actions.SvnFetchAction"
-               label="SVN Fetch"
-               menubarPath="gitMenu/svnGroup"
-               toolbarPath="toolbarGroup"
-               tooltip="Fetch new commits from SVN (all branches)">
-         </action>
-         <action
-               class="egitex.actions.SvnDcommitAction"
-               id="egitex.actions.SvnDcommitAction"
-               label="SVN Push"
-               menubarPath="gitMenu/svnGroup"
-               toolbarPath="toolbarGroup"
-               tooltip="Push new commits to SVN (active branch) ">
-         </action>
-         <action
-               class="egitex.actions.SvnInfoAction"
-               id="egitex.actions.SvnInfoAction"
-               label="SVN info"
-               menubarPath="gitMenu/svnGroup"
-               tooltip="Show bridged SVN info">
-         </action>
-         <action
-               class="egitex.actions.Git2SvnAction"
-               id="egitex.actions.Git2SvnAction"
-               label="SVN rev for Git SHA..."
-               menubarPath="gitMenu/svnGroup"
-               tooltip="Show SVN revision for Git commit">
-         </action>
-         <action
-               class="egitex.actions.Svn2GitAction"
-               id="egitex.actions.Svn2GitAction"
-               label="Git SHA for SVN rev..."
-               menubarPath="gitMenu/svnGroup"
-               tooltip="Show Git SHA for SVN revision...">
-         </action>
-         <action
-               class="egitex.actions.BisectEndAction"
-               id="egitex.actions.BisectEndAction"
-               label="End bisect"
-               menubarPath="gitMenu/bisectGroup"
-               tooltip="End a bisect">
-         </action>
-         <action
-               class="egitex.actions.BisectLogAction"
-               id="egitex.actions.BisectLogAction"
-               label="Log bisect"
-               menubarPath="gitMenu/bisectGroup"
-               tooltip="Log bisect">
-         </action>
-         <action
-               class="egitex.actions.BisectReplayAction"
-               id="egitex.actions.BisectReplayAction"
-               label="Replay bisect"
-               menubarPath="gitMenu/bisectGroup"
-               tooltip="Replay a bisect">
-         </action>
-         <action
-               class="egitex.actions.BisectSkipAction"
-               id="egitex.actions.BisectSkipAction"
-               label="Skip bisect"
-               menubarPath="gitMenu/bisectGroup"
-               tooltip="Skip a bisect">
-         </action>
-         <action
-               class="egitex.actions.BisectRunAction"
-               id="egitex.actions.BisectRunAction"
-               label="Bisect run"
-               menubarPath="gitMenu/bisectGroup"
-               tooltip="Bisect run">
-         </action>
-         <action
-               class="egitex.actions.BisectBadAction"
-               id="egitex.actions.BisectBadAction"
-               label="Mark as bad"
-               menubarPath="gitMenu/bisectGroup"
-               tooltip="Mark HEAD as bad in a bisect">
-         </action>
-         <action
-               class="egitex.actions.BisectGoodAction"
-               id="egitex.actions.BisectGoodAction"
-               label="Mark as good"
-               menubarPath="gitMenu/bisectGroup"
-               tooltip="Mark HEAD as good in a bisect">
-         </action>
-         <action
-               class="egitex.actions.BisectStartAction"
-               id="egitex.actions.BisectStartAction"
-               label="Start bisect"
-               menubarPath="gitMenu/bisectGroup"
-               tooltip="Begin a bisect">
-         </action>
-         <action
-               class="egitex.actions.BundleFetchAction"
-               id="egitex.actions.BundleFetchAction"
-               label="Fetch from bundle"
-               menubarPath="gitMenu/bundleGroup"
-               tooltip="Fetch commits from a bundle file">
-         </action>
-         <action
-               class="egitex.actions.BundlePullAction"
-               id="egitex.actions.BundlePullAction"
-               label="Pull from bundle"
-               menubarPath="gitMenu/bundleGroup"
-               tooltip="Pull commits from a bundle file">
-         </action>
-         <action
-               class="egitex.actions.BundleCreateAction"
-               id="egitex.actions.BundleCreateAction"
-               label="Create bundle"
-               menubarPath="gitMenu/bundleGroup"
-               tooltip="Create a bundle file">
-         </action>
-      </actionSet>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="egit-ex.toolbars.gitToolbar">
+            <command
+                  commandId="egitex.handlers.SvnDcommitCommand"
+                  id="egitex.handlers.SvnDcommitCommand"
+                  label="Push to SVN"
+                  tooltip="Push new commits to SVN">
+            </command>
+            <command
+                  commandId="egitex.handlers.SvnDcommitCommand"
+                  id="egitex.handlers.SvnFetchCommand"
+                  label="Fetch  from SVN"
+                  tooltip="Fetch new commits from SVN">
+            </command>
+            <command
+                  commandId="egitex.handlers.SvnRebaseCommand"
+                  id="egitex.handlers.SvnRebaseCommand"
+                  label="Pull from SVN"
+                  tooltip="Pull new commits from SVN">
+            </command>
+         </toolbar>
+      </menuContribution>
    </extension>
 
 </plugin>

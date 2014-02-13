@@ -1,6 +1,4 @@
-package egitex.actions;
-
-import org.eclipse.ui.IWorkbenchWindowActionDelegate;
+package egitex.handlers;
 
 import egit_ex.util.MissingRequiredParameterException;
 import egit_ex.util.ParameterSet;
@@ -14,10 +12,8 @@ import egit_ex.util.SaveFileParameter;
  * @author reshapiro
  * 
  */
-public class BundleCreateAction
-      extends GitAction
-
-      implements IWorkbenchWindowActionDelegate {
+public class BundleCreateCommand
+      extends GitCommandHandler {
    
    private static final String[] ARGS = new String[] {
       "bundle", "create",  null, null, null

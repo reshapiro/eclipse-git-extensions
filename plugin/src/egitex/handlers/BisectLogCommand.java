@@ -1,8 +1,6 @@
-package egitex.actions;
+package egitex.handlers;
 
 import java.io.File;
-
-import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
 import egit_ex.util.MissingRequiredParameterException;
 import egit_ex.util.Parameter;
@@ -17,10 +15,8 @@ import egit_ex.util.SaveFileParameter;
  * @author reshapiro
  * 
  */
-public class BisectLogAction
-      extends GitAction
-
-      implements IWorkbenchWindowActionDelegate {
+public class BisectLogCommand
+      extends GitCommandHandler {
    
    private static final Parameter LOG_FILE_PARAM = new SaveFileParameter("Save log as (optional)", 0, false);
    

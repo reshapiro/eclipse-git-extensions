@@ -1,6 +1,5 @@
-package egitex.actions;
+package egitex.handlers;
 
-import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
 /**
  * Execute the Git operation that will show information about the SVN repository.
@@ -8,10 +7,8 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
  * @author reshapiro
  * 
  */
-public class SvnInfoAction
-      extends GitAction
-
-      implements IWorkbenchWindowActionDelegate {
+public class SvnInfoCommand
+      extends GitCommandHandler {
    
    private static final String[] ARGS = new String[] {
       "svn", "info"

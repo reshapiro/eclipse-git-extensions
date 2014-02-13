@@ -1,6 +1,4 @@
-package egitex.actions;
-
-import org.eclipse.ui.IWorkbenchWindowActionDelegate;
+package egitex.handlers;
 
 import egit_ex.util.MissingRequiredParameterException;
 import egit_ex.util.Parameter;
@@ -13,10 +11,8 @@ import egit_ex.util.PromptCancelledException;
  * @author reshapiro
  * 
  */
-public class Svn2GitAction
-      extends GitAction
-
-      implements IWorkbenchWindowActionDelegate {
+public class Svn2GitCommand
+      extends GitCommandHandler {
    
    private static final Parameter SVN_REV_PARAM = new Parameter("SVN rev", 2, true);
    

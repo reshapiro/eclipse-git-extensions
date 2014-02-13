@@ -1,6 +1,5 @@
-package egitex.actions;
+package egitex.handlers;
 
-import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
 /**
  * Execute the Git operation that will 'push' any new commits on the active
@@ -9,10 +8,8 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
  * @author reshapiro
  * 
  */
-public class SvnDcommitAction
-      extends GitAction
-
-      implements IWorkbenchWindowActionDelegate {
+public class SvnDcommitCommand
+      extends GitCommandHandler {
    
    private static final String[] ARGS = new String[] {
       "svn", "dcommit"

@@ -1,6 +1,4 @@
-package egitex.actions;
-
-import org.eclipse.ui.IWorkbenchWindowActionDelegate;
+package egitex.handlers;
 
 import egit_ex.util.MissingRequiredParameterException;
 import egit_ex.util.ParameterSet;
@@ -13,10 +11,8 @@ import egit_ex.util.RefParameter;
  * @author reshapiro
  * 
  */
-public class BisectEndAction
-      extends GitAction
-
-      implements IWorkbenchWindowActionDelegate {
+public class BisectEndCommand
+      extends GitCommandHandler {
    
    private static final ParameterSet PARAMETERS = new ParameterSet("End Bisect", new RefParameter("Reset to (optional)", 2, false));
    

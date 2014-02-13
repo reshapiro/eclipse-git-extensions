@@ -7,10 +7,3 @@ has as well, but I can't replicate it.
 
 [followup: maybe fixed now?]
 
- 
-
-- Actions are Deprecated
-
-The extensions are all defined as 'action' elements in an 'actionSet', since that's what
-the Eclipse plugin tutorial uses. Apparently the action/action-set API has been deprecated
-but so far I haven't been able to find a usable description of how to port it to the new API.
