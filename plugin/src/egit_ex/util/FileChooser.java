@@ -54,7 +54,7 @@ public class FileChooser
       gc.setFont(getFont());
       
       /* Start with a bit of spacing */
-      int stringWidth = gc.getFontMetrics().getAverageCharWidth() * 2;
+      int stringWidth = gc.getFontMetrics().getAverageCharWidth() * 4;
       for (int i=0; i< path.length(); i++) {
          stringWidth += gc.getCharWidth(path.charAt(i));
       }
