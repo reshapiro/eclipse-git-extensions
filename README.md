@@ -1,5 +1,7 @@
 This repository defines a simple Eclipse plugin designed to support
-some Git operations that are not yet supported by JGit/Egit.
+some Git operations that are not yet supported by JGit/Egit. It does
+this by launching command-line Git.
+
 The currently supported operations are as follows:
 
 -SVN bridging: pull commits from SVN; push commits to SVN; fetch commits from SVN; SVN info; ref -> SVN rev; SVN rev -> SHA
@@ -14,6 +16,9 @@ The currently supported operations are as follows:
 
 - Basic bundle support: create bundle file; fetch from bundle file; pull from bundle file.
 
-Requires Java 7 and an installation of command-line Git.
-Also requires the workspace to include a definition of the String Substitution variable 'git_exec'
-which should point at the absolute path of Git executable. 
+Requires Java 7 and an installation of command-line Git. Also requires the workspace to include
+a definition of the String Substitution variable 'git_exec' which should point at the absolute path
+of your local Git executable. 
+
+
+For more info please read notes/notes.txt.

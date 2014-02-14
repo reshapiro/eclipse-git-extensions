@@ -1,0 +1,53 @@
+Repository structure
+--------------------
+
+The 'plugin' directory contains Plugin code and configuration.
+The 'feature' directory contains the Feature configuration.
+The 'update-site' directory is for building a local Eclipse update site.
+This directory, 'notes', should be self-explanatory.
+
+You might have noticed that update-site starts out empty except for a .gitignore
+and that both site.xml and build artifacts are ignored. Build artifacts would
+never be under version control, so that's easy to understand. But why is site.xml
+also ignored, since it's required to do the build?
+
+The issue here is that every build modifies site.xml, since it changes the plugin
+version string. But these changes are of are of no interest from the version-control
+perspective. It makes no sense to commit them, and it would be an annoyance to have 
+to undo them manually.
+
+To get around this I elected to commit a fixed site.xml here (in 'notes'). To build,
+all you have to do is copy that file to update-site, as a one-time operation. Git will
+ignore it, along with changes to it.
+
+
+
+Some known issues:
+------------------
+- Possible threading bug
+
+In an earlier version I ran into issue with displaying the output of
+a Git command to the console.  I believe this is  now fixed, but let
+me know if you run into something like this.
+
+
+- Enabling/Disabling commands
+The commands defined by this plugin are enabled only when the current selection
+is a file under Git version control.  But due some mysterious problem they appear
+to be enabled on startup, when nothing is selected, and they'll stay that way until
+you run one of them when nothing is selected or the selection is not relevant. At
+that point you'll see an error dialog telling you the command is not enabled, and
+the displayed enabled/disabled status will finally behave properly for the rest of
+the session.
+
+If you know how to fix this problem, please tell me.
+
+
+Enhancements that might be nice (if someone wants to help)
+----------------------------------------------------------
+
+- Icons for at least some commands so they could be in the toolbar (and not as text)
+
+- Some commands require one or more Git references -- branch, tag, remote-ref, SHA
+  Currently these must be entered as text.   A chooser gui of some kind would be 
+  a lot more convenient for branches and tags.
