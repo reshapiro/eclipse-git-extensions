@@ -96,10 +96,6 @@ abstract class GitCommandHandler
    abstract String[] getArgs()
          throws PromptCancelledException, MissingRequiredParameterException;
 
-   Shell getShell() {
-      return shell;
-   }
-
    /**
     * 
     * @return the name shown in the progress area.
@@ -146,11 +142,7 @@ abstract class GitCommandHandler
    }
 
    /*
-    * Refresh each open project.
-    * 
-    * FIXME this will only reliably refresh one project, though it works fine in
-    * debug mode.
-    * 
+    * Refresh open projects.
     * Possibly a new progress monitor is needed for each?
     */
    private void refreshWorkspace(IProgressMonitor monitor) {
