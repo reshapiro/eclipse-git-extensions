@@ -16,9 +16,4 @@ The currently supported operations are as follows:
 
 - Basic bundle support: create bundle file; fetch from bundle file; pull from bundle file.
 
-Requires Java 7 and an installation of command-line Git. Also requires the workspace to include
-a definition of the String Substitution variable 'git_exec' which should point at the absolute path
-of your local Git executable. 
-
-
 For more info please read notes/notes.txt.

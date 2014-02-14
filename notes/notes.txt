@@ -21,6 +21,18 @@ all you have to do is copy that file to update-site, as a one-time operation. Gi
 ignore it, along with changes to it.
 
 
+Requirements
+------------
+EGit, Java 7, an installation of command-line Git.
+
+You workspace must define the String Substitution variable 'git_exec' the value of which should be
+the absolute path of your command-line Git executable.   
+
+For instance if you're running OS X and your Git installation comes from the installer on git-scm,
+the value would /usr/local/git/bin/git.  If your Git installation is the one from XCode the value
+would /usr/bin/git
+
+
 
 Some known issues:
 ------------------
