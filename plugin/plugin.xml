@@ -157,7 +157,7 @@
             <command
                   commandId="egitex.handlers.PruneCommand"
                   id="egitex.handlers.PruneCommand"
-                  label="Prune obsolete remote refs">
+                  label="Prune obsolete remote refs...">
             </command>
             <command
                   commandId="egitex.handlers.ListOrphanedCommitsCommand"
@@ -167,7 +167,7 @@
             <command
                   commandId="egitex.handlers.LightweightTagCommand"
                   id="egitex.handlers.LightweightTagCommand"
-                  label="Create lightweight tag">
+                  label="Create lightweight tag...">
             </command>
             <separator
                   name="bisect"
@@ -176,7 +176,7 @@
             <command
                   commandId="egitex.handlers.BisectStartCommand"
                   id="egitex.handlers.BisectStartCommand"
-                  label="Start bisect">
+                  label="Start bisect...">
             </command>
             <command
                   commandId="egitex.handlers.BisectBadCommand"
@@ -191,7 +191,7 @@
             <command
                   commandId="egitex.handlers.BisectRunCommand"
                   id="egitex.handlers.BisectRunCommand"
-                  label="Mark from run">
+                  label="Mark from run...">
             </command>
             <command
                   commandId="egitex.handlers.BisectSkipCommand"
@@ -201,17 +201,17 @@
             <command
                   commandId="egitex.handlers.BisectLogCommand"
                   id="egitex.handlers.BisectLogCommand"
-                  label="Log bisect">
+                  label="Log bisect...">
             </command>
             <command
                   commandId="egitex.handlers.BisectReplayCommand"
                   id="egitex.handlers.BisectReplayCommand"
-                  label="Replay bisect">
+                  label="Replay bisect...">
             </command>
             <command
                   commandId="egitex.handlers.BisectEndCommand"
                   id="egitex.handlers.BisectEndCommand"
-                  label="End bisect">
+                  label="End bisect...">
             </command>
             <separator
                   name="bundle"
@@ -220,17 +220,17 @@
             <command
                   commandId="egitex.handlers.BundleCreateCommand"
                   id="egitex.handlers.BundleCreateCommand"
-                  label="Create bundle file">
+                  label="Create bundle file...">
             </command>
             <command
                   commandId="egitex.handlers.BundleFetchCommand"
                   id="egitex.handlers.BundleFetchCommand"
-                  label="Fetch from bundle file">
+                  label="Fetch from bundle file...">
             </command>
             <command
                   commandId="egitex.handlers.BundlePullCommand"
                   id="egitex.handlers.BundlePullCommand"
-                  label="Pull from bundle file">
+                  label="Pull from bundle file...">
             </command>
             <separator
                   name="svn bridge"
@@ -259,17 +259,17 @@
             <command
                   commandId="egitex.handlers.SvnInfoCommand"
                   id="egitex.handlers.SvnInfoCommand"
-                  label="Show SVN info">
+                  label="Show SVN info...">
             </command>
             <command
                   commandId="egitex.handlers.Git2SvnHandler"
                   id="egitex.handlers.Git2SvnHandler"
-                  label="SVN rev for Git SHA">
+                  label="SVN rev for Git SHA...">
             </command>
             <command
                   commandId="egitex.handlers.Svn2GitCommand"
                   id="egitex.handlers.Svn2GitCommand"
-                  label="Git SHA for SVN rev">
+                  label="Git SHA for SVN rev...">
             </command>
          </menu>
       </menuContribution>
