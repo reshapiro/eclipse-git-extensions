@@ -1,5 +1,6 @@
-package egitex.handlers;
+   package egitex.handlers;
 
+import egit_ex.util.CheckBoxParameter;
 import egit_ex.util.MissingRequiredParameterException;
 import egit_ex.util.ParameterSet;
 import egit_ex.util.PromptCancelledException;
@@ -18,20 +19,33 @@ public class ListCommitDiffsCommand
       extends GitCommandHandler {
    
    private static final ParameterSet PARAMETERS = new ParameterSet("List commits in Ref 1 but not Ref 2",
+                                                                   new CheckBoxParameter("oneline", "Show brief display", 3),
                                                                    new RefParameter("Ref 1", 1),
                                                                    new RefParameter("Ref 2", 2));
 
    
    private static final String[] ARGS = new String[] {
-      "log", null, null, "--oneline"
+      "log", null, null, null
    };
+   
+   private static final String[] SIMPLE_ARGS = new String[3];
 
    @Override
    String[] getArgs() 
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMETERS, ARGS);
+      
       ARGS[2] = "^" + ARGS[2];
-      return ARGS;
+      
+      boolean useOnline = ARGS[3] != null && Boolean.valueOf(ARGS[3]);
+      if (useOnline) {
+         ARGS[3] = "--oneline";
+         return ARGS;
+      } else {
+         System.arraycopy(ARGS, 0, SIMPLE_ARGS, 0, SIMPLE_ARGS.length);
+         return SIMPLE_ARGS;
+      }
+      
    }
 
    @Override

@@ -28,6 +28,7 @@ public class SimpleInputDialog
    private final ParameterSet parameters;
    private final List<Text> inputTexts;
    private final List<FileChooser> choosers;
+   private final List<CheckBox> checkboxes;
    
    /**
     * This variant will display as many boxes as there are parameters.
@@ -43,6 +44,7 @@ public class SimpleInputDialog
       int size = parameters.size();
       this.inputTexts = new ArrayList<>(size);
       this.choosers = new ArrayList<>(size);
+      this.checkboxes = new ArrayList<>(size);
    }
    
    @Override
@@ -85,6 +87,10 @@ public class SimpleInputDialog
          case FILE:
             choosers.add(parameter.getFileChooser(container));
             break;
+         case BOOLEAN:
+            checkboxes.add(parameter.getCheckBox(container));
+            break;
+            
          case STRING:
             Text inputText = new Text(container, SWT.BORDER);
             inputText.setLayoutData(data);
@@ -109,6 +115,7 @@ public class SimpleInputDialog
    private void saveInput() {
       int textIndex = 0;
       int fileIndex = 0;
+      int checkBoxIndex = 0;
       for (int i=0; i < parameters.size(); i++) {
          Parameter parameter = parameters.getParameter(i);
          switch (parameter.getParameterType()) {
@@ -120,6 +127,11 @@ public class SimpleInputDialog
             case FILE:
                File file = choosers.get(fileIndex++).getFile();
                parameters.setParameterValue(parameter, file != null ? file.getAbsolutePath() : null);
+               break;
+               
+            case BOOLEAN:
+               CheckBox checkBox = checkboxes.get(checkBoxIndex++);
+               parameters.setParameterValue(parameter, Boolean.toString(checkBox.getStatus()));
                break;
                
             default:

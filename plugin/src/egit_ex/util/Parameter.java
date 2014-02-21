@@ -46,6 +46,10 @@ public class Parameter {
       return null;
    }
    
+   CheckBox getCheckBox(Composite container) {
+      return null;
+   }
+
    /**
     * This should not usually be needed.  It's here for one special case where
     * a param value might have to be adjusted from what the user specified.

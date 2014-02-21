@@ -162,7 +162,7 @@
             </command>
             <command
                   commandId="egitex.handlers.ListCommitDiffsCommand"
-                  label="List Commit Diffs">
+                  label="List Commit Diffs...">
             </command>
             <command
                   commandId="egitex.handlers.PruneCommand"
