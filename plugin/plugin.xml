@@ -18,6 +18,12 @@
       </command>
       <command
             categoryId="egit-ex.commands.category"
+            defaultHandler="egitex.handlers.ListCommitDiffsCommand"
+            id="egitex.handlers.ListCommitDiffsCommand"
+            name="list commit diffs">
+      </command>
+      <command
+            categoryId="egit-ex.commands.category"
             defaultHandler="egitex.handlers.BisectEndCommand"
             id="egitex.handlers.BisectEndCommand"
             name="end git bisect">
@@ -153,6 +159,10 @@
             <command
                   commandId="egitex.handlers.StatusCommand"
                   label="Git Status">
+            </command>
+            <command
+                  commandId="egitex.handlers.ListCommitDiffsCommand"
+                  label="List Commit Diffs">
             </command>
             <command
                   commandId="egitex.handlers.PruneCommand"
