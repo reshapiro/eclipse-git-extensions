@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/egit_extensions_feature_1.0.0.jar" id="egit_extensions_feature" version="1.0.0.201402221134"/>
+   <feature url="features/egit_extensions_feature_1.0.0.201402270610.jar" id="egit_extensions_feature" version="1.0.0.201402270610">
+      <category name="egit-ex"/>
+   </feature>
+   <bundle id="egit-ex" version="1.0.0.qualifier">
+      <category name="egit-ex"/>
+   </bundle>
+   <category-def name="egit-ex" label="egit-ex"/>
 </site>
