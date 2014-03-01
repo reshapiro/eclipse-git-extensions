@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/egit_extensions_feature_1.0.0.201402270610.jar" id="egit_extensions_feature" version="1.0.0.201402270610">
-      <category name="egit-ex"/>
+   <feature url="features/org.res.gitx_1.1.0.qualifier.jar" id="org.res.gitx" version="1.1.0.qualifier">
+      <category name="GitX"/>
    </feature>
-   <bundle id="egit-ex" version="1.0.0.qualifier">
-      <category name="egit-ex"/>
+   <bundle id="org.res.gitx" version="1.0.0.qualifier">
+      <category name="GitX"/>
    </bundle>
-   <category-def name="egit-ex" label="egit-ex"/>
+   <category-def name="org.res.gitx.category" label="GitX"/>
 </site>

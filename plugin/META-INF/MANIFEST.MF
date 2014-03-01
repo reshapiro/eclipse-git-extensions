@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Egit-ex
-Bundle-SymbolicName: egit-ex;singleton:=true
-Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: egit_ex.Activator
+Bundle-Name: GitX
+Bundle-SymbolicName: org.res.gitx;singleton:=true
+Bundle-Version: 1.1.0.qualifier
+Bundle-Activator: org.res.gitx.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.variables;bundle-version="3.2.700",

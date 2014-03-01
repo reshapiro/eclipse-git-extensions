@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="egit_extensions_feature"
-      label="Egit_extensions"
-      version="1.0.0.qualifier">
+      id="org.res.gitx"
+      label="GitX"
+      version="1.1.0.qualifier">
 
    <description url="http://www.example.com/description">
       [Support for useful Git operations not accessible from EGit]
@@ -17,10 +17,10 @@
    </license>
 
    <plugin
-         id="egit-ex"
+         id="org.res.gitx"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.1.0.qualifier"
          unpack="false"/>
 
 </feature>
