@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.res.gitx_1.1.0.qualifier.jar" id="org.res.gitx" version="1.1.0.qualifier">
+   <feature url="features/org.res.gitx_1.1.0.201403010850.jar" id="org.res.gitx" version="1.1.0.201403010850">
       <category name="GitX"/>
+   </feature>
+   <feature url="features/org.res.gitx_1.1.0.qualifier.jar" id="org.res.gitx" version="1.1.0.qualifier">
+      <category name="org.res.gitx.category"/>
    </feature>
    <bundle id="org.res.gitx" version="1.0.0.qualifier">
       <category name="GitX"/>
