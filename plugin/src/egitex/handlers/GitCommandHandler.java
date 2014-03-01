@@ -30,7 +30,7 @@ abstract class GitCommandHandler
       extends AbstractHandler {
    private static final String GIT_EXEC_VAR = "git_exec";
    private static final String EGIT_WORK_TREE_VAR = "git_work_tree";
-   private static final String NO_GIT_PROJECT_IS_SELECTED_MSG = "No git project is selected";
+   private static final String NO_GIT_PROJECT_IS_SELECTED_MSG = "Current selection is not in a repository managed by EGit";
    private static final String NO_GIT_EXEC_VAR_MSG = "You must define the String Substitution variable '" + GIT_EXEC_VAR + "'";
 
    private ConsoleWriter console;
