@@ -11,6 +11,11 @@
             name="More Git commands">
       </category>
       <command
+            defaultHandler="org.res.gitx.ReadmeHandler"
+            id="org.res.gitx.ReadmeHandler"
+            name="README!">
+      </command>
+      <command
             categoryId="org.res.gitx.commands.category"
             defaultHandler="org.res.gitx.handlers.StatusCommand"
             id="org.res.gitx.StatusCommand"
@@ -156,6 +161,15 @@
          <menu
                id="org.res.gitx.menus.git"
                label="Git Extensions">
+            <command
+                  commandId="org.res.gitx.ReadmeHandler"
+                  label="README!"
+                  style="push">
+            </command>
+            <separator
+                  name="simple"
+                  visible="true">
+            </separator>
             <command
                   commandId="org.res.gitx.StatusCommand"
                   label="Git Status">
