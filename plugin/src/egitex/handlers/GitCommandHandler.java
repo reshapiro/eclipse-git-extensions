@@ -44,11 +44,7 @@ abstract class GitCommandHandler
    @Override
    public Object execute(ExecutionEvent event)
          throws ExecutionException {
-      IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
-      if (console == null) {
-         console = new ConsoleWriter(window);
-      }
-      shell = window.getShell();
+      ensureConsole(event);
       String gitExec = resolveVariable(GIT_EXEC_VAR);
       if (gitExec.isEmpty()) {
          console.displayLine(NO_GIT_EXEC_VAR_MSG);
@@ -86,6 +82,15 @@ abstract class GitCommandHandler
       }
 
       return null;
+   }
+
+   private void ensureConsole(ExecutionEvent event)
+         throws ExecutionException {
+      if (console == null) {
+      IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
+         console = new ConsoleWriter(window);
+         shell = window.getShell();
+      }
    }
 
    /**
