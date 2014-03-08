@@ -5,7 +5,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Utility to get at branch, tag and remote reference names
@@ -42,13 +45,15 @@ public enum RefType {
          return null;
       }
       
-      List<String> refNames = getPackedRefs(dotGit);
+      Set<String> refNames = getPackedRefs(dotGit);
       String basePath = refsDir.getPath();
       walkDirectory(refsDir, basePath.length(), refNames);
-      return refNames;
+      List<String> sortedRefNames = new ArrayList<>(refNames);
+      Collections.sort(sortedRefNames);
+      return sortedRefNames;
    }
 
-   private void walkDirectory(File dir, int beginIndex, List<String> names) {
+   private void walkDirectory(File dir, int beginIndex, Set<String> names) {
       if (dir == null) {
          return;
       }
@@ -62,8 +67,8 @@ public enum RefType {
       }
    }
    
-   private List<String> getPackedRefs(File dotGit) {
-      List<String> packed = new ArrayList<>();
+   private Set<String> getPackedRefs(File dotGit) {
+      Set<String> packed = new HashSet<>();
       File packedRefs = new File(dotGit, PACKED_REFS_FILE);
       try (BufferedReader reader = new BufferedReader(new FileReader(packedRefs))) {
          String line;

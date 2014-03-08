@@ -200,12 +200,12 @@
             </command>
             <command
                   commandId="org.res.gitx.handlers.PullCommand"
-                  label="Fast pull"
+                  label="Fast pull..."
                   style="push">
             </command>
             <command
                   commandId="org.res.gitx.handlers.FetchCommand"
-                  label="Fast fetch"
+                  label="Fast fetch..."
                   style="push">
             </command>
             <command
@@ -215,7 +215,7 @@
             </command>
             <command
                   commandId="org.res.gitx.handlers.SwitchCommand"
-                  label="Fast switch"
+                  label="Fast switch..."
                   style="push">
             </command>
             <command
