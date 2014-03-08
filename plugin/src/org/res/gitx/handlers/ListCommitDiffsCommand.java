@@ -18,9 +18,11 @@ import org.res.gix.util.RefParameter;
 public class ListCommitDiffsCommand
       extends GitCommandHandler {
    
+   private static final RefParameter Ref1 = new RefParameter("Ref 1", 1);
+   
    private static final ParameterSet PARAMETERS = new ParameterSet("List commits in Ref 1 but not Ref 2",
                                                                    new CheckBoxParameter("oneline", "Show brief display", 3),
-                                                                   new RefParameter("Ref 1", 1),
+                                                                   Ref1,
                                                                    new RefParameter("Ref 2", 2));
 
    
@@ -33,6 +35,7 @@ public class ListCommitDiffsCommand
    @Override
    String[] getArgs() 
          throws PromptCancelledException, MissingRequiredParameterException {
+      Ref1.setDefaultReference("HEAD");
       promptForParameters(PARAMETERS, ARGS);
       
       ARGS[2] = "^" + ARGS[2];
