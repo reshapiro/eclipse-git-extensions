@@ -46,6 +46,11 @@
             name="Fast Switch">
       </command>
       <command
+            defaultHandler="org.res.gitx.handlers.ListChangedFiles"
+            id="org.res.gitx.handlers.ListChangedFiles"
+            name="diff stat">
+      </command>
+      <command
             categoryId="org.res.gitx.commands.category"
             defaultHandler="org.res.gitx.handlers.ListCommitDiffsCommand"
             id="org.res.gitx.ListCommitDiffsCommand"
@@ -219,8 +224,22 @@
                   style="push">
             </command>
             <command
+                  commandId="org.res.gitx.LightweightTagCommand"
+                  id="egitex.handlers.LightweightTagCommand"
+                  label="Create lightweight tag...">
+            </command>
+            <separator
+                  name="list and clean"
+                  visible="true">
+            </separator>
+            <command
                   commandId="org.res.gitx.ListCommitDiffsCommand"
                   label="List Commit Diffs...">
+            </command>
+            <command
+                  commandId="org.res.gitx.handlers.ListChangedFiles"
+                  label="List changed files..."
+                  style="push">
             </command>
             <command
                   commandId="org.res.gitx.PruneCommand"
@@ -231,11 +250,6 @@
                   commandId="org.res.gitx.ListOrphanedCommitsCommand"
                   id="egitex.handlers.ListOrphanedCommitsCommand"
                   label="List orphan commits">
-            </command>
-            <command
-                  commandId="org.res.gitx.LightweightTagCommand"
-                  id="egitex.handlers.LightweightTagCommand"
-                  label="Create lightweight tag...">
             </command>
             <separator
                   name="bisect"
