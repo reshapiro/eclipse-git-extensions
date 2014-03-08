@@ -12,8 +12,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.core.variables.IStringVariableManager;
-import org.eclipse.core.variables.VariablesPlugin;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -23,6 +21,7 @@ import org.res.gix.util.Launcher;
 import org.res.gix.util.MissingRequiredParameterException;
 import org.res.gix.util.ParameterSet;
 import org.res.gix.util.PromptCancelledException;
+import org.res.gix.util.Resolver;
 import org.res.gix.util.SimpleInputDialog;
 
 abstract class GitCommandHandler
@@ -37,20 +36,20 @@ abstract class GitCommandHandler
 
    @Override
    public boolean isEnabled() {
-      return !resolveVariable(EGIT_WORK_TREE_VAR).isEmpty();
+      return !Resolver.resolveVariable(EGIT_WORK_TREE_VAR).isEmpty();
    }
 
    @Override
    public Object execute(ExecutionEvent event)
          throws ExecutionException {
       ensureConsole(event);
-      String gitExec = resolveVariable(GIT_EXEC_VAR);
+      String gitExec = Resolver.resolveVariable(GIT_EXEC_VAR);
       if (gitExec.isEmpty()) {
          console.displayLine(NO_GIT_EXEC_VAR_MSG);
          return null;
       }
 
-      String repoPath = resolveVariable(EGIT_WORK_TREE_VAR);
+      String repoPath = Resolver.resolveVariable(EGIT_WORK_TREE_VAR);
       if (repoPath.isEmpty()) {
          console.displayLine(NO_GIT_PROJECT_IS_SELECTED_MSG);
          return null;
@@ -134,15 +133,6 @@ abstract class GitCommandHandler
       }
 
       parameters.splice(args);
-   }
-
-   private String resolveVariable(String var) {
-      IStringVariableManager manager = VariablesPlugin.getDefault().getStringVariableManager();
-      try {
-         return manager.performStringSubstitution("${" + var + "}");
-      } catch (CoreException e) {
-         return "";
-      }
    }
 
    /*
