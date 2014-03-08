@@ -34,14 +34,8 @@ would /usr/bin/git
 
 
 
-Some known issues:
+Known issues:
 ------------------
-- Possible threading bug
-
-In an earlier version I ran into issue with displaying the output of
-a Git command to the console.  I believe this is  now fixed, but let
-me know if you run into something like this.
-
 
 - Enabling/Disabling commands
 The commands defined by this plugin are enabled only when the current selection
@@ -59,7 +53,3 @@ Enhancements that might be nice (if someone wants to help)
 ----------------------------------------------------------
 
 - Icons for at least some commands so they could be in the toolbar (and not as text)
-
-- Some commands require one or more Git references -- branch, tag, remote-ref, SHA
-  Currently these must be entered as text.   A chooser gui of some kind would be 
-  a lot more convenient for branches and tags.
