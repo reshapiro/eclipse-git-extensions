@@ -1,5 +1,7 @@
 package org.res.gix.util;
 
+import org.eclipse.swt.widgets.Composite;
+
 /**
  * Prompt for a reference -- branch, tag, remote-ref, SHA etc.
  * 
@@ -39,5 +41,15 @@ public class RefParameter
     */
    public RefParameter(String prompt, int index, boolean required) {
       super(prompt, index, required);
+   }
+   
+   @Override
+   RefTree getRefTree(Composite container) {
+      return new RefTree(container);
+   }
+   
+   @Override
+   ParameterType getParameterType() {
+      return ParameterType.REF;
    }
 }

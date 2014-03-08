@@ -4,5 +4,6 @@ public enum ParameterType {
    STRING,
    FILE,
    WRITE_FILE,
-   BOOLEAN
+   BOOLEAN,
+   REF
 }

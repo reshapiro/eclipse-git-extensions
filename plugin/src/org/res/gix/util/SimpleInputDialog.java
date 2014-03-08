@@ -29,6 +29,7 @@ public class SimpleInputDialog
    private final List<Text> inputTexts;
    private final List<FileChooser> choosers;
    private final List<CheckBox> checkboxes;
+   private final List<RefTree> refTrees;
    
    /**
     * This variant will display as many boxes as there are parameters.
@@ -45,6 +46,7 @@ public class SimpleInputDialog
       this.inputTexts = new ArrayList<>(size);
       this.choosers = new ArrayList<>(size);
       this.checkboxes = new ArrayList<>(size);
+      this.refTrees = new ArrayList<>(size);
    }
    
    @Override
@@ -100,6 +102,11 @@ public class SimpleInputDialog
             }
             inputTexts.add(inputText);
             break;
+            
+         case REF:
+            refTrees.add(new RefTree(container));
+            break;
+            
          default:
             /* ignore */
       }
@@ -116,6 +123,7 @@ public class SimpleInputDialog
       int textIndex = 0;
       int fileIndex = 0;
       int checkBoxIndex = 0;
+      int refIndex = 0;
       for (int i=0; i < parameters.size(); i++) {
          Parameter parameter = parameters.getParameter(i);
          switch (parameter.getParameterType()) {
@@ -132,6 +140,11 @@ public class SimpleInputDialog
             case BOOLEAN:
                CheckBox checkBox = checkboxes.get(checkBoxIndex++);
                parameters.setParameterValue(parameter, Boolean.toString(checkBox.getStatus()));
+               break;
+               
+            case REF:
+               RefTree tree = refTrees.get(refIndex++);
+               parameters.setParameterValue(parameter, tree.getText());
                break;
                
             default:
