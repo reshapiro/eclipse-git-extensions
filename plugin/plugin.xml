@@ -23,6 +23,30 @@
       </command>
       <command
             categoryId="org.res.gitx.commands.category"
+            defaultHandler="org.res.gitx.handlers.PullCommand"
+            id="org.res.gitx.handlers.PullCommand"
+            name="Fast pull">
+      </command>
+      <command
+            categoryId="org.res.gitx.commands.category"
+            defaultHandler="org.res.gitx.handlers.FetchCommand"
+            id="org.res.gitx.handlers.FetchCommand"
+            name="Fast fetch">
+      </command>
+      <command
+            categoryId="org.res.gitx.commands.category"
+            defaultHandler="org.res.gitx.handlers.PushCommand"
+            id="org.res.gitx.handlers.PushCommand"
+            name="Fast push">
+      </command>
+      <command
+            categoryId="org.res.gitx.commands.category"
+            defaultHandler="org.res.gitx.handlers.SwitchCommand"
+            id="org.res.gitx.handlers.SwitchCommand"
+            name="Fast Switch">
+      </command>
+      <command
+            categoryId="org.res.gitx.commands.category"
             defaultHandler="org.res.gitx.handlers.ListCommitDiffsCommand"
             id="org.res.gitx.ListCommitDiffsCommand"
             name="list commit diffs">
@@ -173,6 +197,26 @@
             <command
                   commandId="org.res.gitx.StatusCommand"
                   label="Git Status">
+            </command>
+            <command
+                  commandId="org.res.gitx.handlers.PullCommand"
+                  label="Fast pull"
+                  style="push">
+            </command>
+            <command
+                  commandId="org.res.gitx.handlers.FetchCommand"
+                  label="Fast fetch"
+                  style="push">
+            </command>
+            <command
+                  commandId="org.res.gitx.handlers.PushCommand"
+                  label="Fast push"
+                  style="push">
+            </command>
+            <command
+                  commandId="org.res.gitx.handlers.SwitchCommand"
+                  label="Fast switch"
+                  style="push">
             </command>
             <command
                   commandId="org.res.gitx.ListCommitDiffsCommand"

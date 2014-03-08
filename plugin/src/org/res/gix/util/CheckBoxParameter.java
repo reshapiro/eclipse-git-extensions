@@ -6,12 +6,18 @@ public class CheckBoxParameter
       extends Parameter {
 
    private String label;
+   private final boolean defaultValue;
 
    public CheckBoxParameter(String name, String label, int index) {
-      super(name, index, false);
+      this(name, label, index, false);
       this.label = label;
    }
    
+   public CheckBoxParameter(String name, String label, int index, boolean defaultValue) {
+      super(name, index, false);
+      this.label = label;
+      this.defaultValue = defaultValue;
+   }
    @Override
    ParameterType getParameterType() {
       return ParameterType.BOOLEAN;
@@ -19,7 +25,7 @@ public class CheckBoxParameter
 
    @Override
    CheckBox getCheckBox(Composite container) {
-      return new CheckBox(container, label);
+      return new CheckBox(container, label, defaultValue);
    }
 
 }

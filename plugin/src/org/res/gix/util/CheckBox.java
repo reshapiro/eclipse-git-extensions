@@ -18,10 +18,12 @@ public class CheckBox
       extends Composite {
 
    private final String title;
+   private final boolean defaultValue;
    private Button button;
 
-   CheckBox(Composite parent, String title) {
+   CheckBox(Composite parent, String title, boolean defaultValue) {
       super(parent, SWT.NULL);
+      this.defaultValue = defaultValue;
       this.title = title;
       createContent();
    }
@@ -37,6 +39,7 @@ public class CheckBox
       setLayout(new GridLayout(2, false));
       button = new Button(this, SWT.CHECK);
       button.setText(title);
+      button.setSelection(defaultValue);
       
    }
 }
