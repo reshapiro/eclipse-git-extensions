@@ -21,18 +21,21 @@ public class RefTree
    private Tree tree;
    private Text text;
 
-   RefTree(Composite parent) {
+   RefTree(Composite parent, String defaultReference) {
       super(parent, SWT.NULL);
-      createContent();
+      createContent(defaultReference);
    }
    
    public String getText() {
       return text.getText();
    }
 
-   private void createContent() {
+   private void createContent(String defaultReference) {
       setLayout(new GridLayout(1, false));
       text = new Text(this, SWT.BORDER);
+      if (defaultReference != null) {
+         text.setText(defaultReference);
+      }
       text.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
       
       tree = new Tree(this, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);

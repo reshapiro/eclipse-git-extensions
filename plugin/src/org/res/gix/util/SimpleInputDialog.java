@@ -104,7 +104,7 @@ public class SimpleInputDialog
             break;
             
          case REF:
-            refTrees.add(new RefTree(container));
+            refTrees.add(parameter.getRefTree(container));
             break;
             
          default:

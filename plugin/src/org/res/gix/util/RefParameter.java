@@ -14,6 +14,8 @@ import org.eclipse.swt.widgets.Composite;
 public class RefParameter
       extends Parameter {
 
+   private String defaultRef;
+
    /**
     * Prompt for a required reference with the default label.
     * 
@@ -45,11 +47,15 @@ public class RefParameter
    
    @Override
    RefTree getRefTree(Composite container) {
-      return new RefTree(container);
+      return new RefTree(container, defaultRef);
    }
    
    @Override
    ParameterType getParameterType() {
       return ParameterType.REF;
+   }
+
+   public void setDefaultReference(String ref) {
+      this.defaultRef = ref;
    }
 }
