@@ -1,5 +1,7 @@
 package org.res.gitx.parameter;
 
+import java.util.List;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -37,13 +39,16 @@ public class RefTree
          text.setText(defaultReference);
       }
       text.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-      
       tree = new Tree(this, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
       
       for (RefType type : RefType.values()) {
+         List<String> refs = type.getRefs();
+         if (refs.isEmpty()) {
+            continue;
+         }
          TreeItem baseItem = new TreeItem(tree, SWT.NULL);
          baseItem.setText(type.name());
-         for (String choice : type.getRefs()) {
+         for (String choice : refs) {
             TreeItem choiceItem = new TreeItem(baseItem, SWT.NULL);
             choiceItem.setText(choice);
          }
@@ -56,7 +61,9 @@ public class RefTree
          public void handleEvent(Event event) {
            if (event.detail != SWT.CHECK) {
               TreeItem item = (TreeItem) event.item;
-              text.setText(item.getText());
+              if (item.getParentItem() != null) {
+                 text.setText(item.getText());
+              }
            }
          }
        });
