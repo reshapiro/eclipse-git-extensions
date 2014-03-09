@@ -4,6 +4,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
@@ -19,10 +20,9 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
 /**
- * Early version of a reference chooser
+ * A scrollable tree of reference options (branches, tags, remotes)
  * 
- * Basic structure ok but lots of issues with open/close, scrolling etc
- * 
+ * Works OK but too small.
  * 
  */
 public class RefTree
@@ -39,9 +39,8 @@ public class RefTree
       return text.getText();
    }
 
-   private void createContent(String defaultReference) {
+   private Map<RefType, Ref[]> buildTreeModel() {
       Map<RefType, Ref[]> model = new EnumMap<>(RefType.class);
-
       for (RefType type : RefType.values()) {
          List<String> names = type.getRefs();
          Ref[] refs = new Ref[names.size()];
@@ -52,30 +51,39 @@ public class RefTree
          }
          model.put(type, refs);
       }
+      return model;
+   }
 
+   private void createContent(String defaultReference) {
       setLayout(new GridLayout(1, false));
+      
       text = new Text(this, SWT.BORDER);
       if (defaultReference != null) {
          text.setText(defaultReference);
       }
       text.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
+      Tree tree = makeScrollableTree(new ContentProvider(buildTreeModel()));
+      tree.addListener(SWT.Selection, new EventListener());
+   }
+
+   private Tree makeScrollableTree(IContentProvider model) {
       ScrolledComposite scrollPane = new ScrolledComposite(this, SWT.H_SCROLL | SWT.V_SCROLL);
       scrollPane.setExpandHorizontal(true);
       scrollPane.setExpandVertical(true);
       scrollPane.setLayoutData(new GridData(GridData.FILL_BOTH));
       TreeViewer resultViewer = new TreeViewer(scrollPane, SWT.SINGLE);
-      resultViewer.setContentProvider(new ContentProvider(model));
+      resultViewer.setContentProvider(model);
       resultViewer.setInput(model);
-      Tree tree = resultViewer.getTree();
-      tree.addListener(SWT.Selection, new EventListener());
-      for (TreeItem item : tree.getItems()) {
-         item.setExpanded(true);
-      }
-      scrollPane.setContent(tree);
       
+      Tree tree = resultViewer.getTree();
+      scrollPane.setContent(tree);
+      return tree;
    }
 
+   /*
+    * Tree nodes
+    */
    private static final class Ref {
       private final RefType parent;
       private final String name;
@@ -91,6 +99,9 @@ public class RefTree
       }
    }
 
+   /*
+    * Tree model
+    */
    private static final class ContentProvider
          implements ITreeContentProvider {
 
@@ -143,6 +154,9 @@ public class RefTree
       }
    }
 
+   /*
+    * Respond to tree node selection.
+    */
    private final class EventListener
          implements Listener {
       @Override
