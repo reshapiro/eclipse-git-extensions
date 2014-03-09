@@ -14,7 +14,8 @@ import org.res.gitx.parameter.PromptCancelledException;
 public class Svn2GitCommand
       extends GitCommandHandler {
    
-   private static final Parameter SVN_REV_PARAM = new Parameter("SVN rev", 2, true);
+   private static final int SVN_REV_PARAM_INDEX = 2;
+   private static final Parameter SVN_REV_PARAM = new Parameter("SVN rev", SVN_REV_PARAM_INDEX, true);
    
    private static final ParameterSet PARAMS = 
          new ParameterSet("Show Git commit for SVN revison", SVN_REV_PARAM);
@@ -29,7 +30,7 @@ public class Svn2GitCommand
       promptForParameters(PARAMS, ARGS);
       String rev = PARAMS.getParameterValue(SVN_REV_PARAM);
       if (!rev.startsWith("r")) {
-         ARGS[SVN_REV_PARAM.getIndex()] = "r" + rev;
+         ARGS[SVN_REV_PARAM_INDEX] = "r" + rev;
       }
       
       return ARGS;
