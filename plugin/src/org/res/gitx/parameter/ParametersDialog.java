@@ -59,15 +59,19 @@ public class ParametersDialog
    @Override
    protected Control createDialogArea(Composite parent) {
      Composite area = (Composite) super.createDialogArea(parent);
-     Composite container = new Composite(area, SWT.NONE);
-     container.setLayoutData(new GridData(GridData.FILL_BOTH));
-     GridLayout layout = new GridLayout(2, false);
-     container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-     container.setLayout(layout);
-
+     Composite container = makeContainer(area, 2);
      createInputBoxes(container);
 
      return area;
+   }
+   
+   private Composite makeContainer(Composite area, int width) {
+      Composite container = new Composite(area, SWT.NONE);
+      container.setLayoutData(new GridData(GridData.FILL_BOTH));
+      GridLayout layout = new GridLayout(width, false);
+      container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+      container.setLayout(layout);
+      return container;
    }
 
    private void createInputBoxes(Composite container) {
@@ -76,14 +80,27 @@ public class ParametersDialog
      data.grabExcessHorizontalSpace = true;
      data.horizontalAlignment = GridData.FILL;
 
-     for (int i=0; i < parameters.size(); i++) {
-        addInputBox(container, data, i);
+     for (ParameterGroup group : parameters.getGroups()) {
+        addGroup(container, data, group);
      }
    }
+   
+   private void addGroup(Composite container, GridData data, ParameterGroup group) {
+      List<Parameter> members = group.getParameters();
+      int count = members.size();
+      if (count == 1) {
+         addInputBox(container, data, members.get(0));
+      } else {
+         Composite area = (Composite) super.createDialogArea(container);
+         Composite subcontainer = makeContainer(area, 2 * count);
+         for (Parameter parameter: group.getParameters()) {
+            addInputBox(subcontainer, data, parameter);
+         }
+      }
+   }
 
-   private void addInputBox(Composite container, GridData data, int index) {
+   private void addInputBox(Composite container, GridData data, Parameter parameter) {
       Label label = new Label(container, SWT.NONE);
-      Parameter parameter = parameters.getParameter(index);
       label.setText(parameter.getName());
       switch (parameter.getParameterType()) {
          case FILE:
