@@ -48,10 +48,9 @@ the session.
 
 If you know how to fix this problem, please tell me.
 
-- Ref tree scrolling
-The ref tree doesn't scroll properly.  If there are more references than can be displayed, the ones
-at the end are unreachable.
-
+- Reference tree scrolling
+The reference tree doesn't scroll properly.  If there are more references than can be displayed, the ones
+at the end won't be visible.  But you can still select them via arrow-key navigation.
 
 
 Enhancements that might be nice (if someone wants to help)

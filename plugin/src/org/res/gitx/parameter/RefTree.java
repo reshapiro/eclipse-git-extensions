@@ -13,8 +13,11 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
 /**
- * Early version of a reference chooser
+ * Choose a reference from a tree of options (branches, tags, remotes) or by
+ * entering a SHA or one of the standard symbolic refs like HEAD or ORIG_HEAD.
  * 
+ * Mostly works, but if the tree gets too long the later items won't be visible.
+ * They can however be selected via arrow-key navigation
  * 
  */
 public class RefTree
