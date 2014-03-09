@@ -1,4 +1,4 @@
-package org.res.gix.util;
+package org.res.gitx.parameter;
 
 import java.io.File;
 import java.util.ArrayList;

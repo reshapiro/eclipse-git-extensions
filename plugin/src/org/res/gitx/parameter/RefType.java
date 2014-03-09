@@ -1,4 +1,4 @@
-package org.res.gix.util;
+package org.res.gitx.parameter;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,6 +9,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import org.res.gix.util.Resolver;
 
 /**
  * Utility to get at branch, tag and remote reference names

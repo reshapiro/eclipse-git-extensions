@@ -16,13 +16,13 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.res.gitx.parameter.MissingRequiredParameterException;
+import org.res.gitx.parameter.ParameterSet;
+import org.res.gitx.parameter.PromptCancelledException;
+import org.res.gitx.parameter.SimpleInputDialog;
 import org.res.gix.util.ConsoleWriter;
 import org.res.gix.util.Launcher;
-import org.res.gix.util.MissingRequiredParameterException;
-import org.res.gix.util.ParameterSet;
-import org.res.gix.util.PromptCancelledException;
 import org.res.gix.util.Resolver;
-import org.res.gix.util.SimpleInputDialog;
 
 abstract class GitCommandHandler
       extends AbstractHandler {

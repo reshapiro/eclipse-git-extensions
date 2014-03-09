@@ -1,10 +1,10 @@
 package org.res.gitx.handlers;
 
-import org.res.gix.util.MissingRequiredParameterException;
-import org.res.gix.util.ParameterSet;
-import org.res.gix.util.PromptCancelledException;
-import org.res.gix.util.RefParameter;
-import org.res.gix.util.SaveFileParameter;
+import org.res.gitx.parameter.MissingRequiredParameterException;
+import org.res.gitx.parameter.ParameterSet;
+import org.res.gitx.parameter.PromptCancelledException;
+import org.res.gitx.parameter.RefParameter;
+import org.res.gitx.parameter.SaveFileParameter;
 
 /**
  * Fetch commits from a bundle file

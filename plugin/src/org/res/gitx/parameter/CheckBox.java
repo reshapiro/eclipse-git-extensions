@@ -1,4 +1,4 @@
-package org.res.gix.util;
+package org.res.gitx.parameter;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;

@@ -1,9 +1,9 @@
 package org.res.gitx.handlers;
 
-import org.res.gix.util.MissingRequiredParameterException;
-import org.res.gix.util.Parameter;
-import org.res.gix.util.ParameterSet;
-import org.res.gix.util.PromptCancelledException;
+import org.res.gitx.parameter.MissingRequiredParameterException;
+import org.res.gitx.parameter.Parameter;
+import org.res.gitx.parameter.ParameterSet;
+import org.res.gitx.parameter.PromptCancelledException;
 
 /**
  * Execute the Git operation that will run a command to determine good v bad in a bisect.

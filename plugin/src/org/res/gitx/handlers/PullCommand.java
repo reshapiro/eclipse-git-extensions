@@ -1,9 +1,9 @@
 package org.res.gitx.handlers;
 
-import org.res.gix.util.CheckBoxParameter;
-import org.res.gix.util.MissingRequiredParameterException;
-import org.res.gix.util.ParameterSet;
-import org.res.gix.util.PromptCancelledException;
+import org.res.gitx.parameter.CheckBoxParameter;
+import org.res.gitx.parameter.MissingRequiredParameterException;
+import org.res.gitx.parameter.ParameterSet;
+import org.res.gitx.parameter.PromptCancelledException;
 
 /**
  * Simple pull from upstream. This is here because it can sometimes be

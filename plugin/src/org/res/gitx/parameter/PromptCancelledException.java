@@ -1,4 +1,4 @@
-package org.res.gix.util;
+package org.res.gitx.parameter;
 
 /**
  * Thrown when the user cancels out of a parameter dialog
