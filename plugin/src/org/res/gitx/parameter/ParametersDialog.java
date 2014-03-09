@@ -16,13 +16,13 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * Very simple text input dialog.
+ * Dialog to gather parameters for a given command
  * Any number of parameters can be provided, with or without default values.
- * They will displayed as one text-box per row, with a fixed width for the box.
+ * 
  * @author reshapiro
  *
  */
-public class SimpleInputDialog
+public class ParametersDialog
       extends TitleAreaDialog {
 
    private final ParameterSet parameters;
@@ -38,7 +38,7 @@ public class SimpleInputDialog
     * @param title The title of the dialog
     * @param parameters The parameter specifications
     */
-   public SimpleInputDialog(Shell parentShell, ParameterSet parameters) {
+   public ParametersDialog(Shell parentShell, ParameterSet parameters) {
       super(parentShell);
       parameters.init();
       this.parameters = parameters;

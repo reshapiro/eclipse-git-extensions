@@ -2,8 +2,10 @@
 
 import org.res.gitx.parameter.CheckBoxParameter;
 import org.res.gitx.parameter.MissingRequiredParameterException;
+import org.res.gitx.parameter.ParameterGroup;
 import org.res.gitx.parameter.ParameterSet;
 import org.res.gitx.parameter.PromptCancelledException;
+import org.res.gitx.parameter.RefPair;
 import org.res.gitx.parameter.RefParameter;
 
 
@@ -19,11 +21,11 @@ public class ListCommitDiffsCommand
       extends GitCommandHandler {
    
    private static final RefParameter Ref1 = new RefParameter("Ref 1", 1);
+   private static final RefParameter Ref2 = new RefParameter("Ref 2", 2);
+   private static final ParameterGroup GROUP = new RefPair(Ref1, Ref2);
    
    private static final ParameterSet PARAMETERS = new ParameterSet("List commits in Ref 1 but not Ref 2",
-                                                                   new CheckBoxParameter("oneline", "Show brief display", 3),
-                                                                   Ref1,
-                                                                   new RefParameter("Ref 2", 2));
+                                                                   new CheckBoxParameter("oneline", "Show brief display", 3),  GROUP);
 
    
    private static final String[] ARGS = new String[] {

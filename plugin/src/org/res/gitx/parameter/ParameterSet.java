@@ -1,6 +1,8 @@
 package org.res.gitx.parameter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,7 +13,8 @@ import java.util.Map;
  */
 public class ParameterSet {
    private final Map<Parameter, String> values = new HashMap<>();
-   private final Parameter[] parameters;
+   private final List<Parameter> parameters = new ArrayList<>();
+   private final List<ParameterGroup> groups;
    private final String title;
    
    /**
@@ -20,9 +23,13 @@ public class ParameterSet {
     * @param title The title of the dialog
     * @param parameters the members
     */
-   public ParameterSet(String title, Parameter... parameters) {
+   public ParameterSet(String title, ParameterGroup... groups) {
       this.title = title;
-      this.parameters = parameters;
+      this.groups = new ArrayList<>(groups.length);
+      for (ParameterGroup group : groups) {
+         this.groups.add(group);
+         parameters.addAll(group.getParameters());
+      }
    }
    
    /**
@@ -63,8 +70,12 @@ public class ParameterSet {
       return title;
    }
    
+   List<ParameterGroup> getGroups() {
+      return groups;
+   }
+   
    Parameter getParameter(int index) {
-      return parameters[index];
+      return parameters.get(index);
    }
 
    void setParameterValue(Parameter parameter, String value) {

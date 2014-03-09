@@ -19,7 +19,7 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.ParameterSet;
 import org.res.gitx.parameter.PromptCancelledException;
-import org.res.gitx.parameter.SimpleInputDialog;
+import org.res.gitx.parameter.ParametersDialog;
 import org.res.gix.util.ConsoleWriter;
 import org.res.gix.util.Launcher;
 import org.res.gix.util.Resolver;
@@ -125,7 +125,7 @@ abstract class GitCommandHandler
 
    void promptForParameters(ParameterSet parameters, String[] args)
          throws PromptCancelledException, MissingRequiredParameterException {
-      SimpleInputDialog dialog = new SimpleInputDialog(shell, parameters);
+      ParametersDialog dialog = new ParametersDialog(shell, parameters);
       dialog.create();
       int status = dialog.open();
       if (status == Window.CANCEL) {

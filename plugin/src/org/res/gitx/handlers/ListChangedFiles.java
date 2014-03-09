@@ -3,6 +3,7 @@
 import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.ParameterSet;
 import org.res.gitx.parameter.PromptCancelledException;
+import org.res.gitx.parameter.RefPair;
 import org.res.gitx.parameter.RefParameter;
 
 
@@ -15,10 +16,11 @@ import org.res.gitx.parameter.RefParameter;
 public class ListChangedFiles
       extends GitCommandHandler {
    
-   private static final RefParameter Ref1 = new RefParameter("Ref 1", 2);
-   private static final RefParameter Ref2 = new RefParameter("Ref 2", 3);
+   private static final RefParameter REF1 = new RefParameter("Ref 1", 2);
+   private static final RefParameter REF2 = new RefParameter("Ref 2", 3);
+   private static final RefPair GROUP = new RefPair(REF1, REF2);
    
-   private static final ParameterSet PARAMETERS = new ParameterSet("List files with differences", Ref1,  Ref2);
+   private static final ParameterSet PARAMETERS = new ParameterSet("List files with differences", GROUP);
 
    
    private static final String[] ARGS = new String[] {
@@ -29,7 +31,7 @@ public class ListChangedFiles
    @Override
    String[] getArgs() 
          throws PromptCancelledException, MissingRequiredParameterException {
-      Ref1.setDefaultReference("HEAD");
+      REF1.setDefaultReference("HEAD");
       promptForParameters(PARAMETERS, ARGS);
       
       return ARGS;

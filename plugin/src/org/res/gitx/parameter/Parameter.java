@@ -1,5 +1,8 @@
 package org.res.gitx.parameter;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -7,7 +10,8 @@ import org.eclipse.swt.widgets.Composite;
  * @author reshapiro
  *
  */
-public class Parameter {
+public class Parameter
+      implements ParameterGroup {
    private final String name;
    private final boolean required;
    private final String defaultValue;
@@ -68,5 +72,10 @@ public class Parameter {
    
    boolean isRequired() {
       return required;
+   }
+
+   @Override
+   public List<Parameter> getParameters() {
+      return Collections.singletonList(this);
    }
 }
