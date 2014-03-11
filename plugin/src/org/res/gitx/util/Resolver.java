@@ -1,4 +1,4 @@
-package org.res.gix.util;
+package org.res.gitx.util;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.variables.IStringVariableManager;

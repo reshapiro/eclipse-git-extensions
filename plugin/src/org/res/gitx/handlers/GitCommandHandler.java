@@ -20,9 +20,9 @@ import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.ParameterSet;
 import org.res.gitx.parameter.PromptCancelledException;
 import org.res.gitx.parameter.ParametersDialog;
-import org.res.gix.util.ConsoleWriter;
-import org.res.gix.util.Launcher;
-import org.res.gix.util.Resolver;
+import org.res.gitx.util.ConsoleWriter;
+import org.res.gitx.util.Launcher;
+import org.res.gitx.util.Resolver;
 
 abstract class GitCommandHandler
       extends AbstractHandler {

@@ -1,4 +1,4 @@
-package org.res.gix.util;
+package org.res.gitx.util;
 
 import java.io.BufferedInputStream;
 import java.io.File;
