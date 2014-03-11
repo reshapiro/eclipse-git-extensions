@@ -25,25 +25,31 @@
             categoryId="org.res.gitx.commands.category"
             defaultHandler="org.res.gitx.handlers.PullCommand"
             id="org.res.gitx.handlers.PullCommand"
-            name="Fast pull">
+            name="Pull">
       </command>
       <command
             categoryId="org.res.gitx.commands.category"
             defaultHandler="org.res.gitx.handlers.FetchCommand"
             id="org.res.gitx.handlers.FetchCommand"
-            name="Fast fetch">
+            name="Fetch">
       </command>
       <command
             categoryId="org.res.gitx.commands.category"
             defaultHandler="org.res.gitx.handlers.PushCommand"
             id="org.res.gitx.handlers.PushCommand"
-            name="Fast push">
+            name="Push">
       </command>
       <command
             categoryId="org.res.gitx.commands.category"
             defaultHandler="org.res.gitx.handlers.SwitchCommand"
             id="org.res.gitx.handlers.SwitchCommand"
-            name="Fast Switch">
+            name="Checkout">
+      </command>
+      <command
+            defaultHandler="org.res.gitx.handlers.DiffCommand"
+            description="git diff"
+            id="org.res.gitx.handlers.DiffCommand"
+            name="diff">
       </command>
       <command
             defaultHandler="org.res.gitx.handlers.ListChangedFiles"
@@ -217,7 +223,7 @@
             </command>
             <command
                   commandId="org.res.gitx.handlers.PushCommand"
-                  label="Fast push"
+                  label="Push"
                   style="push">
             </command>
             <command
@@ -235,6 +241,11 @@
                   name="list and clean"
                   visible="true">
             </separator>
+            <command
+                  commandId="org.res.gitx.handlers.DiffCommand"
+                  label="Diff..."
+                  style="push">
+            </command>
             <command
                   commandId="org.res.gitx.ListCommitDiffsCommand"
                   label="List Commit Diffs...">
