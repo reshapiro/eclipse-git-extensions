@@ -205,13 +205,15 @@
             </command>
             <command
                   commandId="org.res.gitx.handlers.PullCommand"
-                  label="Fast pull..."
-                  style="push">
+                  label="Pull..."
+                  style="push"
+                  tooltip="Pull from upstream with optional prune. Typically somewhat faster than JGit pull">
             </command>
             <command
                   commandId="org.res.gitx.handlers.FetchCommand"
-                  label="Fast fetch..."
-                  style="push">
+                  label="Fetch..."
+                  style="push"
+                  tooltip="Fetch from upstream with optional prune. Typically somewhat faster than JGit fetch">
             </command>
             <command
                   commandId="org.res.gitx.handlers.PushCommand"
@@ -220,8 +222,9 @@
             </command>
             <command
                   commandId="org.res.gitx.handlers.SwitchCommand"
-                  label="Fast switch..."
-                  style="push">
+                  label="Checkout..."
+                  style="push"
+                  tooltip="Checkout a branch, tag or reference. Typically somewhat faster than JGit checkout">
             </command>
             <command
                   commandId="org.res.gitx.LightweightTagCommand"
