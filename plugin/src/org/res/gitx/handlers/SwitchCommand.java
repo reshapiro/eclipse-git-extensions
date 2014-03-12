@@ -28,7 +28,7 @@ public class SwitchCommand
    private static final int PATH_INDEX = 1;
    private static final int REF_INDEX = 2;
    
-   private static final Parameter PATH = new CheckBoxParameter("Selected path", "selected path", PATH_INDEX, false);
+   private static final Parameter PATH = new CheckBoxParameter("Selected path only", "selected path", PATH_INDEX, false);
    
    private static final ParameterSet PARAMS = new ParameterSet("Switch", PATH, new RefParameter(REF_INDEX));
 

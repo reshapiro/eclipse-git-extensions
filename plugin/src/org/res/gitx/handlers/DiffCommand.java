@@ -28,7 +28,7 @@ public class DiffCommand
    private static final int BASE_INDEX = 3;
    private static final int REF_INDEX = 4;
    private static final Parameter IGNORE_WHITESPACE = new CheckBoxParameter("Ignore whitespace", "Ignore whitespace", IGNORE_WHITESPACE_INDEX, true);
-   private static final Parameter PATH = new CheckBoxParameter("Selected path", "selected path", PATH_INDEX, false);
+   private static final Parameter PATH = new CheckBoxParameter("Selected path only", "selected path", PATH_INDEX, false);
    private static final RefParameter BASE = new RefParameter("Baseline", BASE_INDEX);
    private static final RefParameter REF = new RefParameter("Ref", REF_INDEX);
    private static final ParameterGroup GROUP = new RefPair(BASE, REF);
