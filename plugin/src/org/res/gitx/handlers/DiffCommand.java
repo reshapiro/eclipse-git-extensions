@@ -1,5 +1,8 @@
    package org.res.gitx.handlers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.res.gitx.parameter.CheckBoxParameter;
 import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.Parameter;
@@ -34,8 +37,6 @@ public class DiffCommand
       "diff", null, null, null
    };
    
-   private static final String[] SIMPLE_ARGS = new String[3];
-
    @Override
    String[] getArgs() 
          throws PromptCancelledException, MissingRequiredParameterException {
@@ -44,17 +45,17 @@ public class DiffCommand
       
       
       boolean ignoreWhiteSpace = ARGS[IGNORE_WHITESPACE_INDEX] != null && Boolean.valueOf(ARGS[IGNORE_WHITESPACE_INDEX]);
-      
+      List<String> actualArgs = new ArrayList<>(4);
+      actualArgs.add(ARGS[0]);
       if (ignoreWhiteSpace) {
-         ARGS[IGNORE_WHITESPACE_INDEX] = "-w";
-         return ARGS;
-      } else {
-         SIMPLE_ARGS[0] = ARGS[0];
-         SIMPLE_ARGS[1] = ARGS[BASE_INDEX];
-         SIMPLE_ARGS[2] = ARGS[REF_INDEX];
-         return SIMPLE_ARGS;
+         actualArgs.add("-w");
       }
+      actualArgs.add(ARGS[BASE_INDEX]);
+      actualArgs.add(ARGS[REF_INDEX]);
       
+      String[] argsArray = new String[actualArgs.size()];
+      actualArgs.toArray(argsArray);
+      return argsArray;
    }
 
    @Override
