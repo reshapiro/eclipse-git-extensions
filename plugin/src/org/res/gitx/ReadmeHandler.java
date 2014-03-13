@@ -17,8 +17,10 @@ public class ReadmeHandler
       Shell shell = window.getShell();
       String title = "Important Notes";
       String message =
-            "Be sure the current selection is a file in Git repository!"
-                  + "\n Otherwise you might see the message 'Command is not enabled'."
+            "The current selection must be a file, directory or project in an Explorer view or an editor"
+                  + ", and the selection must be part of a project managed by EGit."
+                  + "\nSelecting a Working Set or any entry in the 'Git Repositories' view will not work!!"
+                  + "\n If you see the message 'Command is not enabled', you got one of these wrong."
                   + "\n\n You must also define the Eclipse String Substitution variable 'git_exec'. " 
                   + "\n Do this in Preferences -> Run/Debug -> String Substitution." 
                   + "\nThe value should be the absolute path to your Git executable.";
