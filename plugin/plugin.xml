@@ -188,6 +188,11 @@
             id="org.res.gitx.SvnFetchCommand"
             name="fetch from svn">
       </command>
+      <command
+            defaultHandler="org.res.gitx.handlers.SvnGcCommand"
+            id="org.res.gitx.handlers.SvnGcCommand"
+            name="svn gc">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -366,6 +371,11 @@
                   commandId="org.res.gitx.Svn2GitCommand"
                   id="egitex.handlers.Svn2GitCommand"
                   label="Git SHA for SVN rev...">
+            </command>
+            <command
+                  commandId="org.res.gitx.handlers.SvnGcCommand"
+                  label="SVN GC"
+                  style="push">
             </command>
          </menu>
       </menuContribution>
