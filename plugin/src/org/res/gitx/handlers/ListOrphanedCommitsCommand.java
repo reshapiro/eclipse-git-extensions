@@ -1,7 +1,5 @@
 package org.res.gitx.handlers;
 
-import java.util.List;
-
 import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.ParameterSet;
 import org.res.gitx.parameter.PromptCancelledException;
@@ -18,11 +16,10 @@ public class ListOrphanedCommitsCommand
    private static final ParameterSet PARAMETERS = new ParameterSet("Finding orphan commits is potentially slow. Proceed?");
 
    @Override
-   void getArgs(List<String> args) throws
+   void getArgs() throws
          PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMETERS);
-      args.add("fsck");
-      args.add("--lost-found");
+      addArgs("fsck", "--lost-found");
    }
 
    @Override

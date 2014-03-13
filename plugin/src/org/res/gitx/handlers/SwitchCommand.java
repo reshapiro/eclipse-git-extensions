@@ -1,7 +1,5 @@
 package org.res.gitx.handlers;
 
-import java.util.List;
-
 import org.res.gitx.parameter.CheckBoxParameter;
 import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.Parameter;
@@ -26,18 +24,17 @@ public class SwitchCommand
    private static final ParameterSet PARAMS = new ParameterSet("Switch", PATH, REF);
 
    @Override
-   void getArgs(List<String> args) 
+   void getArgs() 
          throws PromptCancelledException, MissingRequiredParameterException {
      promptForParameters(PARAMS);
-     args.add("checkout");
+     addArg("checkout");
      
-     args.add(PARAMS.getParameterValue(REF));
+     addArg(PARAMS, REF);
      
      boolean usePath = PARAMS.getBooleanParameterValue(PATH);
      String relativePath = usePath ? Resolver.resolveVariable("git_repo_relative_path") : null;
      if (relativePath != null && !relativePath.isEmpty()) {
-        args.add("--");
-        args.add(relativePath);
+        addArgs("--", relativePath);
      }
    }
 

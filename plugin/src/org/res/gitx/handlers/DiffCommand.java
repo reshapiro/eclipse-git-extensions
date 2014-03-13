@@ -1,7 +1,5 @@
    package org.res.gitx.handlers;
 
-import java.util.List;
-
 import org.res.gitx.parameter.CheckBoxParameter;
 import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.Parameter;
@@ -32,24 +30,22 @@ public class DiffCommand
 
    
    @Override
-   void getArgs(List<String> args) 
+   void getArgs() 
          throws PromptCancelledException, MissingRequiredParameterException {
       
       BASE.setDefaultReference("HEAD");
       promptForParameters(PARAMETERS);
-      args.add("diff");
+      addArg("diff");
       
       if (PARAMETERS.getBooleanParameterValue(IGNORE_WHITESPACE)) {
-         args.add("-w");
+         addArg("-w");
       }
-      args.add(PARAMETERS.getParameterValue(BASE));
-      args.add(PARAMETERS.getParameterValue(REF));
+      addArgs(PARAMETERS, BASE, REF);
       
       boolean usePath = PARAMETERS.getBooleanParameterValue(PATH);
       String relativePath = usePath ? Resolver.resolveVariable("git_repo_relative_path") : null;
       if (relativePath != null && !relativePath.isEmpty()) {
-         args.add("--");
-         args.add(relativePath);
+         addArgs("--", relativePath);
       }
    }
 

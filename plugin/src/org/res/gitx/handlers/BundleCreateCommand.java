@@ -1,7 +1,5 @@
 package org.res.gitx.handlers;
 
-import java.util.List;
-
 import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.Parameter;
 import org.res.gitx.parameter.ParameterGroup;
@@ -28,13 +26,12 @@ public class BundleCreateCommand
    private static final ParameterSet PARAMS = new ParameterSet("Bundle Spec", FILE, GROUP);
 
    @Override
-   void getArgs(List<String> args) 
+   void getArgs() 
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMS);
-      args.add("bundle");
-      args.add("create");
-      args.add(PARAMS.getParameterValue(FILE));
-      args.add(PARAMS.getParameterValue(START) + ".." + PARAMS.getParameterValue(END));
+      addArgs("bundle", "create");
+      addArg(PARAMS, FILE);
+      addArg(PARAMS.getParameterValue(START) + ".." + PARAMS.getParameterValue(END));
    }
 
    @Override

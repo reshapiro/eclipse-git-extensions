@@ -1,6 +1,5 @@
 package org.res.gitx.handlers;
 
-import java.util.List;
 
 
 /**
@@ -14,9 +13,8 @@ public class SvnRebaseCommand
       extends GitCommandHandler {
    
    @Override
-   void getArgs(List<String> args) {
-      args.add("svn");
-      args.add("rebase");
+   void getArgs() {
+      addArgs("svn", "rebase");
    }
 
    @Override

@@ -1,6 +1,5 @@
 package org.res.gitx.handlers;
 
-import java.util.List;
 
 
 /**
@@ -13,9 +12,8 @@ public class BisectGoodCommand
       extends GitCommandHandler {
    
    @Override
-   void getArgs(List<String> args) {
-      args.add("bisect");
-      args.add("good");
+   void getArgs() {
+      addArgs("bisect", "good");
    }
    
    @Override

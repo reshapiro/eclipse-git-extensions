@@ -1,7 +1,5 @@
 package org.res.gitx.handlers;
 
-import java.util.List;
-
 import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.Parameter;
 import org.res.gitx.parameter.ParameterSet;
@@ -21,15 +19,14 @@ public class BisectEndCommand
    private static final ParameterSet PARAMETERS = new ParameterSet("End Bisect", REF);
    
    @Override
-   void getArgs(List<String> args)
+   void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMETERS);
-      args.add("bisect");
-      args.add("reset");
+      addArgs("bisect", "reset");
       
       String resetTo = PARAMETERS.getParameterValue(REF);
       if (resetTo == null || resetTo.isEmpty()) {
-         args.add(resetTo);
+         addArg(resetTo);
       }
    }
    

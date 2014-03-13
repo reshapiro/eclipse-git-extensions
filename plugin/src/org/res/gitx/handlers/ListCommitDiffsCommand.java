@@ -1,7 +1,5 @@
    package org.res.gitx.handlers;
 
-import java.util.List;
-
 import org.res.gitx.parameter.CheckBoxParameter;
 import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.Parameter;
@@ -32,19 +30,19 @@ public class ListCommitDiffsCommand
 
    
    @Override
-   void getArgs(List<String> args) 
+   void getArgs() 
          throws PromptCancelledException, MissingRequiredParameterException {
       Ref1.setDefaultReference("HEAD");
       promptForParameters(PARAMETERS);
-      args.add("log");
-      args.add(PARAMETERS.getParameterValue(Ref1));
-      args.add("^" + PARAMETERS.getParameterValue(Ref2));
+      addArgs("log");
+      addArg(PARAMETERS, Ref1);
+      addArg("^" + PARAMETERS.getParameterValue(Ref2));
       
       
       
       boolean useOnline = PARAMETERS.getBooleanParameterValue(ONE_LINE);
       if (useOnline) {
-         args.add("--oneline");
+         addArg("--oneline");
       }
       
    }

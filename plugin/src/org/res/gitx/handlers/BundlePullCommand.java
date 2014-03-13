@@ -1,7 +1,5 @@
 package org.res.gitx.handlers;
 
-import java.util.List;
-
 import org.res.gitx.parameter.FileParameter;
 import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.Parameter;
@@ -21,11 +19,11 @@ public class BundlePullCommand
    private static final ParameterSet PARAMS = new ParameterSet("Bundle file", FILE);
 
    @Override
-   void getArgs(List<String> args) 
+   void getArgs() 
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMS);
-      args.add("pull");
-      args.add(PARAMS.getParameterValue(FILE));
+      addArg("pull");
+      addArg(PARAMS, FILE);
    }
 
    @Override

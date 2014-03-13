@@ -1,6 +1,5 @@
 package org.res.gitx.handlers;
 
-import java.util.List;
 
 
 
@@ -15,8 +14,8 @@ public class PushCommand
       extends GitCommandHandler {
    
    @Override
-   void getArgs(List<String> args) {
-      args.add("push");
+   void getArgs() {
+      addArg("push");
    }
 
    @Override

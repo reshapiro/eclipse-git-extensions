@@ -1,6 +1,5 @@
 package org.res.gitx.handlers;
 
-import java.util.List;
 
 
 /**
@@ -14,8 +13,8 @@ public class StatusCommand
       extends GitCommandHandler {
    
    @Override
-   void getArgs(List<String> args) {
-      args.add("status");
+   void getArgs() {
+      addArg("status");
    }
 
    @Override

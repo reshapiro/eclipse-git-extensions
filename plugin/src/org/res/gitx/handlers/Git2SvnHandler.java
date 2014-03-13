@@ -1,7 +1,5 @@
 package org.res.gitx.handlers;
 
-import java.util.List;
-
 import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.Parameter;
 import org.res.gitx.parameter.ParameterSet;
@@ -21,12 +19,11 @@ public class Git2SvnHandler
    private static final ParameterSet PARAMS = new ParameterSet("Show SVN revision for SHA",REF);
    
    @Override
-   void getArgs(List<String> args)
+   void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMS);
-      args.add("svn");
-      args.add("find-rev");
-      args.add(PARAMS.getParameterValue(REF));
+      addArgs("svn", "find-rev");
+      addArg(PARAMS, REF);
    }
 
    @Override

@@ -1,6 +1,5 @@
 package org.res.gitx.handlers;
 
-import java.util.List;
 
 
 /**
@@ -13,9 +12,8 @@ public class SvnInfoCommand
       extends GitCommandHandler {
    
    @Override
-   void getArgs(List<String> args) {
-      args.add("svn");
-      args.add("info");
+   void getArgs() {
+      addArgs("svn", "info");
    }
 
    @Override

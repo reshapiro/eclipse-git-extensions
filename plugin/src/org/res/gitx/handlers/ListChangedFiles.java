@@ -1,7 +1,5 @@
    package org.res.gitx.handlers;
 
-import java.util.List;
-
 import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.ParameterSet;
 import org.res.gitx.parameter.PromptCancelledException;
@@ -26,14 +24,12 @@ public class ListChangedFiles
 
    
    @Override
-   void getArgs(List<String> args) 
+   void getArgs() 
          throws PromptCancelledException, MissingRequiredParameterException {
       REF1.setDefaultReference("HEAD");
       promptForParameters(PARAMETERS);
-      args.add("diff");
-      args.add("--stat");
-      args.add(PARAMETERS.getParameterValue(REF1));
-      args.add(PARAMETERS.getParameterValue(REF2));
+      addArgs("diff", "--stat");
+      addArgs(PARAMETERS, REF1, REF2);
    }
 
    @Override

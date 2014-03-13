@@ -1,7 +1,5 @@
 package org.res.gitx.handlers;
 
-import java.util.List;
-
 import org.res.gitx.parameter.CheckBoxParameter;
 import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.Parameter;
@@ -24,12 +22,12 @@ public class PullCommand
    private static final ParameterSet PARAMS = new ParameterSet("Pull", PRUNE);
 
    @Override
-   void getArgs(List<String> args)
+   void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMS);
-      args.add("pull");
+      addArg("pull");
       if (PARAMS.getBooleanParameterValue(PRUNE)) {
-         args.add("-p");
+         addArg("-p");
       }
    }
 

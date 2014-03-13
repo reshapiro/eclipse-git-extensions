@@ -1,7 +1,6 @@
 package org.res.gitx.handlers;
 
 import java.io.File;
-import java.util.List;
 
 import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.Parameter;
@@ -26,11 +25,10 @@ public class BisectLogCommand
    private String logFilePath;
 
    @Override
-   void getArgs(List<String> args)
+   void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMETERS);
-      args.add("bisect");
-      args.add("log");
+      addArgs("bisect", "loh");
       
       logFilePath = PARAMETERS.getParameterValue(LOG_FILE_PARAM);
    }

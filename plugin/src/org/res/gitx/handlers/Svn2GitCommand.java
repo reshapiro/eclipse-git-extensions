@@ -1,7 +1,5 @@
 package org.res.gitx.handlers;
 
-import java.util.List;
-
 import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.Parameter;
 import org.res.gitx.parameter.ParameterSet;
@@ -21,16 +19,14 @@ public class Svn2GitCommand
    private static final ParameterSet PARAMS = new ParameterSet("Show Git commit for SVN revison", SVN_REV_PARAM);
    
    @Override
-   void getArgs(List<String> args)
+   void getArgs()
             throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMS);
       String rev = PARAMS.getParameterValue(SVN_REV_PARAM);
       if (!rev.startsWith("r")) {
          rev = "r" + rev;
       }
-      args.add("svn");
-      args.add("find-rev");
-      args.add(rev);
+      addArgs("svn", "find-rev", rev);
    }
 
    @Override

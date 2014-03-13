@@ -1,7 +1,5 @@
 package org.res.gitx.handlers;
 
-import java.util.List;
-
 import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.Parameter;
 import org.res.gitx.parameter.ParameterSet;
@@ -21,17 +19,14 @@ public class BisectRunCommand
    private static final ParameterSet PARAMETERS = new ParameterSet("Bisect Command args", CMD_ARGS_PARAM);
    
    @Override
-   void getArgs(List<String> args)
+   void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMETERS);
-      args.add("bisect");
-      args.add("run");
+      addArgs("bisect", "run");
       
       String parameterValue = PARAMETERS.getParameterValue(CMD_ARGS_PARAM);
       String[] cmd = parameterValue.split(" ");
-      for (String op : cmd) {
-         args.add(op);
-      }
+      addArgs(cmd);
    }
    
    @Override

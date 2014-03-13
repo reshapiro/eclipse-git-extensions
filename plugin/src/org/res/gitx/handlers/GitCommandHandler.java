@@ -19,6 +19,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.res.gitx.parameter.MissingRequiredParameterException;
+import org.res.gitx.parameter.Parameter;
 import org.res.gitx.parameter.ParameterSet;
 import org.res.gitx.parameter.PromptCancelledException;
 import org.res.gitx.parameter.ParametersDialog;
@@ -39,12 +40,31 @@ abstract class GitCommandHandler
 
    /**
     * 
-    * @param commandArgs git command arguments
     * @throws PromptCancelledException
     */
-   abstract void getArgs(List<String> commandArgs)
+   abstract void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException;
+   
+   void addArg(String argument) {
+      args.add(argument);
+   }
 
+   void addArgs(String...arguments) {
+      for (String arg : arguments) {
+         args.add(arg);
+      }
+   }
+   
+   void addArg(ParameterSet params, Parameter param) {
+      args.add(params.getParameterValue(param));
+   }
+   
+   void addArgs(ParameterSet params, Parameter...arguments) {
+      for (Parameter param : arguments) {
+         args.add(params.getParameterValue(param));
+      }
+   }
+   
    @Override
    public boolean isEnabled() {
       return !Resolver.resolveVariable(EGIT_WORK_TREE_VAR).isEmpty();
@@ -68,9 +88,9 @@ abstract class GitCommandHandler
 
       File repo = new File(repoPath);
       args.clear();
+      args.add(gitExec);
       try {
-         getArgs(args);
-         args.add(0, gitExec);
+         getArgs();
          String[] processArgs = new String[args.size()];
          args.toArray(processArgs);
 
