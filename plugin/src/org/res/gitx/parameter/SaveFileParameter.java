@@ -6,8 +6,8 @@ import org.eclipse.swt.widgets.Composite;
 public class SaveFileParameter
       extends FileParameter {
 
-   public SaveFileParameter(String name, int index, boolean required) {
-      super(name, index, required);
+   public SaveFileParameter(String name, boolean required) {
+      super(name, required);
    }
 
    @Override

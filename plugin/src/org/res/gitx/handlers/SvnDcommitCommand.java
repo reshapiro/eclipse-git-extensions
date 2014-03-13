@@ -1,5 +1,7 @@
 package org.res.gitx.handlers;
 
+import java.util.List;
+
 
 /**
  * Execute the Git operation that will 'push' any new commits on the active
@@ -11,13 +13,10 @@ package org.res.gitx.handlers;
 public class SvnDcommitCommand
       extends GitCommandHandler {
    
-   private static final String[] ARGS = new String[] {
-      "svn", "dcommit"
-   };
-
    @Override
-   String[] getArgs() {
-      return ARGS;
+   void getArgs(List<String> args) {
+      args.add("svn");
+      args.add("dcommit");
    }
 
    @Override

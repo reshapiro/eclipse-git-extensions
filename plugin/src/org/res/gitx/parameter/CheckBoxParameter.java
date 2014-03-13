@@ -8,13 +8,13 @@ public class CheckBoxParameter
    private String label;
    private final boolean defaultValue;
 
-   public CheckBoxParameter(String name, String label, int index) {
-      this(name, label, index, false);
+   public CheckBoxParameter(String name, String label) {
+      this(name, label, false);
       this.label = label;
    }
    
-   public CheckBoxParameter(String name, String label, int index, boolean defaultValue) {
-      super(name, index, false);
+   public CheckBoxParameter(String name, String label, boolean defaultValue) {
+      super(name, false);
       this.label = label;
       this.defaultValue = defaultValue;
    }

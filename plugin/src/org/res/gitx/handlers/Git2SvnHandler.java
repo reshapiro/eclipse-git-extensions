@@ -1,6 +1,9 @@
 package org.res.gitx.handlers;
 
+import java.util.List;
+
 import org.res.gitx.parameter.MissingRequiredParameterException;
+import org.res.gitx.parameter.Parameter;
 import org.res.gitx.parameter.ParameterSet;
 import org.res.gitx.parameter.PromptCancelledException;
 import org.res.gitx.parameter.RefParameter;
@@ -14,17 +17,16 @@ import org.res.gitx.parameter.RefParameter;
 public class Git2SvnHandler
       extends GitCommandHandler {
    
-   private static final ParameterSet PARAMS = new ParameterSet("Show SVN revision for SHA", new RefParameter(2));
+   private static Parameter REF =  new RefParameter();
+   private static final ParameterSet PARAMS = new ParameterSet("Show SVN revision for SHA",REF);
    
-   private static final String[] ARGS = new String[] {
-      "svn", "find-rev",  null
-   };
-
    @Override
-   String[] getArgs()
+   void getArgs(List<String> args)
          throws PromptCancelledException, MissingRequiredParameterException {
-      promptForParameters(PARAMS, ARGS);
-      return ARGS;
+      promptForParameters(PARAMS);
+      args.add("svn");
+      args.add("find-rev");
+      args.add(PARAMS.getParameterValue(REF));
    }
 
    @Override

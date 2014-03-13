@@ -41,22 +41,9 @@ public class ParameterSet {
       return values.get(parameter);
    }
 
-   /**
-    * Inject the parameter values into to command array.
-    * @param array the base array of command arguments.
-    * 
-    * @throws MissingRequiredParameterException if the user has not provided a value for a parameter that requires one.
-    */
-   public void splice(String[] array)
-         throws MissingRequiredParameterException {
-      for (Map.Entry<Parameter, String> entry : values.entrySet()) {
-         String value = entry.getValue();
-         Parameter param = entry.getKey();
-         if (param.isRequired() && (value == null || value.isEmpty())) {
-            throw new MissingRequiredParameterException(param);
-         }
-         array[param.getIndex()] = value;
-      }
+   public boolean getBooleanParameterValue(Parameter parameter) {
+      String value = getParameterValue(parameter);
+      return value != null && Boolean.valueOf(value);
    }
 
    void init() {

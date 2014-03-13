@@ -1,6 +1,5 @@
 package org.res.gitx.handlers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.res.gitx.parameter.CheckBoxParameter;
@@ -21,34 +20,25 @@ import org.res.gitx.util.Resolver;
 public class SwitchCommand
       extends GitCommandHandler {
 
-   private static final String[] ARGS = new String[] {
-      "checkout", null, null
-   };
-
-   private static final int PATH_INDEX = 1;
-   private static final int REF_INDEX = 2;
+   private static final Parameter PATH = new CheckBoxParameter("Selected path only", "selected path", false);
+   private static final Parameter REF = new RefParameter();
    
-   private static final Parameter PATH = new CheckBoxParameter("Selected path only", "selected path", PATH_INDEX, false);
-   
-   private static final ParameterSet PARAMS = new ParameterSet("Switch", PATH, new RefParameter(REF_INDEX));
+   private static final ParameterSet PARAMS = new ParameterSet("Switch", PATH, REF);
 
    @Override
-   String[] getArgs() 
+   void getArgs(List<String> args) 
          throws PromptCancelledException, MissingRequiredParameterException {
-     promptForParameters(PARAMS, ARGS);
-     List<String> actualArgs = new ArrayList<>(3);
-     actualArgs.add(ARGS[0]);
-     actualArgs.add(ARGS[REF_INDEX]);
-     boolean usePath = ARGS[PATH_INDEX] != null && Boolean.valueOf(ARGS[PATH_INDEX]);
+     promptForParameters(PARAMS);
+     args.add("checkout");
+     
+     args.add(PARAMS.getParameterValue(REF));
+     
+     boolean usePath = PARAMS.getBooleanParameterValue(PATH);
      String relativePath = usePath ? Resolver.resolveVariable("git_repo_relative_path") : null;
      if (relativePath != null && !relativePath.isEmpty()) {
-        actualArgs.add("--");
-        actualArgs.add(relativePath);
+        args.add("--");
+        args.add(relativePath);
      }
-     String[] argsArray = new String[actualArgs.size()];
-     actualArgs.toArray(argsArray);
-     return argsArray;
-     
    }
 
    @Override

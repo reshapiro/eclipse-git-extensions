@@ -1,5 +1,7 @@
 package org.res.gitx.handlers;
 
+import java.util.List;
+
 
 /**
  * Execute the Git operation that skips the next bisect step
@@ -10,13 +12,10 @@ package org.res.gitx.handlers;
 public class BisectSkipCommand
       extends GitCommandHandler {
    
-   private static final String[] ARGS = new String[] {
-      "bisect", "skip"
-   };
-   
    @Override
-   String[] getArgs() {
-      return ARGS;
+   void getArgs(List<String> args) {
+      args.add("bisect");
+      args.add("skip");
    }
    
    @Override

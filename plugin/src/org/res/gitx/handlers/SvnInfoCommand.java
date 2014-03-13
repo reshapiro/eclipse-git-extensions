@@ -1,5 +1,7 @@
 package org.res.gitx.handlers;
 
+import java.util.List;
+
 
 /**
  * Execute the Git operation that will show information about the SVN repository.
@@ -10,13 +12,10 @@ package org.res.gitx.handlers;
 public class SvnInfoCommand
       extends GitCommandHandler {
    
-   private static final String[] ARGS = new String[] {
-      "svn", "info"
-   };
-
    @Override
-   String[] getArgs() {
-      return ARGS;
+   void getArgs(List<String> args) {
+      args.add("svn");
+      args.add("info");
    }
 
    @Override

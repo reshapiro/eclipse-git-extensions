@@ -1,7 +1,10 @@
 package org.res.gitx.handlers;
 
+import java.util.List;
+
 import org.res.gitx.parameter.CheckBoxParameter;
 import org.res.gitx.parameter.MissingRequiredParameterException;
+import org.res.gitx.parameter.Parameter;
 import org.res.gitx.parameter.ParameterSet;
 import org.res.gitx.parameter.PromptCancelledException;
 
@@ -17,31 +20,17 @@ import org.res.gitx.parameter.PromptCancelledException;
 public class FetchCommand
       extends GitCommandHandler {
    
-   private static final CheckBoxParameter PRUNE = new CheckBoxParameter("Fetch", "Prune", 0, true);
+   private static final Parameter PRUNE = new CheckBoxParameter("Fetch", "Prune", true);
 
    private static final ParameterSet PARAMS = new ParameterSet("Fetch", PRUNE);
 
-   private static final String[] ARGS = new String[] {
-      null
-   };
-
-   private static final String[] WITH_PRUNE = new String[] {
-      "fetch",
-      "-p"
-   };
-   private static final String[] SANS_PRUNE = new String[] {
-      "fetch"
-   };
-
    @Override
-   String[] getArgs()
+   void getArgs(List<String> args)
          throws PromptCancelledException, MissingRequiredParameterException {
-      promptForParameters(PARAMS, ARGS);
-      String prune = PARAMS.getParameterValue(PRUNE);
-      if (Boolean.parseBoolean(prune)) {
-         return WITH_PRUNE;
-      } else {
-         return SANS_PRUNE;
+      promptForParameters(PARAMS);
+      args.add("fetch");
+      if (PARAMS.getBooleanParameterValue(PRUNE)) {
+         args.add("-p");
       }
    }
    

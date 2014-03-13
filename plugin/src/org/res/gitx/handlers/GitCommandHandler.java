@@ -1,6 +1,8 @@
 package org.res.gitx.handlers;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -33,6 +35,15 @@ abstract class GitCommandHandler
 
    private ConsoleWriter console;
    private Shell shell;
+   private final List<String> args = new ArrayList<>();
+
+   /**
+    * 
+    * @param commandArgs git command arguments
+    * @throws PromptCancelledException
+    */
+   abstract void getArgs(List<String> commandArgs)
+         throws PromptCancelledException, MissingRequiredParameterException;
 
    @Override
    public boolean isEnabled() {
@@ -56,19 +67,19 @@ abstract class GitCommandHandler
       }
 
       File repo = new File(repoPath);
-      String[] gitArgs;
+      args.clear();
       try {
-         gitArgs = getArgs();
-         String[] fullArgs = new String[gitArgs.length + 1];
-         fullArgs[0] = gitExec;
-         System.arraycopy(gitArgs, 0, fullArgs, 1, gitArgs.length);
+         getArgs(args);
+         args.add(0, gitExec);
+         String[] processArgs = new String[args.size()];
+         args.toArray(processArgs);
 
          Launcher launcher;
          File output = getOutputFile();
          if (output != null) {
-            launcher = new Launcher(repo, output, fullArgs);
+            launcher = new Launcher(repo, output, processArgs);
          } else {
-            launcher = new Launcher(repo, console, fullArgs);
+            launcher = new Launcher(repo, console, processArgs);
          }
          Job job = new GitJob(getJobName(), launcher);
          job.schedule();
@@ -90,14 +101,6 @@ abstract class GitCommandHandler
          shell = window.getShell();
       }
    }
-
-   /**
-    * 
-    * @return the arguments to the Git command
-    * @throws PromptCancelledException
-    */
-   abstract String[] getArgs()
-         throws PromptCancelledException, MissingRequiredParameterException;
 
    /**
     * 
@@ -123,7 +126,7 @@ abstract class GitCommandHandler
       return null;
    }
 
-   void promptForParameters(ParameterSet parameters, String[] args)
+   void promptForParameters(ParameterSet parameters)
          throws PromptCancelledException, MissingRequiredParameterException {
       ParametersDialog dialog = new ParametersDialog(shell, parameters);
       dialog.create();
@@ -131,8 +134,6 @@ abstract class GitCommandHandler
       if (status == Window.CANCEL) {
          throw new PromptCancelledException();
       }
-
-      parameters.splice(args);
    }
 
    /*

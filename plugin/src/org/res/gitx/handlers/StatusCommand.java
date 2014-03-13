@@ -1,5 +1,7 @@
 package org.res.gitx.handlers;
 
+import java.util.List;
+
 
 /**
  * Execute the Git operation that will show the  current status.  This Git operation also
@@ -11,13 +13,9 @@ package org.res.gitx.handlers;
 public class StatusCommand
       extends GitCommandHandler {
    
-   private static final String[] ARGS = new String[] {
-      "status"
-   };
-
    @Override
-   String[] getArgs() {
-      return ARGS;
+   void getArgs(List<String> args) {
+      args.add("status");
    }
 
    @Override

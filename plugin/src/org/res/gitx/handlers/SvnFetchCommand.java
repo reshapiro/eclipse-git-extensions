@@ -1,5 +1,7 @@
 package org.res.gitx.handlers;
 
+import java.util.List;
+
 
 /**
  * Execute the Git operation that will 'fetch' any new commits from SVN on any
@@ -11,13 +13,10 @@ package org.res.gitx.handlers;
 public class SvnFetchCommand
       extends GitCommandHandler {
    
-   private static final String[] ARGS = new String[] {
-      "svn", "fetch"
-   };
-
    @Override
-   String[] getArgs() {
-      return ARGS;
+   void getArgs(List<String> args) {
+      args.add("svn");
+      args.add("fetch");
    }
    
    @Override

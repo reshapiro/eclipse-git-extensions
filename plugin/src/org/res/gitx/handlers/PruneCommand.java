@@ -1,5 +1,7 @@
 package org.res.gitx.handlers;
 
+import java.util.List;
+
 import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.Parameter;
 import org.res.gitx.parameter.ParameterSet;
@@ -14,18 +16,16 @@ import org.res.gitx.parameter.PromptCancelledException;
 public class PruneCommand
       extends GitCommandHandler {
    
-   private static final ParameterSet PARAMS = new ParameterSet("Prune remote refs", new Parameter("Remote", 2, true, "origin"));
-   
-   private static final String[] ARGS = new String[] {
-      "remote", "prune", null
-   };
-
+   private static final Parameter REF = new Parameter("Remote", true, "origin");
+   private static final ParameterSet PARAMS = new ParameterSet("Prune remote refs", REF);
    
    @Override
-   String[] getArgs()
+   void getArgs(List<String> args)
          throws PromptCancelledException, MissingRequiredParameterException {
-      promptForParameters(PARAMS, ARGS);
-      return ARGS;
+      promptForParameters(PARAMS);
+      args.add("remote");
+      args.add("prune");
+      args.add(PARAMS.getParameterValue(REF));
    }
 
    @Override

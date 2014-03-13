@@ -1,6 +1,7 @@
 package org.res.gitx.handlers;
 
 import java.io.File;
+import java.util.List;
 
 import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.Parameter;
@@ -18,27 +19,20 @@ import org.res.gitx.parameter.SaveFileParameter;
 public class BisectLogCommand
       extends GitCommandHandler {
    
-   private static final Parameter LOG_FILE_PARAM = new SaveFileParameter("Save log as (optional)", 0, false);
+   private static final Parameter LOG_FILE_PARAM = new SaveFileParameter("Save log as (optional)", false);
    
    private static final ParameterSet PARAMETERS = new ParameterSet("Log file", LOG_FILE_PARAM);
    
-   private static final String[] OPTIONS = new String[] {
-      null
-   };
-   
-   private static final String[] ARGS = new String[] {
-      "bisect", "log"
-   };
-
    private String logFilePath;
 
    @Override
-   String[] getArgs()
+   void getArgs(List<String> args)
          throws PromptCancelledException, MissingRequiredParameterException {
-      promptForParameters(PARAMETERS, OPTIONS);
+      promptForParameters(PARAMETERS);
+      args.add("bisect");
+      args.add("log");
       
       logFilePath = PARAMETERS.getParameterValue(LOG_FILE_PARAM);
-      return ARGS;
    }
    
    @Override

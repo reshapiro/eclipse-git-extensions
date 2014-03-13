@@ -1,5 +1,7 @@
 package org.res.gitx.handlers;
 
+import java.util.List;
+
 
 /**
  * Execute the Git operation that will 'pull' and rebase any new commits on the
@@ -11,13 +13,11 @@ package org.res.gitx.handlers;
 public class SvnRebaseLocalCommand
       extends GitCommandHandler {
    
-   private static final String[] ARGS = new String[] {
-      "svn", "rebase", "--local"
-   };
-
    @Override
-   String[] getArgs() {
-      return ARGS;
+   void getArgs(List<String> args) {
+      args.add("svn");
+      args.add("rebase");
+      args.add("--local");
    }
 
    @Override

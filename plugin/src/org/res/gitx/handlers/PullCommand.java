@@ -1,7 +1,10 @@
 package org.res.gitx.handlers;
 
+import java.util.List;
+
 import org.res.gitx.parameter.CheckBoxParameter;
 import org.res.gitx.parameter.MissingRequiredParameterException;
+import org.res.gitx.parameter.Parameter;
 import org.res.gitx.parameter.ParameterSet;
 import org.res.gitx.parameter.PromptCancelledException;
 
@@ -16,31 +19,17 @@ import org.res.gitx.parameter.PromptCancelledException;
 public class PullCommand
       extends GitCommandHandler {
 
-   private static final CheckBoxParameter PRUNE = new CheckBoxParameter("Pull", "Prune", 0, true);
+   private static final Parameter PRUNE = new CheckBoxParameter("Pull", "Prune", true);
 
    private static final ParameterSet PARAMS = new ParameterSet("Pull", PRUNE);
 
-   private static final String[] ARGS = new String[] {
-      null
-   };
-
-   private static final String[] WITH_PRUNE = new String[] {
-      "pull",
-      "-p"
-   };
-   private static final String[] SANS_PRUNE = new String[] {
-      "pull"
-   };
-
    @Override
-   String[] getArgs()
+   void getArgs(List<String> args)
          throws PromptCancelledException, MissingRequiredParameterException {
-      promptForParameters(PARAMS, ARGS);
-      String prune = PARAMS.getParameterValue(PRUNE);
-      if (Boolean.parseBoolean(prune)) {
-         return WITH_PRUNE;
-      } else {
-         return SANS_PRUNE;
+      promptForParameters(PARAMS);
+      args.add("pull");
+      if (PARAMS.getBooleanParameterValue(PRUNE)) {
+         args.add("-p");
       }
    }
 

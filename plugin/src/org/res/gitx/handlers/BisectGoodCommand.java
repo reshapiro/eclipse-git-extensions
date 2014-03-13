@@ -1,5 +1,7 @@
 package org.res.gitx.handlers;
 
+import java.util.List;
+
 
 /**
  * Execute the Git operation that will mark the HEAD as good in a bisect
@@ -10,13 +12,10 @@ package org.res.gitx.handlers;
 public class BisectGoodCommand
       extends GitCommandHandler {
    
-   private static final String[] ARGS = new String[] {
-      "bisect", "good"
-   };
-
    @Override
-   String[] getArgs() {
-      return ARGS;
+   void getArgs(List<String> args) {
+      args.add("bisect");
+      args.add("good");
    }
    
    @Override

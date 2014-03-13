@@ -1,6 +1,9 @@
 package org.res.gitx.handlers;
 
+import java.util.List;
+
 import org.res.gitx.parameter.MissingRequiredParameterException;
+import org.res.gitx.parameter.Parameter;
 import org.res.gitx.parameter.ParameterGroup;
 import org.res.gitx.parameter.ParameterSet;
 import org.res.gitx.parameter.PromptCancelledException;
@@ -17,28 +20,21 @@ import org.res.gitx.parameter.SaveFileParameter;
 public class BundleCreateCommand
       extends GitCommandHandler {
    
-   private static final String[] ARGS = new String[] {
-      "bundle", "create",  null, null, null
-   };
-   
-   private static final String[] ACTUAL_ARGS = new String[] {
-      "bundle", "create", null, null
-   };
-   
-   private static final RefParameter START = new RefParameter("Start commit", 3);
-   private static final RefParameter END = new RefParameter("End commit", 4);
+   private static final RefParameter START = new RefParameter("Start commit");
+   private static final RefParameter END = new RefParameter("End commit");
    private static final ParameterGroup GROUP = new RefPair(START, END);
+   private static final Parameter FILE = new SaveFileParameter("Save to bundle file", true);
    
-   private static final ParameterSet PARAMS = new ParameterSet("Bundle Spec",
-                                                               new SaveFileParameter("Save to bundle file", 2, true), GROUP);
+   private static final ParameterSet PARAMS = new ParameterSet("Bundle Spec", FILE, GROUP);
 
    @Override
-   String[] getArgs() 
+   void getArgs(List<String> args) 
          throws PromptCancelledException, MissingRequiredParameterException {
-      promptForParameters(PARAMS, ARGS);
-         ACTUAL_ARGS[2] = ARGS[2];
-         ACTUAL_ARGS[3]  = ARGS[3] + ".." + ARGS[4];
-         return ACTUAL_ARGS;
+      promptForParameters(PARAMS);
+      args.add("bundle");
+      args.add("create");
+      args.add(PARAMS.getParameterValue(FILE));
+      args.add(PARAMS.getParameterValue(START) + ".." + PARAMS.getParameterValue(END));
    }
 
    @Override

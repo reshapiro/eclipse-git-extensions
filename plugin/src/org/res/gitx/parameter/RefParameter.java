@@ -18,31 +18,27 @@ public class RefParameter
 
    /**
     * Prompt for a required reference with the default label.
-    * 
-    * @param index which argument in the git command
     */
-   public RefParameter(int index) {
-      super("Branch, tag or reference", index, true);
+   public RefParameter() {
+      super("Branch, tag or reference", true);
    }
 
    /**
     * Prompt for a required reference with a given label.
     * 
     * @param prompt the label in the dialog
-    * @param index which argument in the git command
     */
-   public RefParameter(String prompt, int index) {
-      super(prompt, index, true);
+   public RefParameter(String prompt) {
+      super(prompt, true);
    }
 
    /**
     * Prompt for a reference with a given label.
     * @param prompt the label in the dialog.
-    * @param index which argument in the git command
     * @param required whether or not this parameter is required.
     */
-   public RefParameter(String prompt, int index, boolean required) {
-      super(prompt, index, required);
+   public RefParameter(String prompt, boolean required) {
+      super(prompt, required);
    }
    
    @Override

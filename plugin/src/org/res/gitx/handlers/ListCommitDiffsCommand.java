@@ -1,7 +1,10 @@
    package org.res.gitx.handlers;
 
+import java.util.List;
+
 import org.res.gitx.parameter.CheckBoxParameter;
 import org.res.gitx.parameter.MissingRequiredParameterException;
+import org.res.gitx.parameter.Parameter;
 import org.res.gitx.parameter.ParameterGroup;
 import org.res.gitx.parameter.ParameterSet;
 import org.res.gitx.parameter.PromptCancelledException;
@@ -20,35 +23,28 @@ import org.res.gitx.parameter.RefParameter;
 public class ListCommitDiffsCommand
       extends GitCommandHandler {
    
-   private static final RefParameter Ref1 = new RefParameter("Ref 1", 1);
-   private static final RefParameter Ref2 = new RefParameter("Ref 2", 2);
+   private static final RefParameter Ref1 = new RefParameter("Ref 1");
+   private static final RefParameter Ref2 = new RefParameter("Ref 2");
    private static final ParameterGroup GROUP = new RefPair(Ref1, Ref2);
+   private static final Parameter ONE_LINE = new CheckBoxParameter("oneline", "Show brief display");
    
-   private static final ParameterSet PARAMETERS = new ParameterSet("List commits in Ref 1 but not Ref 2",
-                                                                   new CheckBoxParameter("oneline", "Show brief display", 3),  GROUP);
+   private static final ParameterSet PARAMETERS = new ParameterSet("List commits in Ref 1 but not Ref 2", ONE_LINE ,  GROUP);
 
    
-   private static final String[] ARGS = new String[] {
-      "log", null, null, null
-   };
-   
-   private static final String[] SIMPLE_ARGS = new String[3];
-
    @Override
-   String[] getArgs() 
+   void getArgs(List<String> args) 
          throws PromptCancelledException, MissingRequiredParameterException {
       Ref1.setDefaultReference("HEAD");
-      promptForParameters(PARAMETERS, ARGS);
+      promptForParameters(PARAMETERS);
+      args.add("log");
+      args.add(PARAMETERS.getParameterValue(Ref1));
+      args.add("^" + PARAMETERS.getParameterValue(Ref2));
       
-      ARGS[2] = "^" + ARGS[2];
       
-      boolean useOnline = ARGS[3] != null && Boolean.valueOf(ARGS[3]);
+      
+      boolean useOnline = PARAMETERS.getBooleanParameterValue(ONE_LINE);
       if (useOnline) {
-         ARGS[3] = "--oneline";
-         return ARGS;
-      } else {
-         System.arraycopy(ARGS, 0, SIMPLE_ARGS, 0, SIMPLE_ARGS.length);
-         return SIMPLE_ARGS;
+         args.add("--oneline");
       }
       
    }
