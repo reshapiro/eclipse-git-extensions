@@ -25,7 +25,7 @@ public class BisectEndCommand
       addArgs("bisect", "reset");
       
       String resetTo = PARAMETERS.getParameterValue(REF);
-      if (resetTo == null || resetTo.isEmpty()) {
+      if (resetTo != null && !resetTo.isEmpty()) {
          addArg(resetTo);
       }
    }
