@@ -41,8 +41,8 @@
       </command>
       <command
             categoryId="org.res.gitx.commands.category"
-            defaultHandler="org.res.gitx.handlers.SwitchCommand"
-            id="org.res.gitx.handlers.SwitchCommand"
+            defaultHandler="org.res.gitx.handlers.CheckoutCommand"
+            id="org.res.gitx.handlers.CheckoutCommand"
             name="Checkout">
       </command>
       <command
@@ -232,7 +232,7 @@
                   style="push">
             </command>
             <command
-                  commandId="org.res.gitx.handlers.SwitchCommand"
+                  commandId="org.res.gitx.handlers.CheckoutCommand"
                   label="Checkout..."
                   style="push"
                   tooltip="Checkout a branch, tag or reference. Typically somewhat faster than JGit checkout">

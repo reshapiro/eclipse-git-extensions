@@ -15,13 +15,13 @@ import org.res.gitx.util.Resolver;
  * @author reshapiro
  * 
  */
-public class SwitchCommand
+public class CheckoutCommand
       extends GitCommandHandler {
 
    private static final Parameter PATH = new CheckBoxParameter("Selected path only", "selected path", false);
-   private static final Parameter REF = new RefParameter();
+   private static final Parameter REF = new RefParameter("HEAD");
    
-   private static final ParameterSet PARAMS = new ParameterSet("Switch", PATH, REF);
+   private static final ParameterSet PARAMS = new ParameterSet("Checkout", PATH, REF);
 
    @Override
    void getArgs() 
@@ -40,6 +40,6 @@ public class SwitchCommand
 
    @Override
    String getJobName() {
-      return "Switch branch";
+      return "Checkout";
    }
 }
