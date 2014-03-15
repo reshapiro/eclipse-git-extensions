@@ -47,6 +47,18 @@
       </command>
       <command
             categoryId="org.res.gitx.commands.category"
+            defaultHandler="org.res.gitx.handlers.ResetMergeCommand"
+            id="org.res.gitx.handlers.ResetMergeCommand"
+            name="reset merge">
+      </command>
+      <command
+            categoryId="org.res.gitx.commands.category"
+            defaultHandler="org.res.gitx.handlers.ResetKeepCommand"
+            id="org.res.gitx.handlers.ResetKeepCommand"
+            name="reset keep">
+      </command>
+      <command
+            categoryId="org.res.gitx.commands.category"
             defaultHandler="org.res.gitx.handlers.ResetPathCommand"
             id="org.res.gitx.handlers.ResetPathCommand"
             name="reset selected path">
@@ -240,6 +252,16 @@
             <command
                   commandId="org.res.gitx.handlers.ResetPathCommand"
                   label="Reset Selected Path..."
+                  style="push">
+            </command>
+            <command
+                  commandId="org.res.gitx.handlers.ResetKeepCommand"
+                  label="Reset --keep..."
+                  style="push">
+            </command>
+            <command
+                  commandId="org.res.gitx.handlers.ResetMergeCommand"
+                  label="Reset --merge"
                   style="push">
             </command>
             <command
