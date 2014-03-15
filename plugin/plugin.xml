@@ -41,6 +41,12 @@
       </command>
       <command
             categoryId="org.res.gitx.commands.category"
+            defaultHandler="org.res.gitx.handlers.RecursiveMergeCommand"
+            id="org.res.gitx.handlers.RecursiveMergeCommand"
+            name="recursive merge">
+      </command>
+      <command
+            categoryId="org.res.gitx.commands.category"
             defaultHandler="org.res.gitx.handlers.CheckoutCommand"
             id="org.res.gitx.handlers.CheckoutCommand"
             name="checkout">
@@ -241,6 +247,11 @@
             <command
                   commandId="org.res.gitx.handlers.PushCommand"
                   label="Push"
+                  style="push">
+            </command>
+            <command
+                  commandId="org.res.gitx.handlers.RecursiveMergeCommand"
+                  label="Recursive Merge..."
                   style="push">
             </command>
             <command
