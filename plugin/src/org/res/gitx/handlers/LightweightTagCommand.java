@@ -17,7 +17,7 @@ public class LightweightTagCommand
       extends GitCommandHandler {
 
    private static final Parameter NAME = new Parameter("Name", true);
-   private static final Parameter REF = new RefParameter();
+   private static final Parameter REF = new RefParameter("Tag to");
    
    private static final ParameterSet PARAMS = 
          new ParameterSet("Lightweight Tag", NAME , REF);

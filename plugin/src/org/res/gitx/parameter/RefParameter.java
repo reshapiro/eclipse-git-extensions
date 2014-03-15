@@ -13,16 +13,6 @@ import org.eclipse.swt.widgets.Composite;
  */
 public class RefParameter
       extends Parameter {
-
-   private String defaultRef;
-
-   /**
-    * Prompt for a required reference with the default label.
-    */
-   public RefParameter() {
-      super("Branch, tag or reference", true);
-   }
-
    /**
     * Prompt for a required reference with a given label.
     * 
@@ -41,17 +31,17 @@ public class RefParameter
       super(prompt, required);
    }
    
+   String getDefaultReference() {
+      return null;
+   }
+
    @Override
    RefTree getRefTree(Composite container) {
-      return new RefTree(container, defaultRef);
+      return new RefTree(container, getDefaultReference());
    }
    
    @Override
    ParameterType getParameterType() {
       return ParameterType.REF;
-   }
-
-   public void setDefaultReference(String ref) {
-      this.defaultRef = ref;
    }
 }

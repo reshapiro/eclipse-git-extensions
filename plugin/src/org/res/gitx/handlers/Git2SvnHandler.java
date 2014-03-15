@@ -15,7 +15,7 @@ import org.res.gitx.parameter.RefParameter;
 public class Git2SvnHandler
       extends GitCommandHandler {
    
-   private static Parameter REF =  new RefParameter();
+   private static Parameter REF =  new RefParameter("Rev for");
    private static final ParameterSet PARAMS = new ParameterSet("Show SVN revision for SHA",REF);
    
    @Override

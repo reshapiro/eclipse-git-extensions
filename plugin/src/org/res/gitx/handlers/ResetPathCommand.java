@@ -4,7 +4,7 @@ import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.Parameter;
 import org.res.gitx.parameter.ParameterSet;
 import org.res.gitx.parameter.PromptCancelledException;
-import org.res.gitx.parameter.RefParameter;
+import org.res.gitx.parameter.RefParameterWithDefault;
 import org.res.gitx.util.Resolver;
 
 /**
@@ -17,7 +17,7 @@ import org.res.gitx.util.Resolver;
 public class ResetPathCommand
       extends GitCommandHandler {
 
-   private static final Parameter REF = new RefParameter("HEAD");
+   private static final Parameter REF = new RefParameterWithDefault("HEAD", "Reset to");
    
    private static final ParameterSet PARAMS = new ParameterSet("Reset selected path", REF);
 

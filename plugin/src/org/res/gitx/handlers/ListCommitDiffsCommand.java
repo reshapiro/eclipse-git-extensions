@@ -8,6 +8,7 @@ import org.res.gitx.parameter.ParameterSet;
 import org.res.gitx.parameter.PromptCancelledException;
 import org.res.gitx.parameter.RefPair;
 import org.res.gitx.parameter.RefParameter;
+import org.res.gitx.parameter.RefParameterWithDefault;
 
 
 /**
@@ -21,7 +22,7 @@ import org.res.gitx.parameter.RefParameter;
 public class ListCommitDiffsCommand
       extends GitCommandHandler {
    
-   private static final RefParameter Ref1 = new RefParameter("Ref 1");
+   private static final RefParameter Ref1 = new RefParameterWithDefault("HEAD", "Ref 1");
    private static final RefParameter Ref2 = new RefParameter("Ref 2");
    private static final ParameterGroup GROUP = new RefPair(Ref1, Ref2);
    private static final Parameter ONE_LINE = new CheckBoxParameter("oneline", "Show brief display");
@@ -32,7 +33,6 @@ public class ListCommitDiffsCommand
    @Override
    void getArgs() 
          throws PromptCancelledException, MissingRequiredParameterException {
-      Ref1.setDefaultReference("HEAD");
       promptForParameters(PARAMETERS);
       addArgs("log");
       addArg(PARAMETERS, Ref1);
