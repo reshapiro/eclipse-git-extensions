@@ -31,25 +31,25 @@
             categoryId="org.res.gitx.commands.category"
             defaultHandler="org.res.gitx.handlers.FetchCommand"
             id="org.res.gitx.handlers.FetchCommand"
-            name="Fetch">
+            name="fetch">
       </command>
       <command
             categoryId="org.res.gitx.commands.category"
             defaultHandler="org.res.gitx.handlers.PushCommand"
             id="org.res.gitx.handlers.PushCommand"
-            name="Push">
+            name="push">
       </command>
       <command
             categoryId="org.res.gitx.commands.category"
             defaultHandler="org.res.gitx.handlers.CheckoutCommand"
             id="org.res.gitx.handlers.CheckoutCommand"
-            name="Checkout">
+            name="checkout">
       </command>
       <command
-            defaultHandler="org.res.gitx.handlers.DiffCommand"
-            description="git diff"
-            id="org.res.gitx.handlers.DiffCommand"
-            name="diff">
+            categoryId="org.res.gitx.commands.category"
+            defaultHandler="org.res.gitx.handlers.ResetPathCommand"
+            id="org.res.gitx.handlers.ResetPathCommand"
+            name="reset selected path">
       </command>
       <command
             defaultHandler="org.res.gitx.handlers.ListChangedFiles"
@@ -238,6 +238,11 @@
                   tooltip="Checkout a branch, tag or reference. Typically somewhat faster than JGit checkout">
             </command>
             <command
+                  commandId="org.res.gitx.handlers.ResetPathCommand"
+                  label="Reset Selected Path..."
+                  style="push">
+            </command>
+            <command
                   commandId="org.res.gitx.LightweightTagCommand"
                   id="egitex.handlers.LightweightTagCommand"
                   label="Create lightweight tag...">
@@ -246,11 +251,6 @@
                   name="list and clean"
                   visible="true">
             </separator>
-            <command
-                  commandId="org.res.gitx.handlers.DiffCommand"
-                  label="Diff..."
-                  style="push">
-            </command>
             <command
                   commandId="org.res.gitx.ListCommitDiffsCommand"
                   label="List Commit Diffs...">

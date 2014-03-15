@@ -9,7 +9,12 @@ package org.res.gitx.parameter;
 @SuppressWarnings("serial")
 public class MissingRequiredParameterException
       extends Exception {
+   
    public MissingRequiredParameterException(Parameter param) {
-      super("The required parameter " + param.getName() + " was not provided");
+      this("The required parameter " + param.getName() + " was not provided");
+   }
+   
+   public MissingRequiredParameterException(String message) {
+      super(message);
    }
 }
