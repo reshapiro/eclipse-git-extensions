@@ -25,7 +25,7 @@
             categoryId="org.res.gitx.commands.category"
             defaultHandler="org.res.gitx.handlers.PullCommand"
             id="org.res.gitx.handlers.PullCommand"
-            name="Pull">
+            name="pull">
       </command>
       <command
             categoryId="org.res.gitx.commands.category"
@@ -41,9 +41,9 @@
       </command>
       <command
             categoryId="org.res.gitx.commands.category"
-            defaultHandler="org.res.gitx.handlers.RecursiveMergeCommand"
-            id="org.res.gitx.handlers.RecursiveMergeCommand"
-            name="recursive merge">
+            defaultHandler="org.res.gitx.handlers.MergeCommand"
+            id="org.res.gitx.handlers.MergeCommand"
+            name="merge">
       </command>
       <command
             categoryId="org.res.gitx.commands.category"
@@ -250,8 +250,8 @@
                   style="push">
             </command>
             <command
-                  commandId="org.res.gitx.handlers.RecursiveMergeCommand"
-                  label="Recursive Merge..."
+                  commandId="org.res.gitx.handlers.MergeCommand"
+                  label="Merge..."
                   style="push">
             </command>
             <command
