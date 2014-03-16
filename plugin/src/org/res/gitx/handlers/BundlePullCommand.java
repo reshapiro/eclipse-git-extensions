@@ -22,8 +22,7 @@ public class BundlePullCommand
    void getArgs() 
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMS);
-      addArg("pull");
-      addArg(PARAMS, FILE);
+      append("pull").append(PARAMS, FILE);
    }
 
    @Override

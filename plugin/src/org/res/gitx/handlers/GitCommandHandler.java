@@ -45,24 +45,18 @@ abstract class GitCommandHandler
    abstract void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException;
    
-   void addArg(String argument) {
-      args.add(argument);
-   }
-
-   void addArgs(String...arguments) {
+   GitCommandHandler append(String...arguments) {
       for (String arg : arguments) {
          args.add(arg);
       }
+      return this;
    }
    
-   void addArg(ParameterSet params, Parameter param) {
-      args.add(params.getParameterValue(param));
-   }
-   
-   void addArgs(ParameterSet params, Parameter...arguments) {
+   GitCommandHandler append(ParameterSet params, Parameter...arguments) {
       for (Parameter param : arguments) {
          args.add(params.getParameterValue(param));
       }
+      return this;
    }
    
    @Override

@@ -15,7 +15,7 @@ public class PushCommand
    
    @Override
    void getArgs() {
-      addArg("push");
+      append("push");
    }
 
    @Override

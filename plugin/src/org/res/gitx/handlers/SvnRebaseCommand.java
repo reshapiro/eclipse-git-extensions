@@ -14,7 +14,7 @@ public class SvnRebaseCommand
    
    @Override
    void getArgs() {
-      addArgs("svn", "rebase");
+      append("svn", "rebase");
    }
 
    @Override

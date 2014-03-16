@@ -13,7 +13,7 @@ public class BisectBadCommand
    
    @Override
    void getArgs() {
-      addArgs("bisect", "bad");
+      append("bisect", "bad");
    }
 
    @Override

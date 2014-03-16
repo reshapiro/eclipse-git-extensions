@@ -26,8 +26,7 @@ public class LightweightTagCommand
    void getArgs() 
          throws PromptCancelledException, MissingRequiredParameterException {
      promptForParameters(PARAMS);
-     addArg("tag");
-     addArgs(PARAMS, NAME, REF);
+     append("tag").append(PARAMS, NAME, REF);
      
    }
 

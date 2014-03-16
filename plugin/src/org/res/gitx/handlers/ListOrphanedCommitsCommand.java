@@ -19,7 +19,7 @@ public class ListOrphanedCommitsCommand
    void getArgs() throws
          PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMETERS);
-      addArgs("fsck", "--lost-found");
+      append("fsck", "--lost-found");
    }
 
    @Override

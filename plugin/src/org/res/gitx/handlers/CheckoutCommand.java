@@ -24,8 +24,7 @@ public class CheckoutCommand
    void getArgs() 
          throws PromptCancelledException, MissingRequiredParameterException {
      promptForParameters(PARAMS);
-     addArg("checkout");
-     addArg(PARAMS, REF);
+     append("checkout").append(PARAMS, REF);
    }
 
    @Override

@@ -21,8 +21,7 @@ public class PruneCommand
    void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMS);
-      addArgs("remote", "prune");
-      addArg(PARAMS, REF);
+      append("remote", "prune").append(PARAMS, REF);
    }
 
    @Override

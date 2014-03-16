@@ -30,22 +30,21 @@ public class RecursiveMergeCommand
    void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMS);
-      addArg("merge");
-      addArg ("-s");
-      addArg ("recursive");
+      append("merge", "-s", "recursive");
       
+      /* TODO at most one of these should be true */
       if (PARAMS.getBooleanParameterValue(FF_ONLY)) {
-         addArg("--ff-only");
+         append("--ff-only");
       }
       
       if (PARAMS.getBooleanParameterValue(NO_FF)) {
-         addArg("--no-ff");
+         append("--no-ff");
       }
       
       if (PARAMS.getBooleanParameterValue(SQUASH)) {
-         addArg("--squash");
+         append("--squash");
       }
-      addArg(PARAMS, REF);
+      append(PARAMS, REF);
    }
    
 

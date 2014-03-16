@@ -26,7 +26,7 @@ public class Svn2GitCommand
       if (!rev.startsWith("r")) {
          rev = "r" + rev;
       }
-      addArgs("svn", "find-rev", rev);
+      append("svn", "find-rev", rev);
    }
 
    @Override

@@ -22,8 +22,7 @@ public class Git2SvnHandler
    void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMS);
-      addArgs("svn", "find-rev");
-      addArg(PARAMS, REF);
+      append("svn", "find-rev").append(PARAMS, REF);
    }
 
    @Override

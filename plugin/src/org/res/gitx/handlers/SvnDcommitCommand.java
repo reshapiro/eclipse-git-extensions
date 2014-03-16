@@ -14,7 +14,7 @@ public class SvnDcommitCommand
    
    @Override
    void getArgs() {
-      addArgs("svn", "dcommit");
+      append("svn", "dcommit");
    }
 
    @Override

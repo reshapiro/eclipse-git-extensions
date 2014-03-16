@@ -26,9 +26,9 @@ public class FetchCommand
    void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMS);
-      addArg("fetch");
+      append("fetch");
       if (PARAMS.getBooleanParameterValue(PRUNE)) {
-         addArg("-p");
+         append("-p");
       }
    }
    

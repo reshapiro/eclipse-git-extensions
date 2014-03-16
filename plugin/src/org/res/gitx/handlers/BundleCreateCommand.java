@@ -29,9 +29,7 @@ public class BundleCreateCommand
    void getArgs() 
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMS);
-      addArgs("bundle", "create");
-      addArg(PARAMS, FILE);
-      addArg(PARAMS.getParameterValue(START) + ".." + PARAMS.getParameterValue(END));
+      append("bundle", "create").append(PARAMS, FILE).append(PARAMS.getParameterValue(START) + ".." + PARAMS.getParameterValue(END));
    }
 
    @Override

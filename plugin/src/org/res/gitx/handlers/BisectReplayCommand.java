@@ -22,8 +22,7 @@ public class BisectReplayCommand
    void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMETERS);
-      addArgs("bisect", "replay");
-      addArg(PARAMETERS, FILE);
+      append("bisect", "replay").append(PARAMETERS, FILE);
    }
    
    @Override

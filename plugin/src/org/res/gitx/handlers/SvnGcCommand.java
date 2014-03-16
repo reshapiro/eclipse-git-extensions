@@ -13,7 +13,7 @@ public class SvnGcCommand
    
    @Override
    void getArgs() {
-      addArgs("svn", "gc");
+      append("svn", "gc");
    }
 
    @Override

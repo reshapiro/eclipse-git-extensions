@@ -25,9 +25,9 @@ public class PullCommand
    void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMS);
-      addArg("pull");
+      append("pull");
       if (PARAMS.getBooleanParameterValue(PRUNE)) {
-         addArg("-p");
+         append("-p");
       }
    }
 

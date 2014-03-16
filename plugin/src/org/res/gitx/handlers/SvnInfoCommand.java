@@ -13,7 +13,7 @@ public class SvnInfoCommand
    
    @Override
    void getArgs() {
-      addArgs("svn", "info");
+      append("svn", "info");
    }
 
    @Override

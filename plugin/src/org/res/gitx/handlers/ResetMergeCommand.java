@@ -24,9 +24,7 @@ public class ResetMergeCommand
    void getArgs() 
          throws PromptCancelledException, MissingRequiredParameterException {
      promptForParameters(PARAMS);
-     addArg("reset");
-     addArg("--merge");
-     addArg(PARAMS, REF);
+     append("reset", "--merge").append(PARAMS, REF);
      
      
    }

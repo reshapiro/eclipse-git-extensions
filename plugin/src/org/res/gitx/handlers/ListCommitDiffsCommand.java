@@ -34,15 +34,13 @@ public class ListCommitDiffsCommand
    void getArgs() 
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMETERS);
-      addArgs("log");
-      addArg(PARAMETERS, Ref1);
-      addArg("^" + PARAMETERS.getParameterValue(Ref2));
+      append("log").append(PARAMETERS, Ref1).append("^" + PARAMETERS.getParameterValue(Ref2));
       
       
       
       boolean useOnline = PARAMETERS.getBooleanParameterValue(ONE_LINE);
       if (useOnline) {
-         addArg("--oneline");
+         append("--oneline");
       }
       
    }

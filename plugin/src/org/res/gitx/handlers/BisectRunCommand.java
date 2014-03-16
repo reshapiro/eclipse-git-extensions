@@ -22,11 +22,9 @@ public class BisectRunCommand
    void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMETERS);
-      addArgs("bisect", "run");
-      
       String parameterValue = PARAMETERS.getParameterValue(CMD_ARGS_PARAM);
       String[] cmd = parameterValue.split(" ");
-      addArgs(cmd);
+      append("bisect", "run").append(cmd);
    }
    
    @Override

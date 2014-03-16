@@ -28,8 +28,7 @@ public class ListChangedFiles
    void getArgs() 
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMETERS);
-      addArgs("diff", "--stat");
-      addArgs(PARAMETERS, REF1, REF2);
+      append("diff", "--stat").append(PARAMETERS, REF1, REF2);
    }
 
    @Override

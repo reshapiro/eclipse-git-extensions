@@ -14,7 +14,7 @@ public class StatusCommand
    
    @Override
    void getArgs() {
-      addArg("status");
+      append("status");
    }
 
    @Override

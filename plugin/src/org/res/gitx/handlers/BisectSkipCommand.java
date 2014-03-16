@@ -13,7 +13,7 @@ public class BisectSkipCommand
    
    @Override
    void getArgs() {
-      addArgs("bisect", "skip");
+      append("bisect", "skip");
    }
    
    @Override

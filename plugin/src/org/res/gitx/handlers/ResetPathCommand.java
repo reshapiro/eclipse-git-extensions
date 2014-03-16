@@ -25,15 +25,13 @@ public class ResetPathCommand
    void getArgs() 
          throws PromptCancelledException, MissingRequiredParameterException {
      promptForParameters(PARAMS);
-     addArg("reset");
-     addArg(PARAMS, REF);
-     
      String relativePath = Resolver.resolveVariable("git_repo_relative_path");
-     if (relativePath != null && !relativePath.isEmpty()) {
-        addArgs("--", relativePath);
-     } else  {
+     if (relativePath == null || relativePath.isEmpty()) {
         throw new MissingRequiredParameterException("No path selected");
      }
+     
+     append("reset").append(PARAMS, REF). append("--", relativePath);
+     
    }
 
    @Override

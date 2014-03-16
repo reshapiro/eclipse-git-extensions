@@ -22,8 +22,7 @@ public class BundleFetchCommand
    void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMS);
-      addArg("fetch");
-      addArg(PARAMS, FILE);
+      append("fetch").append(PARAMS, FILE);
    }
 
    @Override

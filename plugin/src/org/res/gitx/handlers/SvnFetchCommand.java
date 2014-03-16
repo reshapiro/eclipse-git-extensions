@@ -14,7 +14,7 @@ public class SvnFetchCommand
    
    @Override
    void getArgs() {
-      addArgs("svn", "fetch");
+      append("svn", "fetch");
    }
    
    @Override

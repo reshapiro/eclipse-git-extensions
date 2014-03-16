@@ -24,9 +24,7 @@ public class ResetKeepCommand
    void getArgs() 
          throws PromptCancelledException, MissingRequiredParameterException {
      promptForParameters(PARAMS);
-     addArg("reset");
-     addArg("--keep");
-     addArg(PARAMS, REF);
+     append("reset", "--keep").append(PARAMS, REF);
      
      
    }

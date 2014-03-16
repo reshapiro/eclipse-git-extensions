@@ -22,11 +22,11 @@ public class BisectEndCommand
    void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMETERS);
-      addArgs("bisect", "reset");
+      append("bisect", "reset");
       
       String resetTo = PARAMETERS.getParameterValue(REF);
       if (resetTo != null && !resetTo.isEmpty()) {
-         addArg(resetTo);
+         append(resetTo);
       }
    }
    

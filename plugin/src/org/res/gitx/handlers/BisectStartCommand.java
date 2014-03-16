@@ -26,14 +26,14 @@ public class BisectStartCommand
    void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMETERS);
-      addArgs("bisect", "start");
+      append("bisect", "start");
       
       String bad = PARAMETERS.getParameterValue(BAD);
       String good = PARAMETERS.getParameterValue(GOOD);
       if (bad != null) {
-         addArg(bad);
+         append(bad);
          if (good != null) {
-            addArg(good);
+            append(good);
          }
       }
    }
