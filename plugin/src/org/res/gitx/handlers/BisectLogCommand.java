@@ -28,7 +28,7 @@ public class BisectLogCommand
    void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMETERS);
-      addArgs("bisect", "loh");
+      addArgs("bisect", "log");
       
       logFilePath = PARAMETERS.getParameterValue(LOG_FILE_PARAM);
    }
