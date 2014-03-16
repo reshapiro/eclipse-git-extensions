@@ -5,5 +5,6 @@ public enum ParameterType {
    FILE,
    WRITE_FILE,
    BOOLEAN,
-   REF
+   REF,
+   RADIO
 }

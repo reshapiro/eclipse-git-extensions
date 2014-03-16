@@ -50,6 +50,10 @@ public class Parameter
       return null;
    }
 
+   RadioButtons getRadioButtons(Composite container) {
+      return null;
+   }
+   
    RefTree getRefTree(Composite container) {
       return null;
    }

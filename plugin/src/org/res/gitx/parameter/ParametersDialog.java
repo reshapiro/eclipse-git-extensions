@@ -30,6 +30,7 @@ public class ParametersDialog
    private final List<FileChooser> choosers;
    private final List<CheckBox> checkboxes;
    private final List<RefTree> refTrees;
+   private final List<RadioButtons> radioButtonSets;
    
    /**
     * This variant will display as many boxes as there are parameters.
@@ -47,6 +48,7 @@ public class ParametersDialog
       this.choosers = new ArrayList<>(size);
       this.checkboxes = new ArrayList<>(size);
       this.refTrees = new ArrayList<>(size);
+      this.radioButtonSets = new ArrayList<>();
    }
    
    @Override
@@ -124,6 +126,9 @@ public class ParametersDialog
             refTrees.add(parameter.getRefTree(container));
             break;
             
+         case RADIO:
+            radioButtonSets.add(parameter.getRadioButtons(container));
+            break;
          default:
             /* ignore */
       }
@@ -140,6 +145,7 @@ public class ParametersDialog
       int textIndex = 0;
       int fileIndex = 0;
       int checkBoxIndex = 0;
+      int radioIndex = 0;
       int refIndex = 0;
       for (int i=0; i < parameters.size(); i++) {
          Parameter parameter = parameters.getParameter(i);
@@ -162,6 +168,11 @@ public class ParametersDialog
             case REF:
                RefTree tree = refTrees.get(refIndex++);
                parameters.setParameterValue(parameter, tree.getText());
+               break;
+               
+            case RADIO:
+               RadioButtons buttons = radioButtonSets.get(radioIndex++);
+               parameters.setParameterValue(parameter, buttons.getSelection());
                break;
                
             default:
