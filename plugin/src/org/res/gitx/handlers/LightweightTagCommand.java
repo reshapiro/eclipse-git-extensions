@@ -34,9 +34,4 @@ public class LightweightTagCommand
    String getJobName() {
       return "Create Lightweight Tag";
    }
-
-   @Override
-   boolean touch() {
-      return false;
-   }
 }

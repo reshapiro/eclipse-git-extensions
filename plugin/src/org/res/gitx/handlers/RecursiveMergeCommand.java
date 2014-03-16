@@ -41,10 +41,4 @@ public class RecursiveMergeCommand
    String getJobName() {
       return "Recursive merge";
    }
-
-
-   @Override
-   boolean touch() {
-      return true;
-   }
 }

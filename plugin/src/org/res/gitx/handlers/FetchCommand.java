@@ -37,10 +37,4 @@ public class FetchCommand
    String getJobName() {
       return "Fetch from upstream";
    }
-
-
-   @Override
-   boolean touch() {
-      return false;
-   }
 }
