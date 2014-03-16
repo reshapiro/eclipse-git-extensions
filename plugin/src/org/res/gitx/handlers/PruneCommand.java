@@ -6,7 +6,7 @@ import org.res.gitx.parameter.ParameterSet;
 import org.res.gitx.parameter.PromptCancelledException;
 
 /**
- * Execute the Git operation that will find the SVN revision for a given Git Commit
+ * Execute the Git operation that delete obsolete remote references
  * 
  * @author reshapiro
  * 

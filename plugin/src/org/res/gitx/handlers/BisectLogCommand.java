@@ -10,7 +10,6 @@ import org.res.gitx.parameter.SaveFileParameter;
 
 /**
  * Execute the Git operation that will log the bisect.
- * Later it will be possible to log to a file.
  * 
  * @author reshapiro
  * 

@@ -7,7 +7,7 @@ import org.res.gitx.parameter.ParameterSet;
 import org.res.gitx.parameter.PromptCancelledException;
 
 /**
- * Fetch commits from a bundle file
+ * Pull commits from a bundle file
  * 
  * @author reshapiro
  * 

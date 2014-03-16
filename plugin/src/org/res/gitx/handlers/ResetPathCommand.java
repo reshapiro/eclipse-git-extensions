@@ -8,7 +8,7 @@ import org.res.gitx.parameter.RefParameterWithDefault;
 import org.res.gitx.util.Resolver;
 
 /**
- * Git checkout, typically faster than EGit for large repositories
+ * Reset the selected path.  EGit doesn't support this if the path is a directory
  * Commit
  * 
  * @author reshapiro

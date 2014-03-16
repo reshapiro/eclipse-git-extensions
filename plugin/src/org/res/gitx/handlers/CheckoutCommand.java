@@ -8,7 +8,6 @@ import org.res.gitx.parameter.RefParameterWithDefault;
 
 /**
  * Git checkout, typically faster than EGit for large repositories
- * Commit
  * 
  * @author reshapiro
  * 

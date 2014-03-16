@@ -7,7 +7,7 @@ import org.res.gitx.parameter.PromptCancelledException;
 import org.res.gitx.parameter.RefParameterWithDefault;
 
 /**
- * Git checkout, typically faster than EGit for large repositories
+ * The --merge variant of git reset
  * Commit
  * 
  * @author reshapiro

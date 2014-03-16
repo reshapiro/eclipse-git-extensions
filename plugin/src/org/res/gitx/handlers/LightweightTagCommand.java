@@ -7,8 +7,7 @@ import org.res.gitx.parameter.PromptCancelledException;
 import org.res.gitx.parameter.RefParameter;
 
 /**
- * Execute the Git operation that will find the SVN revision for a given Git
- * Commit
+ * Execute the Git operation that will create a light-weight tag
  * 
  * @author reshapiro
  * 

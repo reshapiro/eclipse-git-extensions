@@ -10,7 +10,7 @@ import org.res.gitx.parameter.RefParameter;
 import org.res.gitx.parameter.SaveFileParameter;
 
 /**
- * Fetch commits from a bundle file
+ * Create a bundle file
  * 
  * @author reshapiro
  * 

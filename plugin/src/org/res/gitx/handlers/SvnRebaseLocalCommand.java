@@ -3,8 +3,7 @@ package org.res.gitx.handlers;
 
 
 /**
- * Execute the Git operation that will 'pull' and rebase any new commits on the
- * active branch from the corresponding SVN branch.
+ * Execute the Git operation that will rebase any newly fetched commits.
  * 
  * @author reshapiro
  * 
