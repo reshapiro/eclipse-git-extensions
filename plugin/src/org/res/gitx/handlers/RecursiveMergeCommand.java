@@ -1,10 +1,10 @@
 package org.res.gitx.handlers;
 
-import org.res.gitx.parameter.CheckBoxParameter;
 import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.Parameter;
 import org.res.gitx.parameter.ParameterSet;
 import org.res.gitx.parameter.PromptCancelledException;
+import org.res.gitx.parameter.RadioButtonParameter;
 import org.res.gitx.parameter.RefParameter;
 
 
@@ -19,32 +19,21 @@ import org.res.gitx.parameter.RefParameter;
 public class RecursiveMergeCommand
       extends GitCommandHandler {
    
-   private static final Parameter FF_ONLY = new CheckBoxParameter("Merge", "ff-only", false);
-   private static final Parameter NO_FF = new CheckBoxParameter("Merge", "no-ff", false);
-   private static final Parameter SQUASH = new CheckBoxParameter("Merge", "squash", false);
    private static final Parameter REF = new RefParameter("merge");
-
-   private static final ParameterSet PARAMS = new ParameterSet("Merge", FF_ONLY, NO_FF, SQUASH, REF);
+   
+   private static final String[] OPTIONS = {
+      "ff", "ff-only", "no-ff", "squash"
+   };
+   
+   private static final Parameter FF_OPTION = new RadioButtonParameter("Merge", "Fast Forward", OPTIONS, OPTIONS[0]);
+   private static final ParameterSet PARAMS = new ParameterSet("Merge", FF_OPTION, REF);
 
    @Override
    void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMS);
-      append("merge", "-s", "recursive");
-      
-      /* TODO at most one of these should be true */
-      if (PARAMS.getBooleanParameterValue(FF_ONLY)) {
-         append("--ff-only");
-      }
-      
-      if (PARAMS.getBooleanParameterValue(NO_FF)) {
-         append("--no-ff");
-      }
-      
-      if (PARAMS.getBooleanParameterValue(SQUASH)) {
-         append("--squash");
-      }
-      append(PARAMS, REF);
+      String ffOption = "--" + PARAMS.getParameterValue(FF_OPTION);
+      append("merge", "-s", "recursive", ffOption).append(PARAMS, REF);
    }
    
 

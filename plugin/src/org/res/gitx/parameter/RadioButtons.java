@@ -14,7 +14,7 @@ class RadioButtons extends Composite {
    
    RadioButtons(Composite parent, String title, String[] options,  String defaultValue) {
       super(parent, SWT.NULL);
-
+      selection = defaultValue;
       setLayout(new RowLayout());
 
       Label label = new Label(this, SWT.NULL);
@@ -32,7 +32,7 @@ class RadioButtons extends Composite {
    }
    
    String getSelection() {
-      return "--" + selection;
+      return selection;
    }
 
    private final class RBListener
