@@ -47,6 +47,12 @@
       </command>
       <command
             categoryId="org.res.gitx.commands.category"
+            defaultHandler="org.res.gitx.handlers.MergeAbortCommand"
+            id="org.res.gitx.handlers.MergeAbortCommand"
+            name="abort merge">
+      </command>
+      <command
+            categoryId="org.res.gitx.commands.category"
             defaultHandler="org.res.gitx.handlers.CheckoutCommand"
             id="org.res.gitx.handlers.CheckoutCommand"
             name="checkout">
@@ -233,6 +239,11 @@
                   label="Git Status">
             </command>
             <command
+                  commandId="org.res.gitx.LightweightTagCommand"
+                  id="egitex.handlers.LightweightTagCommand"
+                  label="Create lightweight tag...">
+            </command>
+            <command
                   commandId="org.res.gitx.handlers.PullCommand"
                   label="Pull..."
                   style="push"
@@ -250,10 +261,28 @@
                   style="push">
             </command>
             <command
+                  commandId="org.res.gitx.PruneCommand"
+                  id="egitex.handlers.PruneCommand"
+                  label="Prune obsolete remote refs...">
+            </command>
+            <separator
+                  name="egit-ex.merge"
+                  visible="true">
+            </separator>
+            <command
                   commandId="org.res.gitx.handlers.MergeCommand"
                   label="Merge..."
                   style="push">
             </command>
+            <command
+                  commandId="org.res.gitx.handlers.MergeAbortCommand"
+                  label="Abort merge"
+                  style="push">
+            </command>
+            <separator
+                  name="egit-ex.separator2"
+                  visible="true">
+            </separator>
             <command
                   commandId="org.res.gitx.handlers.CheckoutCommand"
                   label="Checkout..."
@@ -275,11 +304,10 @@
                   label="Reset --merge"
                   style="push">
             </command>
-            <command
-                  commandId="org.res.gitx.LightweightTagCommand"
-                  id="egitex.handlers.LightweightTagCommand"
-                  label="Create lightweight tag...">
-            </command>
+            <separator
+                  name="egit-ex.separator3"
+                  visible="true">
+            </separator>
             <separator
                   name="list and clean"
                   visible="true">
@@ -292,11 +320,6 @@
                   commandId="org.res.gitx.handlers.ListChangedFiles"
                   label="List changed files..."
                   style="push">
-            </command>
-            <command
-                  commandId="org.res.gitx.PruneCommand"
-                  id="egitex.handlers.PruneCommand"
-                  label="Prune obsolete remote refs...">
             </command>
             <command
                   commandId="org.res.gitx.ListOrphanedCommitsCommand"
