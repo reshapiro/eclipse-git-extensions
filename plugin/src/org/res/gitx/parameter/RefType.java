@@ -75,7 +75,7 @@ public enum RefType {
       try (BufferedReader reader = new BufferedReader(new FileReader(packedRefs))) {
          String line;
          while ((line = reader.readLine()) != null) {
-            int refs = line.indexOf(" refs/");
+            int refs = line.indexOf(" " + REFS);
             if (refs < 0) {
                continue;
             }
@@ -85,10 +85,12 @@ public enum RefType {
                if (fullName.startsWith(REFS)) {
                   String strippedName = fullName.substring(REFS.length());
                   int typeIndex = strippedName.indexOf('/');
-                  String type = strippedName.substring(0, typeIndex);
-                  if (type.equalsIgnoreCase(subdir)) {
-                     String name = strippedName.substring(typeIndex+1);
-                     packed.add(name);
+                  if (typeIndex > 0) {
+                     String type = strippedName.substring(0, typeIndex);
+                     if (type.equalsIgnoreCase(subdir)) {
+                        String name = strippedName.substring(typeIndex+1);
+                        packed.add(name);
+                     }
                   }
                }
             }
