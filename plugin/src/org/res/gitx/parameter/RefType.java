@@ -75,7 +75,8 @@ public enum RefType {
       try (BufferedReader reader = new BufferedReader(new FileReader(packedRefs))) {
          String line;
          while ((line = reader.readLine()) != null) {
-            if (line.startsWith("#") || line.startsWith("^")) {
+            int refs = line.indexOf(" refs/");
+            if (refs < 0) {
                continue;
             }
             String[] split = line.split(" ");
