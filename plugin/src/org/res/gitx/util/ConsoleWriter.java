@@ -56,7 +56,7 @@ public class ConsoleWriter {
    }
 
    MessageConsole findConsole() {
-      String name = "";
+      String name = "Git Console";
       ConsolePlugin plugin = ConsolePlugin.getDefault();
       IConsoleManager conMan = plugin.getConsoleManager();
       IConsole[] existing = conMan.getConsoles();
