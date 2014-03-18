@@ -68,6 +68,7 @@ abstract class GitCommandHandler
    public Object execute(ExecutionEvent event)
          throws ExecutionException {
       ensureConsole(event);
+      console.clear();
       String gitExec = Resolver.resolveVariable(GIT_EXEC_VAR);
       if (gitExec.isEmpty()) {
          console.displayLine(NO_GIT_EXEC_VAR_MSG);

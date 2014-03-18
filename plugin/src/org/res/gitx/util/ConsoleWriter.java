@@ -87,4 +87,12 @@ public class ConsoleWriter {
          e.printStackTrace();
       }
    }
+
+   /**
+    * Clear the console display
+    */
+   public void clear() {
+      MessageConsole console = findConsole();
+      console.clearConsole();
+   }
 }
