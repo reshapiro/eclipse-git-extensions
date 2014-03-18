@@ -111,7 +111,7 @@ abstract class GitCommandHandler
    private void ensureConsole(ExecutionEvent event)
          throws ExecutionException {
       if (console == null) {
-      IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
+         IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
          console = new ConsoleWriter(window);
          shell = window.getShell();
       }
