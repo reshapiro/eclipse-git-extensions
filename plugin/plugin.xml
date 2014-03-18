@@ -244,16 +244,16 @@
                   label="Create lightweight tag...">
             </command>
             <command
-                  commandId="org.res.gitx.handlers.PullCommand"
-                  label="Pull..."
-                  style="push"
-                  tooltip="Pull from upstream with optional prune. Typically somewhat faster than JGit pull">
-            </command>
-            <command
                   commandId="org.res.gitx.handlers.FetchCommand"
                   label="Fetch..."
                   style="push"
                   tooltip="Fetch from upstream with optional prune. Typically somewhat faster than JGit fetch">
+            </command>
+            <command
+                  commandId="org.res.gitx.handlers.PullCommand"
+                  label="Pull"
+                  style="push"
+                  tooltip="Pull from upstream with optional prune. Typically somewhat faster than JGit pull">
             </command>
             <command
                   commandId="org.res.gitx.handlers.PushCommand"
