@@ -1,6 +1,7 @@
 package org.res.gitx.util;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPage;
@@ -20,6 +21,8 @@ import org.eclipse.ui.console.MessageConsoleStream;
  *
  */
 public class ConsoleWriter {
+   static final String END_BOUNDARY_MARKER = "\n============================";
+   private static final String BEGIN_BOUNDARY_MARKER = "============================\n";
    private final IWorkbenchWindow window;
    private final Display display;
 
@@ -39,6 +42,41 @@ public class ConsoleWriter {
       } catch (IOException e) {
          e.printStackTrace();
       }
+   }
+
+   /**
+    * Show the Git command
+    * 
+    * @param args the command-line arguments
+    * 
+    * */
+   public void displayCommand(List<String> args) {
+      displayMarker(args.size());
+      StringBuilder builder = new StringBuilder();
+      for (String arg : args) {
+         if (builder.length() > 0) {
+            builder.append(" ");
+         }
+         builder.append(arg);
+      }
+      builder.append('\n');
+      displayLine(builder.toString());
+   }
+
+   /**
+    * Note the end of a command
+    * @param args the command-line arguments
+    */
+   public void displayCommandEnd(List<String> args) {
+      displayMarker(args.size());
+   }
+
+   /**
+    * Clear the console display
+    */
+   public void clear() {
+      MessageConsole console = findConsole();
+      console.clearConsole();
    }
 
    void run(Runnable runnable) {
@@ -76,6 +114,10 @@ public class ConsoleWriter {
       return myConsole;
    }
 
+   private void displayMarker(int size) {
+      displayLine(BEGIN_BOUNDARY_MARKER);
+   }
+
    private void showConsole(MessageConsole myConsole) {
       IWorkbenchPage page = window.getActivePage();
       String id = IConsoleConstants.ID_CONSOLE_VIEW;
@@ -86,13 +128,5 @@ public class ConsoleWriter {
       } catch (PartInitException e) {
          e.printStackTrace();
       }
-   }
-
-   /**
-    * Clear the console display
-    */
-   public void clear() {
-      MessageConsole console = findConsole();
-      console.clearConsole();
    }
 }

@@ -58,10 +58,12 @@ public class Launcher {
     */
    public void launchAndWait(IProgressMonitor monitor) {
       Process process;
+      ConsoleRedirect consoleRedirect = null;
       try {
          process = builder.start();
          if (builder.redirectInput() == Redirect.PIPE) {
-            new ConsoleRedirect(process).start();
+            consoleRedirect = new ConsoleRedirect(process);
+            consoleRedirect.start();
          }
       } catch (IOException e) {
          return;
@@ -87,6 +89,9 @@ public class Launcher {
          } catch (InterruptedException e) {
             /* interrupts aren't relevant here. */
          }
+      }
+      if (consoleRedirect != null) {
+         consoleRedirect.offerText(ConsoleWriter.END_BOUNDARY_MARKER);
       }
    }
 
@@ -128,17 +133,19 @@ public class Launcher {
                }
             }
          }
-
-         void offerText(int count)
-               throws IOException {
-            Sender sender = new Sender(new String(buffer, 0, count));
-            console.run(sender);
+         
+         void offerText(String text) {
+            console.run(new Sender(text));
             /* Sleep in order to give the gui thread a chance to run. A yield is not sufficient. */
             try {
                Thread.sleep(1);
             } catch (InterruptedException e) {
                /* interrupts are ok */
             }
+         }
+         void offerText(int count)
+               throws IOException {
+            offerText(new String(buffer, 0, count));
          }
    }
 }

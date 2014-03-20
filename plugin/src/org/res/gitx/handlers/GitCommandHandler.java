@@ -86,6 +86,7 @@ abstract class GitCommandHandler
       args.add(gitExec);
       try {
          getArgs();
+         console.displayCommand(args);
          String[] processArgs = new String[args.size()];
          args.toArray(processArgs);
 
