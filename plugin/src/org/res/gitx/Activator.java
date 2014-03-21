@@ -10,25 +10,10 @@ import org.osgi.framework.BundleContext;
 public class Activator
       extends AbstractUIPlugin {
 
-   // The plug-in ID
-   public static final String PLUGIN_ID = "egit-ex"; //$NON-NLS-1$
+   public static final String PLUGIN_ID = "egit-ex";
 
-   // The shared instance
    private static Activator plugin;
 
-   /**
-    * The constructor
-    */
-   public Activator() {
-   }
-
-   /*
-    * (non-Javadoc)
-    * 
-    * @see
-    * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
-    * )
-    */
    @Override
    public void start(BundleContext context)
          throws Exception {
@@ -36,13 +21,6 @@ public class Activator
       plugin = this;
    }
 
-   /*
-    * (non-Javadoc)
-    * 
-    * @see
-    * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
-    * )
-    */
    @Override
    public void stop(BundleContext context)
          throws Exception {
@@ -51,8 +29,6 @@ public class Activator
    }
 
    /**
-    * Returns the shared instance
-    * 
     * @return the shared instance
     */
    public static Activator getDefault() {
