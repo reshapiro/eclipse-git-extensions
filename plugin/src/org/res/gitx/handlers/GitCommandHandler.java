@@ -150,6 +150,7 @@ abstract class GitCommandHandler
       if (status == Window.CANCEL) {
          throw new PromptCancelledException();
       }
+      parameters.checkRequirements();
    }
 
    /*

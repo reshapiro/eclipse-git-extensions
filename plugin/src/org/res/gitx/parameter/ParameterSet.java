@@ -46,6 +46,17 @@ public class ParameterSet {
       return value != null && Boolean.valueOf(value);
    }
 
+   public void checkRequirements()
+         throws MissingRequiredParameterException {
+      for (Map.Entry<Parameter, String> entry : values.entrySet()) {
+         String value = entry.getValue();
+         Parameter param = entry.getKey();
+         if (param.isRequired() && (value == null || value.isEmpty())) {
+            throw new MissingRequiredParameterException(param);
+         }
+      }
+   }
+
    void init() {
       values.clear();
       for (Parameter parameter : parameters) {
