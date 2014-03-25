@@ -1,7 +1,5 @@
 package org.res.gitx.handlers;
 
-
-
 /**
  * Abort the current merge
  * 
@@ -10,13 +8,11 @@ package org.res.gitx.handlers;
  */
 public class MergeAbortCommand
       extends GitCommandHandler {
-   
 
    @Override
    void getArgs() {
       append("merge", "--abort");
    }
-   
 
    @Override
    String getJobName() {

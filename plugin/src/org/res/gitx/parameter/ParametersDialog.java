@@ -16,11 +16,11 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * Dialog to gather parameters for a given command
- * Any number of parameters can be provided, with or without default values.
+ * Dialog to gather parameters for a given command Any number of parameters can
+ * be provided, with or without default values.
  * 
  * @author reshapiro
- *
+ * 
  */
 public class ParametersDialog
       extends TitleAreaDialog {
@@ -31,7 +31,7 @@ public class ParametersDialog
    private final List<CheckBox> checkboxes;
    private final List<RefTree> refTrees;
    private final List<RadioButtons> radioButtonSets;
-   
+
    /**
     * This variant will display as many boxes as there are parameters.
     * 
@@ -50,23 +50,23 @@ public class ParametersDialog
       this.refTrees = new ArrayList<>(size);
       this.radioButtonSets = new ArrayList<>();
    }
-   
+
    @Override
    public void create() {
-     super.create();
-     setTitle(parameters.getTitle());
-     setMessage("git extensions", IMessageProvider.INFORMATION);
+      super.create();
+      setTitle(parameters.getTitle());
+      setMessage("git extensions", IMessageProvider.INFORMATION);
    }
 
    @Override
    protected Control createDialogArea(Composite parent) {
-     Composite area = (Composite) super.createDialogArea(parent);
-     Composite container = makeContainer(area, 2);
-     createInputBoxes(container);
+      Composite area = (Composite) super.createDialogArea(parent);
+      Composite container = makeContainer(area, 2);
+      createInputBoxes(container);
 
-     return area;
+      return area;
    }
-   
+
    private Composite makeContainer(Composite area, int width) {
       Composite container = new Composite(area, SWT.NONE);
       container.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -78,15 +78,15 @@ public class ParametersDialog
 
    private void createInputBoxes(Composite container) {
 
-     GridData data = new GridData();
-     data.grabExcessHorizontalSpace = true;
-     data.horizontalAlignment = GridData.FILL;
+      GridData data = new GridData();
+      data.grabExcessHorizontalSpace = true;
+      data.horizontalAlignment = GridData.FILL;
 
-     for (ParameterGroup group : parameters.getGroups()) {
-        addGroup(container, data, group);
-     }
+      for (ParameterGroup group : parameters.getGroups()) {
+         addGroup(container, data, group);
+      }
    }
-   
+
    private void addGroup(Composite container, GridData data, ParameterGroup group) {
       List<Parameter> members = group.getParameters();
       int count = members.size();
@@ -95,7 +95,7 @@ public class ParametersDialog
       } else {
          Composite area = (Composite) super.createDialogArea(container);
          Composite subcontainer = makeContainer(area, 2 * count);
-         for (Parameter parameter: group.getParameters()) {
+         for (Parameter parameter : group.getParameters()) {
             addInputBox(subcontainer, data, parameter);
          }
       }
@@ -111,7 +111,7 @@ public class ParametersDialog
          case BOOLEAN:
             checkboxes.add(parameter.getCheckBox(container));
             break;
-            
+
          case STRING:
             Text inputText = new Text(container, SWT.BORDER);
             inputText.setLayoutData(data);
@@ -121,11 +121,11 @@ public class ParametersDialog
             }
             inputTexts.add(inputText);
             break;
-            
+
          case REF:
             refTrees.add(parameter.getRefTree(container));
             break;
-            
+
          case RADIO:
             radioButtonSets.add(parameter.getRadioButtons(container));
             break;
@@ -133,10 +133,10 @@ public class ParametersDialog
             /* ignore */
       }
    }
-   
+
    @Override
    protected boolean isResizable() {
-     return true;
+      return true;
    }
 
    // save content of the Text fields because they get disposed
@@ -147,34 +147,34 @@ public class ParametersDialog
       int checkBoxIndex = 0;
       int radioIndex = 0;
       int refIndex = 0;
-      for (int i=0; i < parameters.size(); i++) {
+      for (int i = 0; i < parameters.size(); i++) {
          Parameter parameter = parameters.getParameter(i);
          switch (parameter.getParameterType()) {
             case STRING:
                String text = inputTexts.get(textIndex++).getText();
                parameters.setParameterValue(parameter, text);
                break;
-               
+
             case FILE:
                File file = choosers.get(fileIndex++).getFile();
                parameters.setParameterValue(parameter, file != null ? file.getAbsolutePath() : null);
                break;
-               
+
             case BOOLEAN:
                CheckBox checkBox = checkboxes.get(checkBoxIndex++);
                parameters.setParameterValue(parameter, Boolean.toString(checkBox.getStatus()));
                break;
-               
+
             case REF:
                RefTree tree = refTrees.get(refIndex++);
                parameters.setParameterValue(parameter, tree.getText());
                break;
-               
+
             case RADIO:
                RadioButtons buttons = radioButtonSets.get(radioIndex++);
                parameters.setParameterValue(parameter, buttons.getSelection());
                break;
-               
+
             default:
          }
       }
@@ -182,7 +182,7 @@ public class ParametersDialog
 
    @Override
    protected void okPressed() {
-     saveInput();
-     super.okPressed();
+      saveInput();
+      super.okPressed();
    }
 }

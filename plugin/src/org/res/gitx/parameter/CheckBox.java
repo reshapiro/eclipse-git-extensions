@@ -8,8 +8,9 @@ import org.eclipse.swt.widgets.Composite;
 /**
  * A file chooser widget from the web (cleaned up)
  * 
- * The GridData for the {@link #filePath} text box is supposed to resize as needed,
- * but that isn't working unless the containing dialog is itself resized manually.
+ * The GridData for the {@link #filePath} text box is supposed to resize as
+ * needed, but that isn't working unless the containing dialog is itself resized
+ * manually.
  * 
  * For now the resizing is forced by changing the bounds.
  * 
@@ -40,6 +41,6 @@ public class CheckBox
       button = new Button(this, SWT.CHECK);
       button.setText(title);
       button.setSelection(defaultValue);
-      
+
    }
 }

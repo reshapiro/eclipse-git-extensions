@@ -12,12 +12,12 @@ import org.res.gitx.parameter.PromptCancelledException;
  */
 public class ListOrphanedCommitsCommand
       extends GitCommandHandler {
-   
+
    private static final ParameterSet PARAMETERS = new ParameterSet("Finding orphan commits is potentially slow. Proceed?");
 
    @Override
-   void getArgs() throws
-         PromptCancelledException, MissingRequiredParameterException {
+   void getArgs()
+         throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMETERS);
       append("fsck", "--lost-found");
    }
@@ -26,7 +26,7 @@ public class ListOrphanedCommitsCommand
    String getJobName() {
       return "List orphan commits";
    }
-   
+
    @Override
    boolean touch() {
       return false;

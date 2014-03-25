@@ -16,14 +16,14 @@ public class CheckoutCommand
       extends GitCommandHandler {
 
    private static final Parameter REF = new RefParameterNotCurrent("Checkout");
-   
+
    private static final ParameterSet PARAMS = new ParameterSet("Checkout", REF);
 
    @Override
-   void getArgs() 
+   void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
-     promptForParameters(PARAMS);
-     append("checkout").append(PARAMS, REF);
+      promptForParameters(PARAMS);
+      append("checkout").append(PARAMS, REF);
    }
 
    @Override

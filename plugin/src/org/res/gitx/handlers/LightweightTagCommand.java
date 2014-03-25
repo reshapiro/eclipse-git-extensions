@@ -17,16 +17,15 @@ public class LightweightTagCommand
 
    private static final Parameter NAME = new Parameter("Name", true);
    private static final Parameter REF = new RefParameter("Tag to");
-   
-   private static final ParameterSet PARAMS = 
-         new ParameterSet("Lightweight Tag", NAME , REF);
+
+   private static final ParameterSet PARAMS = new ParameterSet("Lightweight Tag", NAME, REF);
 
    @Override
-   void getArgs() 
+   void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
-     promptForParameters(PARAMS);
-     append("tag").append(PARAMS, NAME, REF);
-     
+      promptForParameters(PARAMS);
+      append("tag").append(PARAMS, NAME, REF);
+
    }
 
    @Override

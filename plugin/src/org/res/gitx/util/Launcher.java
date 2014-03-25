@@ -9,14 +9,15 @@ import java.lang.ProcessBuilder.Redirect;
 import org.eclipse.core.runtime.IProgressMonitor;
 
 public class Launcher {
-   
+
    private static final int COMPLETION_CHECK_MILLIS = 50;
    private static final int STREAMING_TEXT_BUFFER_SIZE = 10;
 
    private final ConsoleWriter console;
    private final ProcessBuilder builder;
+
    /**
-    * Handles process launching.  Process output goes to console
+    * Handles process launching. Process output goes to console
     * 
     * @param repoRoot the repository root.
     * @param console where to show the process output
@@ -25,9 +26,9 @@ public class Launcher {
    public Launcher(File repoRoot, ConsoleWriter console, String... args) {
       this(repoRoot, console, null, args);
    }
-   
+
    /**
-    * Handles process launching.  Process output goes to a file
+    * Handles process launching. Process output goes to a file
     * 
     * @param repoRoot the repository root.
     * @param saveTo where to show the process output
@@ -36,8 +37,8 @@ public class Launcher {
    public Launcher(File repoRoot, File saveTo, String... args) {
       this(repoRoot, null, saveTo, args);
    }
-   
-   private Launcher(File repoRoot, ConsoleWriter console, File saveTo,  String... args) {
+
+   private Launcher(File repoRoot, ConsoleWriter console, File saveTo, String... args) {
       this.console = console;
       builder = new ProcessBuilder(args);
       if (saveTo != null) {
@@ -71,7 +72,7 @@ public class Launcher {
       while (true) {
          /* First check for user cancellation. */
          if (monitor.isCanceled()) {
-            /* User cancelled.  Kill the process and exit */
+            /* User cancelled. Kill the process and exit */
             process.destroy();
             break;
          }
@@ -102,50 +103,55 @@ public class Launcher {
       Sender(String message) {
          this.message = message;
       }
+
       @Override
       public void run() {
          console.displayMessage(message);
       }
    }
 
-   private  class ConsoleRedirect
+   private class ConsoleRedirect
          extends Thread {
       final byte[] buffer = new byte[STREAMING_TEXT_BUFFER_SIZE];
-         private final InputStream in;
-         
-         ConsoleRedirect(Process process) {
-            setDaemon(true);
-            this.in = new BufferedInputStream(process.getInputStream());
-         }
-         
-         @Override
-         public void run() {
-            while (true) {
-               try {
-                  int count = in.read(buffer);
-                  if (count < 0) {
-                     return;
-                  } else if (count > 0) {
-                     offerText(count);
-                  }
-               } catch (IOException e) {
-                 return;
-               }
-            }
-         }
-         
-         void offerText(String text) {
-            console.run(new Sender(text));
-            /* Sleep in order to give the gui thread a chance to run. A yield is not sufficient. */
+      private final InputStream in;
+
+      ConsoleRedirect(Process process) {
+         setDaemon(true);
+         this.in = new BufferedInputStream(process.getInputStream());
+      }
+
+      @Override
+      public void run() {
+         while (true) {
             try {
-               Thread.sleep(1);
-            } catch (InterruptedException e) {
-               /* interrupts are ok */
+               int count = in.read(buffer);
+               if (count < 0) {
+                  return;
+               } else if (count > 0) {
+                  offerText(count);
+               }
+            } catch (IOException e) {
+               return;
             }
          }
-         void offerText(int count)
-               throws IOException {
-            offerText(new String(buffer, 0, count));
+      }
+
+      void offerText(String text) {
+         console.run(new Sender(text));
+         /*
+          * Sleep in order to give the gui thread a chance to run. A yield is
+          * not sufficient.
+          */
+         try {
+            Thread.sleep(1);
+         } catch (InterruptedException e) {
+            /* interrupts are ok */
          }
+      }
+
+      void offerText(int count)
+            throws IOException {
+         offerText(new String(buffer, 0, count));
+      }
    }
 }

@@ -14,10 +14,10 @@ import org.res.gitx.parameter.PromptCancelledException;
  */
 public class BundleFetchCommand
       extends GitCommandHandler {
-   
+
    private static final Parameter FILE = new FileParameter("Fetch from bundle file", true);
    private static final ParameterSet PARAMS = new ParameterSet("Bundle file", FILE);
-   
+
    @Override
    void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {

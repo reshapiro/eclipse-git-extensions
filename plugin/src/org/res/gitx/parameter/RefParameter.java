@@ -24,17 +24,18 @@ public class RefParameter
 
    /**
     * Prompt for a reference with a given label.
+    * 
     * @param prompt the label in the dialog.
     * @param required whether or not this parameter is required.
     */
    public RefParameter(String prompt, boolean required) {
       super(prompt, required);
    }
-   
+
    String getDefaultReference() {
       return null;
    }
-   
+
    boolean skipCurrentBranch() {
       return false;
    }
@@ -43,7 +44,7 @@ public class RefParameter
    RefTree getRefTree(Composite container) {
       return new RefTree(container, getDefaultReference(), skipCurrentBranch());
    }
-   
+
    @Override
    ParameterType getParameterType() {
       return ParameterType.REF;

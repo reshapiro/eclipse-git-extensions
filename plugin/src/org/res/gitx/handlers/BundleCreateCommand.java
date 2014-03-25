@@ -17,19 +17,20 @@ import org.res.gitx.parameter.SaveFileParameter;
  */
 public class BundleCreateCommand
       extends GitCommandHandler {
-   
+
    private static final RefParameter START = new RefParameter("Start commit");
    private static final RefParameter END = new RefParameter("End commit");
    private static final ParameterGroup GROUP = new RefPair(START, END);
    private static final Parameter FILE = new SaveFileParameter("Save to bundle file", true);
-   
+
    private static final ParameterSet PARAMS = new ParameterSet("Bundle Spec", FILE, GROUP);
 
    @Override
-   void getArgs() 
+   void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMS);
-      append("bundle", "create").append(PARAMS, FILE).append(PARAMS.getParameterValue(START) + ".." + PARAMS.getParameterValue(END));
+      append("bundle", "create").append(PARAMS, FILE)
+                                .append(PARAMS.getParameterValue(START) + ".." + PARAMS.getParameterValue(END));
    }
 
    @Override
@@ -41,5 +42,5 @@ public class BundleCreateCommand
    boolean touch() {
       return false;
    }
-   
+
 }

@@ -9,14 +9,14 @@ import java.util.Map;
  * An ordered group of {@link Parameter} specifications.
  * 
  * @author reshapiro
- *
+ * 
  */
 public class ParameterSet {
    private final Map<Parameter, String> values = new HashMap<>();
    private final List<Parameter> parameters = new ArrayList<>();
    private final List<ParameterGroup> groups;
    private final String title;
-   
+
    /**
     * Create one
     * 
@@ -31,7 +31,7 @@ public class ParameterSet {
          parameters.addAll(group.getParameters());
       }
    }
-   
+
    /**
     * 
     * @param parameter a member of the group
@@ -63,15 +63,15 @@ public class ParameterSet {
          values.put(parameter, parameter.getDefaultValue());
       }
    }
-   
+
    String getTitle() {
       return title;
    }
-   
+
    List<ParameterGroup> getGroups() {
       return groups;
    }
-   
+
    Parameter getParameter(int index) {
       return parameters.get(index);
    }
@@ -79,7 +79,7 @@ public class ParameterSet {
    void setParameterValue(Parameter parameter, String value) {
       values.put(parameter, value);
    }
-   
+
    int size() {
       return values.size();
    }

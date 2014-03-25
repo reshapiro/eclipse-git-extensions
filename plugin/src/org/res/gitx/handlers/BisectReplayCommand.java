@@ -14,17 +14,17 @@ import org.res.gitx.parameter.PromptCancelledException;
  */
 public class BisectReplayCommand
       extends GitCommandHandler {
-   
+
    private static final Parameter FILE = new FileParameter("Log file", true);
    private final ParameterSet PARAMETERS = new ParameterSet("Replay bisect", FILE);
-   
+
    @Override
    void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMETERS);
       append("bisect", "replay").append(PARAMETERS, FILE);
    }
-   
+
    @Override
    String getJobName() {
       return "Replay bisect log";

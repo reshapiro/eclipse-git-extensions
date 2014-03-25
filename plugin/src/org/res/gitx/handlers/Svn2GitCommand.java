@@ -6,21 +6,22 @@ import org.res.gitx.parameter.ParameterSet;
 import org.res.gitx.parameter.PromptCancelledException;
 
 /**
- * Execute the Git operation that will show the Git SHA for a given SVN revision.
+ * Execute the Git operation that will show the Git SHA for a given SVN
+ * revision.
  * 
  * @author reshapiro
  * 
  */
 public class Svn2GitCommand
       extends GitCommandHandler {
-   
+
    private static final Parameter SVN_REV_PARAM = new Parameter("SVN rev", true);
-   
+
    private static final ParameterSet PARAMS = new ParameterSet("Show Git commit for SVN revison", SVN_REV_PARAM);
-   
+
    @Override
    void getArgs()
-            throws PromptCancelledException, MissingRequiredParameterException {
+         throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMS);
       String rev = PARAMS.getParameterValue(SVN_REV_PARAM);
       if (!rev.startsWith("r")) {
@@ -33,7 +34,7 @@ public class Svn2GitCommand
    String getJobName() {
       return "Display the SHA for a given SVN revision";
    }
-   
+
    @Override
    boolean touch() {
       return false;

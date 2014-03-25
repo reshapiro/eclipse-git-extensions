@@ -17,8 +17,9 @@ import org.eclipse.ui.console.MessageConsoleStream;
 
 /**
  * Handles all output to the console.
+ * 
  * @author reshapiro
- *
+ * 
  */
 public class ConsoleWriter {
    static final String END_BOUNDARY_MARKER = "\n============================";
@@ -33,6 +34,7 @@ public class ConsoleWriter {
 
    /**
     * Display a single line to the console
+    * 
     * @param line typically an error message.
     */
    public void displayLine(String line) {
@@ -65,6 +67,7 @@ public class ConsoleWriter {
 
    /**
     * Note the end of a command
+    * 
     * @param args the command-line arguments
     */
    public void displayCommandEnd(List<String> args) {
@@ -82,7 +85,7 @@ public class ConsoleWriter {
    void run(Runnable runnable) {
       display.asyncExec(runnable);
    }
-   
+
    void displayMessage(String message) {
       MessageConsole console = findConsole();
       try (MessageConsoleStream out = console.newMessageStream()) {

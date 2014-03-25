@@ -21,8 +21,8 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.Parameter;
 import org.res.gitx.parameter.ParameterSet;
-import org.res.gitx.parameter.PromptCancelledException;
 import org.res.gitx.parameter.ParametersDialog;
+import org.res.gitx.parameter.PromptCancelledException;
 import org.res.gitx.util.ConsoleWriter;
 import org.res.gitx.util.Launcher;
 import org.res.gitx.util.Resolver;
@@ -44,21 +44,21 @@ abstract class GitCommandHandler
     */
    abstract void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException;
-   
-   GitCommandHandler append(String...arguments) {
+
+   GitCommandHandler append(String... arguments) {
       for (String arg : arguments) {
          args.add(arg);
       }
       return this;
    }
-   
-   GitCommandHandler append(ParameterSet params, Parameter...arguments) {
+
+   GitCommandHandler append(ParameterSet params, Parameter... arguments) {
       for (Parameter param : arguments) {
          args.add(params.getParameterValue(param));
       }
       return this;
    }
-   
+
    @Override
    public boolean isEnabled() {
       return !Resolver.resolveVariable(EGIT_WORK_TREE_VAR).isEmpty();
@@ -123,7 +123,7 @@ abstract class GitCommandHandler
     * @return the name shown in the progress area.
     */
    abstract String getJobName();
-   
+
    /**
     * Override to return false if no refresh is required
     * 
@@ -154,8 +154,7 @@ abstract class GitCommandHandler
    }
 
    /*
-    * Refresh open projects.
-    * Possibly a new progress monitor is needed for each?
+    * Refresh open projects. Possibly a new progress monitor is needed for each?
     */
    private void refreshWorkspace(IProgressMonitor monitor) {
       for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {

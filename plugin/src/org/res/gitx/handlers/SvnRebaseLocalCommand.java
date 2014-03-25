@@ -1,7 +1,5 @@
 package org.res.gitx.handlers;
 
-
-
 /**
  * Execute the Git operation that will rebase any newly fetched commits.
  * 
@@ -10,7 +8,7 @@ package org.res.gitx.handlers;
  */
 public class SvnRebaseLocalCommand
       extends GitCommandHandler {
-   
+
    @Override
    void getArgs() {
       append("svn", "rebase", "--local");

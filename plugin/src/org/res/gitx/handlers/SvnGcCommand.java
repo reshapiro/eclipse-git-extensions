@@ -1,16 +1,14 @@
 package org.res.gitx.handlers;
 
-
-
 /**
- * Execute the Git operation that will gc svn 
+ * Execute the Git operation that will gc svn
  * 
  * @author reshapiro
  * 
  */
 public class SvnGcCommand
       extends GitCommandHandler {
-   
+
    @Override
    void getArgs() {
       append("svn", "gc");
@@ -20,7 +18,7 @@ public class SvnGcCommand
    String getJobName() {
       return "SVN gc";
    }
-   
+
    @Override
    boolean touch() {
       return false;

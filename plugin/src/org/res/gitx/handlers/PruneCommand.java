@@ -13,10 +13,10 @@ import org.res.gitx.parameter.PromptCancelledException;
  */
 public class PruneCommand
       extends GitCommandHandler {
-   
+
    private static final Parameter REF = new Parameter("Remote", true, "origin");
    private static final ParameterSet PARAMS = new ParameterSet("Prune remote refs", REF);
-   
+
    @Override
    void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {

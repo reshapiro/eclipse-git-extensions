@@ -16,11 +16,11 @@ import org.res.gitx.parameter.SaveFileParameter;
  */
 public class BisectLogCommand
       extends GitCommandHandler {
-   
+
    private static final Parameter LOG_FILE_PARAM = new SaveFileParameter("Save log as (optional)", false);
-   
+
    private static final ParameterSet PARAMETERS = new ParameterSet("Log file", LOG_FILE_PARAM);
-   
+
    private String logFilePath;
 
    @Override
@@ -28,10 +28,10 @@ public class BisectLogCommand
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMETERS);
       append("bisect", "log");
-      
+
       logFilePath = PARAMETERS.getParameterValue(LOG_FILE_PARAM);
    }
-   
+
    @Override
    String getJobName() {
       return "Log bisect";
@@ -49,7 +49,5 @@ public class BisectLogCommand
       }
       return super.getOutputFile();
    }
-
-  
 
 }

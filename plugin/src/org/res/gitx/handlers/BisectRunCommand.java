@@ -6,18 +6,18 @@ import org.res.gitx.parameter.ParameterSet;
 import org.res.gitx.parameter.PromptCancelledException;
 
 /**
- * Execute the Git operation that will run a command to determine good v bad in a bisect.
- * Later it will be possible to log to a file.
+ * Execute the Git operation that will run a command to determine good v bad in
+ * a bisect. Later it will be possible to log to a file.
  * 
  * @author reshapiro
  * 
  */
 public class BisectRunCommand
       extends GitCommandHandler {
-   
+
    private static final Parameter CMD_ARGS_PARAM = new Parameter("Command", true);
    private static final ParameterSet PARAMETERS = new ParameterSet("Bisect Command args", CMD_ARGS_PARAM);
-   
+
    @Override
    void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
@@ -26,7 +26,7 @@ public class BisectRunCommand
       String[] cmd = parameterValue.split(" ");
       append("bisect", "run").append(cmd);
    }
-   
+
    @Override
    String getJobName() {
       return "Run bisect command";

@@ -12,12 +12,13 @@ public class CheckBoxParameter
       this(name, label, false);
       this.label = label;
    }
-   
+
    public CheckBoxParameter(String name, String label, boolean defaultValue) {
       super(name, false);
       this.label = label;
       this.defaultValue = defaultValue;
    }
+
    @Override
    ParameterType getParameterType() {
       return ParameterType.BOOLEAN;

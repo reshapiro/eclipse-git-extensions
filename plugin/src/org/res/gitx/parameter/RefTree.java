@@ -35,7 +35,7 @@ public class RefTree
       }
       createContent(defaultReference);
    }
-   
+
    public String getText() {
       return text.getText();
    }
@@ -48,7 +48,7 @@ public class RefTree
       }
       text.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
       tree = new Tree(this, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
-      
+
       for (RefType type : RefType.values()) {
          List<String> refs = type.getRefs();
          if (refs.isEmpty()) {
@@ -67,29 +67,29 @@ public class RefTree
          baseItem.setExpanded(true);
       }
       tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-      
+
       tree.addListener(SWT.Selection, new Listener() {
          @Override
          public void handleEvent(Event event) {
-           if (event.detail != SWT.CHECK) {
-              TreeItem item = (TreeItem) event.item;
-              if (item.getParentItem() != null) {
-                 if ((SWT.BUTTON3 | event.stateMask) == event.stateMask) {
-                    /* append */
-                    String extantText = text.getText();
-                    if (extantText.isEmpty()) {
-                       text.setText(item.getText());
-                       
-                    } else {
-                       text.setText(extantText + " " + item.getText());
-                    }
-                 } else {
-                    text.setText(item.getText());
-                 }
-                 
-              }
-           }
+            if (event.detail != SWT.CHECK) {
+               TreeItem item = (TreeItem) event.item;
+               if (item.getParentItem() != null) {
+                  if ((SWT.BUTTON3 | event.stateMask) == event.stateMask) {
+                     /* append */
+                     String extantText = text.getText();
+                     if (extantText.isEmpty()) {
+                        text.setText(item.getText());
+
+                     } else {
+                        text.setText(extantText + " " + item.getText());
+                     }
+                  } else {
+                     text.setText(item.getText());
+                  }
+
+               }
+            }
          }
-       });
+      });
    }
 }

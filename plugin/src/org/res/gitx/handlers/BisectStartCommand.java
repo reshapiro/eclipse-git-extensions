@@ -19,7 +19,7 @@ public class BisectStartCommand
    private static final RefParameter BAD = new RefParameter("Bad (optional)", false);
    private static final RefParameter GOOD = new RefParameter("Good(optional)", false);
    private static final ParameterGroup GROUP = new RefPair(BAD, GOOD);
-   
+
    private static final ParameterSet PARAMETERS = new ParameterSet("Start Bisect", GROUP);
 
    @Override
@@ -27,7 +27,7 @@ public class BisectStartCommand
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMETERS);
       append("bisect", "start");
-      
+
       String bad = PARAMETERS.getParameterValue(BAD);
       String good = PARAMETERS.getParameterValue(GOOD);
       if (bad != null) {

@@ -7,17 +7,18 @@ import org.res.gitx.parameter.PromptCancelledException;
 import org.res.gitx.parameter.RefParameter;
 
 /**
- * Execute the Git operation that will find the SVN revision for a given Git Commit
+ * Execute the Git operation that will find the SVN revision for a given Git
+ * Commit
  * 
  * @author reshapiro
  * 
  */
 public class Git2SvnHandler
       extends GitCommandHandler {
-   
-   private static Parameter REF =  new RefParameter("Rev for");
-   private static final ParameterSet PARAMS = new ParameterSet("Show SVN revision for SHA",REF);
-   
+
+   private static Parameter REF = new RefParameter("Rev for");
+   private static final ParameterSet PARAMS = new ParameterSet("Show SVN revision for SHA", REF);
+
    @Override
    void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {

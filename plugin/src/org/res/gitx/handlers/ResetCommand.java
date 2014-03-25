@@ -17,26 +17,30 @@ public class ResetCommand
       extends GitCommandHandler {
 
    private static final ParameterSet CONFIRM = new ParameterSet("Hard reset will modify working tree. Proceed?");
-   
+
    private static final String[] MODE_OPTIONS = {
-      "soft", "mixed", "hard", "keep", "merge"
+      "soft",
+      "mixed",
+      "hard",
+      "keep",
+      "merge"
    };
-   
+
    private static final Parameter MODE_OPTION = new RadioButtonParameter("Reset", "mode", MODE_OPTIONS, "mixed");
-   
+
    private static final Parameter REF = new RefParameterWithDefault("HEAD", "Reset to");
-   
+
    private static final ParameterSet PARAMS = new ParameterSet("Reset", MODE_OPTION, REF);
 
    @Override
-   void getArgs() 
+   void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
-     promptForParameters(PARAMS);
-     String mode = PARAMS.getParameterValue(MODE_OPTION);
-     if (mode.equals("hard")) {
-        promptForParameters(CONFIRM);
-     }
-     append("reset", "--" + mode).append(PARAMS, REF);
+      promptForParameters(PARAMS);
+      String mode = PARAMS.getParameterValue(MODE_OPTION);
+      if (mode.equals("hard")) {
+         promptForParameters(CONFIRM);
+      }
+      append("reset", "--" + mode).append(PARAMS, REF);
    }
 
    @Override

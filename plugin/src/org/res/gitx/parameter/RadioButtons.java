@@ -1,6 +1,5 @@
 package org.res.gitx.parameter;
 
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -9,10 +8,11 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
-class RadioButtons extends Composite {
+class RadioButtons
+      extends Composite {
    private String selection;
-   
-   RadioButtons(Composite parent, String title, String[] options,  String defaultValue) {
+
+   RadioButtons(Composite parent, String title, String[] options, String defaultValue) {
       super(parent, SWT.NULL);
       selection = defaultValue;
       setLayout(new RowLayout());
@@ -30,7 +30,7 @@ class RadioButtons extends Composite {
       }
       pack();
    }
-   
+
    String getSelection() {
       return selection;
    }
@@ -39,10 +39,10 @@ class RadioButtons extends Composite {
          implements SelectionListener {
       @Override
       public void widgetSelected(SelectionEvent e) {
-          Button button = (Button) e.getSource();
-          selection = button.getText();
+         Button button = (Button) e.getSource();
+         selection = button.getText();
       }
-   
+
       @Override
       public void widgetDefaultSelected(SelectionEvent e) {
          /* */

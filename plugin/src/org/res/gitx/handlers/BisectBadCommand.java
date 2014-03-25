@@ -1,7 +1,5 @@
 package org.res.gitx.handlers;
 
-
-
 /**
  * Execute the Git operation that will mark the HEAD as bad in a bisect
  * 
@@ -10,7 +8,7 @@ package org.res.gitx.handlers;
  */
 public class BisectBadCommand
       extends GitCommandHandler {
-   
+
    @Override
    void getArgs() {
       append("bisect", "bad");

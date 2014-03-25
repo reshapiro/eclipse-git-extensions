@@ -17,8 +17,9 @@ import org.eclipse.swt.widgets.Text;
 /**
  * A file chooser widget from the web (cleaned up)
  * 
- * The GridData for the {@link #filePath} text box is supposed to resize as needed,
- * but that isn't working unless the containing dialog is itself resized manually.
+ * The GridData for the {@link #filePath} text box is supposed to resize as
+ * needed, but that isn't working unless the containing dialog is itself resized
+ * manually.
  * 
  * For now the resizing is forced by changing the bounds.
  * 
@@ -30,7 +31,7 @@ public class FileChooser
    private final int type;
    private final String title;
 
-   FileChooser(Composite parent, int type,String title) {
+   FileChooser(Composite parent, int type, String title) {
       super(parent, SWT.NULL);
       this.type = type;
       this.title = title;
@@ -52,10 +53,10 @@ public class FileChooser
    private void resizeTextBox(String path) {
       GC gc = new GC(filePath);
       gc.setFont(getFont());
-      
+
       /* Start with a bit of spacing */
       int stringWidth = gc.getFontMetrics().getAverageCharWidth() * 4;
-      for (int i=0; i< path.length(); i++) {
+      for (int i = 0; i < path.length(); i++) {
          stringWidth += gc.getCharWidth(path.charAt(i));
       }
       gc.dispose();
@@ -67,10 +68,10 @@ public class FileChooser
 
    private void createContent() {
       setLayout(new GridLayout(2, false));
-      
+
       filePath = new Text(this, SWT.SINGLE | SWT.BORDER);
       filePath.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-      
+
       Button activationButton = new Button(this, SWT.NONE);
       activationButton.setText("...");
       activationButton.addSelectionListener(new SelectionAdapter() {

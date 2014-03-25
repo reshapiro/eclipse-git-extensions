@@ -6,13 +6,14 @@ import org.eclipse.core.variables.VariablesPlugin;
 
 /**
  * Utility class for variable resolution
+ * 
  * @author reshapiro
- *
+ * 
  */
 public final class Resolver {
    private Resolver() {
    }
-   
+
    public static String resolveVariable(String var) {
       IStringVariableManager manager = VariablesPlugin.getDefault().getStringVariableManager();
       try {
