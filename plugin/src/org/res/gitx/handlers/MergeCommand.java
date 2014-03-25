@@ -18,7 +18,7 @@ import org.res.gitx.parameter.RefParameter;
 public class MergeCommand
       extends GitCommandHandler {
    
-   private static final Parameter REF = new RefParameter("merge");
+   private static final Parameter REF = new RefParameter("Merge from");
    
    private static final String[] FF_OPTIONS = {
       "ff", "ff-only", "no-ff", "squash"
