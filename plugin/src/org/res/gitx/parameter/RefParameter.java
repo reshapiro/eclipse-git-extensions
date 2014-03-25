@@ -34,10 +34,14 @@ public class RefParameter
    String getDefaultReference() {
       return null;
    }
+   
+   boolean skipCurrentBranch() {
+      return false;
+   }
 
    @Override
    RefTree getRefTree(Composite container) {
-      return new RefTree(container, getDefaultReference());
+      return new RefTree(container, getDefaultReference(), skipCurrentBranch());
    }
    
    @Override

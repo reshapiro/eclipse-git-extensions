@@ -6,7 +6,7 @@ import org.res.gitx.parameter.Parameter;
 import org.res.gitx.parameter.ParameterSet;
 import org.res.gitx.parameter.PromptCancelledException;
 import org.res.gitx.parameter.RadioButtonParameter;
-import org.res.gitx.parameter.RefParameter;
+import org.res.gitx.parameter.RefParameterNotCurrent;
 
 
 /**
@@ -18,7 +18,7 @@ import org.res.gitx.parameter.RefParameter;
 public class MergeCommand
       extends GitCommandHandler {
    
-   private static final Parameter REF = new RefParameter("Merge from");
+   private static final Parameter REF = new RefParameterNotCurrent("Merge from");
    
    private static final String[] FF_OPTIONS = {
       "ff", "ff-only", "no-ff", "squash"
