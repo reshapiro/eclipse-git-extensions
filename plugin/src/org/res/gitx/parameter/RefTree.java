@@ -74,7 +74,19 @@ public class RefTree
            if (event.detail != SWT.CHECK) {
               TreeItem item = (TreeItem) event.item;
               if (item.getParentItem() != null) {
-                 text.setText(item.getText());
+                 if ((SWT.BUTTON3 | event.stateMask) == event.stateMask) {
+                    /* append */
+                    String extantText = text.getText();
+                    if (extantText.isEmpty()) {
+                       text.setText(item.getText());
+                       
+                    } else {
+                       text.setText(extantText + " " + item.getText());
+                    }
+                 } else {
+                    text.setText(item.getText());
+                 }
+                 
               }
            }
          }

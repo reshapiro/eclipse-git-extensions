@@ -65,7 +65,10 @@ public class MergeCommand
          }
          /* TODO: other recursive white-space options: ignore-space-change,  ignore-space-at-eol */
       }
-      append(ffOption).append(PARAMS, REF);
+      append(ffOption);
+      for (String reference : PARAMS.getParameterValue(REF).split(" ")) {
+         append(reference);
+      }
    }
    
 
