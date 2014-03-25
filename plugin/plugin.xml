@@ -59,14 +59,8 @@
       </command>
       <command
             categoryId="org.res.gitx.commands.category"
-            defaultHandler="org.res.gitx.handlers.ResetMergeCommand"
-            id="org.res.gitx.handlers.ResetMergeCommand"
-            name="reset merge">
-      </command>
-      <command
-            categoryId="org.res.gitx.commands.category"
-            defaultHandler="org.res.gitx.handlers.ResetKeepCommand"
-            id="org.res.gitx.handlers.ResetKeepCommand"
+            defaultHandler="org.res.gitx.handlers.ResetCommand"
+            id="org.res.gitx.handlers.ResetCommand"
             name="reset keep">
       </command>
       <command
@@ -290,18 +284,13 @@
                   tooltip="Checkout a branch, tag or reference. Typically somewhat faster than JGit checkout">
             </command>
             <command
+                  commandId="org.res.gitx.handlers.ResetCommand"
+                  label="Reset..."
+                  style="push">
+            </command>
+            <command
                   commandId="org.res.gitx.handlers.ResetPathCommand"
                   label="Reset Selected Path..."
-                  style="push">
-            </command>
-            <command
-                  commandId="org.res.gitx.handlers.ResetKeepCommand"
-                  label="Reset --keep..."
-                  style="push">
-            </command>
-            <command
-                  commandId="org.res.gitx.handlers.ResetMergeCommand"
-                  label="Reset --merge"
                   style="push">
             </command>
             <separator
