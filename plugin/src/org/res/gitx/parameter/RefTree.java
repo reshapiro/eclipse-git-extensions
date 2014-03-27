@@ -49,6 +49,17 @@ public class RefTree
       text.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
       tree = new Tree(this, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
 
+      TreeItem symRefs = new TreeItem(tree, SWT.NULL);
+      symRefs.setText("SymbolicRefs");
+      TreeItem head = new TreeItem(symRefs, SWT.NULL);
+      head.setText("HEAD");
+      
+      TreeItem origHead = new TreeItem(symRefs, SWT.NULL);
+      origHead.setText("ORIG_HEAD");
+      
+      TreeItem fetchHead = new TreeItem(symRefs, SWT.NULL);
+      fetchHead.setText("FETCH_HEAD");
+      
       for (RefType type : RefType.values()) {
          List<String> refs = type.getRefs();
          if (refs.isEmpty()) {
