@@ -93,7 +93,7 @@ abstract class GitCommandHandler
          Launcher launcher;
          File output = getOutputFile();
          if (output != null) {
-            launcher = new Launcher(repo, output, processArgs);
+            launcher = new Launcher(repo, console, output, processArgs);
          } else {
             launcher = new Launcher(repo, console, processArgs);
          }

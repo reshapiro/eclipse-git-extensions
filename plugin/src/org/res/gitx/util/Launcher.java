@@ -34,11 +34,7 @@ public class Launcher {
     * @param saveTo where to show the process output
     * @param args Git command arguments
     */
-   public Launcher(File repoRoot, File saveTo, String... args) {
-      this(repoRoot, null, saveTo, args);
-   }
-
-   private Launcher(File repoRoot, ConsoleWriter console, File saveTo, String... args) {
+   public Launcher(File repoRoot, ConsoleWriter console, File saveTo, String... args) {
       this.console = console;
       builder = new ProcessBuilder(args);
       if (saveTo != null) {
