@@ -211,6 +211,18 @@
             id="org.res.gitx.handlers.SvnGcCommand"
             name="svn gc">
       </command>
+      <command
+            categoryId="org.res.gitx.commands.category"
+            defaultHandler="org.res.gitx.handlers.CreatePatchCommand"
+            id="org.res.gitx.handlers.CreatePatchCommand"
+            name="create patch">
+      </command>
+      <command
+            defaultHandler="org.res.gitx.handlers.ApplyPatchCommand"
+            description="apply patch"
+            id="org.res.gitx.handlers.ApplyPatchCommand"
+            name="name">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -314,6 +326,16 @@
                   commandId="org.res.gitx.ListOrphanedCommitsCommand"
                   id="egitex.handlers.ListOrphanedCommitsCommand"
                   label="List orphan commits">
+            </command>
+            <command
+                  commandId="org.res.gitx.handlers.CreatePatchCommand"
+                  label="Create patch..."
+                  style="push">
+            </command>
+            <command
+                  commandId="org.res.gitx.handlers.ApplyPatchCommand"
+                  label="Apply patch..."
+                  style="push">
             </command>
             <separator
                   name="bisect"
