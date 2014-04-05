@@ -329,7 +329,7 @@
             </command>
             <command
                   commandId="org.res.gitx.handlers.CreatePatchCommand"
-                  label="Create patch..."
+                  label="Create branch-relative patch..."
                   style="push">
             </command>
             <command
