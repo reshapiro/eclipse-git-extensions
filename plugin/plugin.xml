@@ -302,7 +302,7 @@
             </command>
             <command
                   commandId="org.res.gitx.handlers.ResetPathCommand"
-                  label="Reset Selected Path..."
+                  label="Reset Selected Paths..."
                   style="push">
             </command>
             <separator

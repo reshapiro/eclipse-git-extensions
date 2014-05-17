@@ -26,6 +26,7 @@ import org.res.gitx.parameter.PromptCancelledException;
 import org.res.gitx.util.ConsoleWriter;
 import org.res.gitx.util.Launcher;
 import org.res.gitx.util.Resolver;
+import org.res.gitx.util.SelectionHelper;
 
 abstract class GitCommandHandler
       extends AbstractHandler {
@@ -36,8 +37,8 @@ abstract class GitCommandHandler
 
    private ConsoleWriter console;
    private Shell shell;
+   private SelectionHelper selectionHelper;
    private final List<String> args = new ArrayList<>();
-
    /**
     * 
     * @throws PromptCancelledException
@@ -51,12 +52,21 @@ abstract class GitCommandHandler
       }
       return this;
    }
+   
+   void append(List<String> arguments) {
+      args.addAll(arguments);
+      
+   }
 
    GitCommandHandler append(ParameterSet params, Parameter... arguments) {
       for (Parameter param : arguments) {
          args.add(params.getParameterValue(param));
       }
       return this;
+   }
+   
+   List<String> getSelection() {
+      return selectionHelper.updateSelectedPaths();
    }
 
    @Override
@@ -69,6 +79,7 @@ abstract class GitCommandHandler
          throws ExecutionException {
       ensureConsole(event);
       console.clear();
+      
       String gitExec = Resolver.resolveVariable(GIT_EXEC_VAR);
       if (gitExec.isEmpty()) {
          console.displayLine(NO_GIT_EXEC_VAR_MSG);
@@ -111,10 +122,13 @@ abstract class GitCommandHandler
 
    private void ensureConsole(ExecutionEvent event)
          throws ExecutionException {
+      IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
       if (console == null) {
-         IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
          console = new ConsoleWriter(window);
          shell = window.getShell();
+      }
+      if (selectionHelper == null) {
+         selectionHelper = new SelectionHelper(window.getSelectionService());
       }
    }
 

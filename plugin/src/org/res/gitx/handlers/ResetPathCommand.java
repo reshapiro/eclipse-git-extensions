@@ -1,11 +1,12 @@
 package org.res.gitx.handlers;
 
+import java.util.List;
+
 import org.res.gitx.parameter.MissingRequiredParameterException;
 import org.res.gitx.parameter.Parameter;
 import org.res.gitx.parameter.ParameterSet;
 import org.res.gitx.parameter.PromptCancelledException;
 import org.res.gitx.parameter.RefParameterWithDefault;
-import org.res.gitx.util.Resolver;
 
 /**
  * Reset the selected path. EGit doesn't support this if the path is a directory
@@ -25,13 +26,11 @@ public class ResetPathCommand
    void getArgs()
          throws PromptCancelledException, MissingRequiredParameterException {
       promptForParameters(PARAMS);
-      String relativePath = Resolver.resolveVariable("git_repo_relative_path");
-      if (relativePath == null || relativePath.isEmpty()) {
+      List<String> paths = getSelection();
+      if (paths.isEmpty()) {
          throw new MissingRequiredParameterException("No path selected");
       }
-
-      append("reset").append(PARAMS, REF).append("--", relativePath);
-
+      append("reset").append(PARAMS, REF).append("--").append(paths);
    }
 
    @Override
