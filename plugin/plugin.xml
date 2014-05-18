@@ -59,6 +59,12 @@
       </command>
       <command
             categoryId="org.res.gitx.commands.category"
+            defaultHandler="org.res.gitx.handlers.CheckoutSelectedPathsCommand"
+            id="org.res.gitx.handlers.CheckoutSelectedPathsCommand"
+            name="checkout selected paths">
+      </command>
+      <command
+            categoryId="org.res.gitx.commands.category"
             defaultHandler="org.res.gitx.handlers.ResetCommand"
             id="org.res.gitx.handlers.ResetCommand"
             name="reset keep">
@@ -296,13 +302,19 @@
                   tooltip="Checkout a branch, tag or reference. Typically somewhat faster than JGit checkout">
             </command>
             <command
+                  commandId="org.res.gitx.handlers.CheckoutSelectedPathsCommand"
+                  id="org.res.gitx.handlers.CheckoutSelectedPathsCommand"
+                  label="Checkout selected paths"
+                  style="push">
+            </command>
+            <command
                   commandId="org.res.gitx.handlers.ResetCommand"
                   label="Reset..."
                   style="push">
             </command>
             <command
                   commandId="org.res.gitx.handlers.ResetPathCommand"
-                  label="Reset Selected Paths..."
+                  label="Reset Selected Paths"
                   style="push">
             </command>
             <separator
