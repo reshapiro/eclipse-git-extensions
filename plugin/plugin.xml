@@ -229,6 +229,24 @@
             id="org.res.gitx.handlers.ApplyPatchCommand"
             name="name">
       </command>
+      <command
+            categoryId="org.res.gitx.commands.category"
+            defaultHandler="org.res.gitx.handlers.SaveStashCommand"
+            id="org.res.gitx.handlers.SaveStashCommand"
+            name="save stash">
+      </command>
+      <command
+            categoryId="org.res.gitx.commands.category"
+            defaultHandler="org.res.gitx.handlers.PopStashCommand"
+            id="org.res.gitx.handlers.PopStashCommand"
+            name="pop stash">
+      </command>
+      <command
+            categoryId="org.res.gitx.commands.category"
+            defaultHandler="org.res.gitx.handlers.ClearStashCommand"
+            id="org.res.gitx.handlers.ClearStashCommand"
+            name="clear stashes">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -272,11 +290,6 @@
                   label="Push"
                   style="push">
             </command>
-            <command
-                  commandId="org.res.gitx.PruneCommand"
-                  id="egitex.handlers.PruneCommand"
-                  label="Prune obsolete remote refs...">
-            </command>
             <separator
                   name="egit-ex.merge"
                   visible="true">
@@ -292,21 +305,9 @@
                   style="push">
             </command>
             <separator
-                  name="egit-ex.separator2"
+                  name="reset separator"
                   visible="true">
             </separator>
-            <command
-                  commandId="org.res.gitx.handlers.CheckoutCommand"
-                  label="Checkout..."
-                  style="push"
-                  tooltip="Checkout a branch, tag or reference. Typically somewhat faster than JGit checkout">
-            </command>
-            <command
-                  commandId="org.res.gitx.handlers.CheckoutSelectedPathsCommand"
-                  id="org.res.gitx.handlers.CheckoutSelectedPathsCommand"
-                  label="Checkout selected paths"
-                  style="push">
-            </command>
             <command
                   commandId="org.res.gitx.handlers.ResetCommand"
                   label="Reset..."
@@ -318,13 +319,49 @@
                   style="push">
             </command>
             <separator
-                  name="egit-ex.separator3"
+                  name="checkout separator"
                   visible="true">
             </separator>
+            <command
+                  commandId="org.res.gitx.handlers.CheckoutSelectedPathsCommand"
+                  id="org.res.gitx.handlers.CheckoutSelectedPathsCommand"
+                  label="Checkout selected paths"
+                  style="push">
+            </command>
+            <command
+                  commandId="org.res.gitx.handlers.CheckoutCommand"
+                  label="Checkout..."
+                  style="push"
+                  tooltip="Checkout a branch, tag or reference. Typically somewhat faster than JGit checkout">
+            </command>
+            <separator
+                  name="stash"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="org.res.gitx.handlers.SaveStashCommand"
+                  label="Save Stash..."
+                  style="push">
+            </command>
+            <command
+                  commandId="org.res.gitx.handlers.PopStashCommand"
+                  label="Pop stash..."
+                  style="push">
+            </command>
+            <command
+                  commandId="org.res.gitx.handlers.ClearStashCommand"
+                  label="Clear stashes..."
+                  style="push">
+            </command>
             <separator
                   name="list and clean"
                   visible="true">
             </separator>
+            <command
+                  commandId="org.res.gitx.PruneCommand"
+                  id="egitex.handlers.PruneCommand"
+                  label="Prune obsolete remote refs...">
+            </command>
             <command
                   commandId="org.res.gitx.ListCommitDiffsCommand"
                   label="List Commit Diffs...">
