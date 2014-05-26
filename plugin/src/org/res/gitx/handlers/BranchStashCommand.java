@@ -16,7 +16,7 @@ public class BranchStashCommand
 
    private static final Parameter STASH = new Parameter("Stash ", false);
    private static final Parameter BRANCH = new Parameter("New branch", true);
-   private static final ParameterSet PARAMETERS = new ParameterSet("Branch Stash", STASH);
+   private static final ParameterSet PARAMETERS = new ParameterSet("Branch Stash", BRANCH, STASH);
 
    @Override
    void getArgs()
