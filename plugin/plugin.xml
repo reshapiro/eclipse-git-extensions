@@ -247,6 +247,30 @@
             id="org.res.gitx.handlers.ClearStashCommand"
             name="clear stashes">
       </command>
+      <command
+            categoryId="org.res.gitx.commands.category"
+            defaultHandler="org.res.gitx.handlers.ApplyStashCommand"
+            id="org.res.gitx.handlers.ApplyStashCommand"
+            name="apply stash">
+      </command>
+      <command
+            categoryId="org.res.gitx.commands.category"
+            defaultHandler="org.res.gitx.handlers.ShowStashCommand"
+            id="org.res.gitx.handlers.ShowStashCommand"
+            name="show stash">
+      </command>
+      <command
+            categoryId="org.res.gitx.commands.category"
+            defaultHandler="org.res.gitx.handlers.BranchStashCommand"
+            id="org.res.gitx.handlers.BranchStashCommand"
+            name="branch stash">
+      </command>
+      <command
+            categoryId="org.res.gitx.commands.category"
+            defaultHandler="org.res.gitx.handlers.ListsStashCommand"
+            id="org.res.gitx.handlers.ListsStashCommand"
+            name="list stashes">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -339,13 +363,33 @@
                   visible="true">
             </separator>
             <command
+                  commandId="org.res.gitx.handlers.ListsStashCommand"
+                  label="List stashes"
+                  style="push">
+            </command>
+            <command
                   commandId="org.res.gitx.handlers.SaveStashCommand"
                   label="Save Stash..."
                   style="push">
             </command>
             <command
+                  commandId="org.res.gitx.handlers.ApplyStashCommand"
+                  label="Apply Stash..."
+                  style="push">
+            </command>
+            <command
                   commandId="org.res.gitx.handlers.PopStashCommand"
                   label="Pop stash..."
+                  style="push">
+            </command>
+            <command
+                  commandId="org.res.gitx.handlers.ShowStashCommand"
+                  label="Show Stash..."
+                  style="push">
+            </command>
+            <command
+                  commandId="org.res.gitx.handlers.BranchStashCommand"
+                  label="Branch Stash..."
                   style="push">
             </command>
             <command
