@@ -271,6 +271,12 @@
             id="org.res.gitx.handlers.ListsStashCommand"
             name="list stashes">
       </command>
+      <command
+            categoryId="org.res.gitx.commands.category"
+            defaultHandler="org.res.gitx.handlers.DropStashCommand"
+            id="org.res.gitx.handlers.DropStashCommand"
+            name="drop stash">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -364,7 +370,7 @@
             </separator>
             <command
                   commandId="org.res.gitx.handlers.ListsStashCommand"
-                  label="List stashes"
+                  label="List Stashes"
                   style="push">
             </command>
             <command
@@ -393,8 +399,13 @@
                   style="push">
             </command>
             <command
+                  commandId="org.res.gitx.handlers.DropStashCommand"
+                  label="Drop stash..."
+                  style="push">
+            </command>
+            <command
                   commandId="org.res.gitx.handlers.ClearStashCommand"
-                  label="Clear stashes..."
+                  label="Clear Stashes..."
                   style="push">
             </command>
             <separator
