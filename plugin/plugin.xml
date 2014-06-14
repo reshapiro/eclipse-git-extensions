@@ -320,234 +320,229 @@
                   label="Push"
                   style="push">
             </command>
-            <separator
-                  name="egit-ex.merge"
-                  visible="true">
-            </separator>
-            <command
-                  commandId="org.res.gitx.handlers.MergeCommand"
-                  label="Merge..."
-                  style="push">
-            </command>
-            <command
-                  commandId="org.res.gitx.handlers.MergeAbortCommand"
-                  label="Abort merge"
-                  style="push">
-            </command>
-            <separator
-                  name="reset separator"
-                  visible="true">
-            </separator>
-            <command
-                  commandId="org.res.gitx.handlers.ResetCommand"
-                  label="Reset..."
-                  style="push">
-            </command>
-            <command
-                  commandId="org.res.gitx.handlers.ResetPathCommand"
-                  label="Reset Selected Paths"
-                  style="push">
-            </command>
-            <separator
-                  name="checkout separator"
-                  visible="true">
-            </separator>
-            <command
-                  commandId="org.res.gitx.handlers.CheckoutSelectedPathsCommand"
-                  id="org.res.gitx.handlers.CheckoutSelectedPathsCommand"
-                  label="Checkout selected paths"
-                  style="push">
-            </command>
-            <command
-                  commandId="org.res.gitx.handlers.CheckoutCommand"
-                  label="Checkout..."
-                  style="push"
-                  tooltip="Checkout a branch, tag or reference. Typically somewhat faster than JGit checkout">
-            </command>
-            <separator
-                  name="stash"
-                  visible="true">
-            </separator>
-            <command
-                  commandId="org.res.gitx.handlers.ListsStashCommand"
-                  label="List Stashes"
-                  style="push">
-            </command>
-            <command
-                  commandId="org.res.gitx.handlers.SaveStashCommand"
-                  label="Save Stash..."
-                  style="push">
-            </command>
-            <command
-                  commandId="org.res.gitx.handlers.ApplyStashCommand"
-                  label="Apply Stash..."
-                  style="push">
-            </command>
-            <command
-                  commandId="org.res.gitx.handlers.PopStashCommand"
-                  label="Pop stash..."
-                  style="push">
-            </command>
-            <command
-                  commandId="org.res.gitx.handlers.ShowStashCommand"
-                  label="Show Stash..."
-                  style="push">
-            </command>
-            <command
-                  commandId="org.res.gitx.handlers.BranchStashCommand"
-                  label="Branch Stash..."
-                  style="push">
-            </command>
-            <command
-                  commandId="org.res.gitx.handlers.DropStashCommand"
-                  label="Drop stash..."
-                  style="push">
-            </command>
-            <command
-                  commandId="org.res.gitx.handlers.ClearStashCommand"
-                  label="Clear Stashes..."
-                  style="push">
-            </command>
-            <separator
-                  name="list and clean"
-                  visible="true">
-            </separator>
             <command
                   commandId="org.res.gitx.PruneCommand"
                   id="egitex.handlers.PruneCommand"
                   label="Prune obsolete remote refs...">
             </command>
-            <command
-                  commandId="org.res.gitx.ListCommitDiffsCommand"
-                  label="List Commit Diffs...">
-            </command>
-            <command
-                  commandId="org.res.gitx.handlers.ListChangedFiles"
-                  label="List changed files..."
-                  style="push">
-            </command>
-            <command
-                  commandId="org.res.gitx.ListOrphanedCommitsCommand"
-                  id="egitex.handlers.ListOrphanedCommitsCommand"
-                  label="List orphan commits">
-            </command>
-            <command
-                  commandId="org.res.gitx.handlers.CreatePatchCommand"
-                  label="Create branch-relative patch..."
-                  style="push">
-            </command>
-            <command
-                  commandId="org.res.gitx.handlers.ApplyPatchCommand"
-                  label="Apply patch..."
-                  style="push">
-            </command>
-            <separator
-                  name="bisect"
-                  visible="true">
-            </separator>
-            <command
-                  commandId="org.res.gitx.BisectStartCommand"
-                  id="egitex.handlers.BisectStartCommand"
-                  label="Start bisect...">
-            </command>
-            <command
-                  commandId="org.res.gitx.BisectBadCommand"
-                  id="egitex.handlers.BisectBadCommand"
-                  label="Mark as bad">
-            </command>
-            <command
-                  commandId="org.res.gitx.BisectGoodCommand"
-                  id="egitex.handlers.BisectGoodCommand"
-                  label="Mark as good">
-            </command>
-            <command
-                  commandId="org.res.gitx.BisectRunCommand"
-                  id="egitex.handlers.BisectRunCommand"
-                  label="Mark from run...">
-            </command>
-            <command
-                  commandId="org.res.gitx.BisectSkipCommand"
-                  id="egitex.handlers.BisectSkipCommand"
-                  label="Skip bisect">
-            </command>
-            <command
-                  commandId="org.res.gitx.BisectLogCommand"
-                  id="egitex.handlers.BisectLogCommand"
-                  label="Log bisect...">
-            </command>
-            <command
-                  commandId="org.res.gitx.BisectReplayCommand"
-                  id="egitex.handlers.BisectReplayCommand"
-                  label="Replay bisect...">
-            </command>
-            <command
-                  commandId="org.res.gitx.BisectEndCommand"
-                  id="egitex.handlers.BisectEndCommand"
-                  label="End bisect...">
-            </command>
-            <separator
-                  name="bundle"
-                  visible="true">
-            </separator>
-            <command
-                  commandId="org.res.gitx.BundleCreateCommand"
-                  id="egitex.handlers.BundleCreateCommand"
-                  label="Create bundle file...">
-            </command>
-            <command
-                  commandId="org.res.gitx.BundleFetchCommand"
-                  id="egitex.handlers.BundleFetchCommand"
-                  label="Fetch from bundle file...">
-            </command>
-            <command
-                  commandId="org.res.gitx.BundlePullCommand"
-                  id="egitex.handlers.BundlePullCommand"
-                  label="Pull from bundle file...">
-            </command>
-            <separator
-                  name="svn bridge"
-                  visible="true">
-            </separator>
-            <command
-                  commandId="org.res.gitx.SvnRebaseCommand"
-                  id="egitex.handlers.SvnRebaseCommand"
-                  label="Pull from SVN">
-            </command>
-            <command
-                  commandId="org.res.gitx.SvnRebaseLocalCommand"
-                  id="egitex.handlers.SvnRebaseLocalCommand"
-                  label="SVN Local Rebase">
-            </command>
-            <command
-                  commandId="org.res.gitx.SvnFetchCommand"
-                  id="egitex.handlers.SvnFetchCommand"
-                  label="Fetch from SVN">
-            </command>
-            <command
-                  commandId="org.res.gitx.SvnDcommitCommand"
-                  id="egitex.handlers.SvnDcommitCommand"
-                  label="Push to SVN">
-            </command>
-            <command
-                  commandId="org.res.gitx.SvnInfoCommand"
-                  id="egitex.handlers.SvnInfoCommand"
-                  label="Show SVN info...">
-            </command>
-            <command
-                  commandId="org.res.gitx.Git2SvnHandler"
-                  id="egitex.handlers.Git2SvnHandler"
-                  label="SVN rev for Git SHA...">
-            </command>
-            <command
-                  commandId="org.res.gitx.Svn2GitCommand"
-                  id="egitex.handlers.Svn2GitCommand"
-                  label="Git SHA for SVN rev...">
-            </command>
-            <command
-                  commandId="org.res.gitx.handlers.SvnGcCommand"
-                  label="SVN GC"
-                  style="push">
-            </command>
+            <menu
+                  label="Merge">
+               <command
+                     commandId="org.res.gitx.handlers.MergeCommand"
+                     label="Merge..."
+                     style="push">
+               </command>
+               <command
+                     commandId="org.res.gitx.handlers.MergeAbortCommand"
+                     label="Abort merge"
+                     style="push">
+               </command>
+            </menu>
+            <menu
+                  label="Reset">
+               <command
+                     commandId="org.res.gitx.handlers.ResetCommand"
+                     label="Reset..."
+                     style="push">
+               </command>
+               <command
+                     commandId="org.res.gitx.handlers.ResetPathCommand"
+                     label="Reset Selected Paths"
+                     style="push">
+               </command>
+            </menu>
+            <menu
+                  label="Checkout">
+               <command
+                     commandId="org.res.gitx.handlers.CheckoutCommand"
+                     label="Checkout..."
+                     style="push"
+                     tooltip="Checkout a branch, tag or reference. Typically somewhat faster than JGit checkout">
+               </command>
+               <command
+                     commandId="org.res.gitx.handlers.CheckoutSelectedPathsCommand"
+                     id="org.res.gitx.handlers.CheckoutSelectedPathsCommand"
+                     label="Checkout selected paths"
+                     style="push">
+               </command>
+            </menu>
+            <menu
+                  label="Stash">
+               <command
+                     commandId="org.res.gitx.handlers.SaveStashCommand"
+                     label="Save Stash..."
+                     style="push">
+               </command>
+               <command
+                     commandId="org.res.gitx.handlers.ListsStashCommand"
+                     label="List Stashes"
+                     style="push">
+               </command>
+               <command
+                     commandId="org.res.gitx.handlers.ApplyStashCommand"
+                     label="Apply Stash..."
+                     style="push">
+               </command>
+               <command
+                     commandId="org.res.gitx.handlers.PopStashCommand"
+                     label="Pop stash..."
+                     style="push">
+               </command>
+               <command
+                     commandId="org.res.gitx.handlers.BranchStashCommand"
+                     label="Branch Stash..."
+                     style="push">
+               </command>
+               <command
+                     commandId="org.res.gitx.handlers.DropStashCommand"
+                     label="Drop stash..."
+                     style="push">
+               </command>
+               <command
+                     commandId="org.res.gitx.handlers.ShowStashCommand"
+                     label="Show Stash..."
+                     style="push">
+               </command>
+               <command
+                     commandId="org.res.gitx.handlers.ClearStashCommand"
+                     label="Clear Stashes..."
+                     style="push">
+               </command>
+            </menu>
+            <menu
+                  label="List">
+               <command
+                     commandId="org.res.gitx.handlers.ListChangedFiles"
+                     label="List changed files..."
+                     style="push">
+               </command>
+               <command
+                     commandId="org.res.gitx.ListCommitDiffsCommand"
+                     label="List Commit Diffs...">
+               </command>
+               <command
+                     commandId="org.res.gitx.ListOrphanedCommitsCommand"
+                     id="egitex.handlers.ListOrphanedCommitsCommand"
+                     label="List orphan commits">
+               </command>
+            </menu>
+            <menu
+                  label="Patch">
+               <command
+                     commandId="org.res.gitx.handlers.CreatePatchCommand"
+                     label="Create branch-relative patch..."
+                     style="push">
+               </command>
+               <command
+                     commandId="org.res.gitx.handlers.ApplyPatchCommand"
+                     label="Apply patch..."
+                     style="push">
+               </command>
+            </menu>
+            <menu
+                  label="Bisect">
+               <command
+                     commandId="org.res.gitx.BisectStartCommand"
+                     id="egitex.handlers.BisectStartCommand"
+                     label="Start bisect...">
+               </command>
+               <command
+                     commandId="org.res.gitx.BisectGoodCommand"
+                     id="egitex.handlers.BisectGoodCommand"
+                     label="Mark as good">
+               </command>
+               <command
+                     commandId="org.res.gitx.BisectRunCommand"
+                     id="egitex.handlers.BisectRunCommand"
+                     label="Mark from run...">
+               </command>
+               <command
+                     commandId="org.res.gitx.BisectBadCommand"
+                     id="egitex.handlers.BisectBadCommand"
+                     label="Mark as bad">
+               </command>
+               <command
+                     commandId="org.res.gitx.BisectSkipCommand"
+                     id="egitex.handlers.BisectSkipCommand"
+                     label="Skip bisect">
+               </command>
+               <command
+                     commandId="org.res.gitx.BisectLogCommand"
+                     id="egitex.handlers.BisectLogCommand"
+                     label="Log bisect...">
+               </command>
+               <command
+                     commandId="org.res.gitx.BisectReplayCommand"
+                     id="egitex.handlers.BisectReplayCommand"
+                     label="Replay bisect...">
+               </command>
+               <command
+                     commandId="org.res.gitx.BisectEndCommand"
+                     id="egitex.handlers.BisectEndCommand"
+                     label="End bisect...">
+               </command>
+            </menu>
+            <menu
+                  label="Bundles">
+               <command
+                     commandId="org.res.gitx.BundleCreateCommand"
+                     id="egitex.handlers.BundleCreateCommand"
+                     label="Create bundle file...">
+               </command>
+               <command
+                     commandId="org.res.gitx.BundleFetchCommand"
+                     id="egitex.handlers.BundleFetchCommand"
+                     label="Fetch from bundle file...">
+               </command>
+               <command
+                     commandId="org.res.gitx.BundlePullCommand"
+                     id="egitex.handlers.BundlePullCommand"
+                     label="Pull from bundle file...">
+               </command>
+            </menu>
+            <menu
+                  label="SVN Bridging">
+               <command
+                     commandId="org.res.gitx.SvnFetchCommand"
+                     id="egitex.handlers.SvnFetchCommand"
+                     label="Fetch from SVN">
+               </command>
+               <command
+                     commandId="org.res.gitx.SvnRebaseLocalCommand"
+                     id="egitex.handlers.SvnRebaseLocalCommand"
+                     label="SVN Local Rebase">
+               </command>
+               <command
+                     commandId="org.res.gitx.SvnDcommitCommand"
+                     id="egitex.handlers.SvnDcommitCommand"
+                     label="Push to SVN">
+               </command>
+               <command
+                     commandId="org.res.gitx.SvnRebaseCommand"
+                     id="egitex.handlers.SvnRebaseCommand"
+                     label="Pull from SVN">
+               </command>
+               <command
+                     commandId="org.res.gitx.SvnInfoCommand"
+                     id="egitex.handlers.SvnInfoCommand"
+                     label="Show SVN info...">
+               </command>
+               <command
+                     commandId="org.res.gitx.Git2SvnHandler"
+                     id="egitex.handlers.Git2SvnHandler"
+                     label="SVN rev for Git SHA...">
+               </command>
+               <command
+                     commandId="org.res.gitx.Svn2GitCommand"
+                     id="egitex.handlers.Svn2GitCommand"
+                     label="Git SHA for SVN rev...">
+               </command>
+               <command
+                     commandId="org.res.gitx.handlers.SvnGcCommand"
+                     label="SVN GC"
+                     style="push">
+               </command>
+            </menu>
          </menu>
       </menuContribution>
       <menuContribution
