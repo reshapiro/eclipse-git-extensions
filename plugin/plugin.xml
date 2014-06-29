@@ -277,6 +277,12 @@
             id="org.res.gitx.handlers.DropStashCommand"
             name="drop stash">
       </command>
+      <command
+            categoryId="org.res.gitx.commands.category"
+            defaultHandler="org.res.gitx.handlers.UserCommand"
+            id="org.res.gitx.handlers.UserCommand"
+            name="user command">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -324,6 +330,11 @@
                   commandId="org.res.gitx.PruneCommand"
                   id="egitex.handlers.PruneCommand"
                   label="Prune obsolete remote refs...">
+            </command>
+            <command
+                  commandId="org.res.gitx.handlers.UserCommand"
+                  label="Enter any arguments..."
+                  style="push">
             </command>
             <menu
                   label="Merge">
