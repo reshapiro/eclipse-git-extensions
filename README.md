@@ -1,13 +1,12 @@
-This repository defines am Eclipse plugin designed to support
-a range Git operations that are not yet supported by JGit/Egit. It does
+This repository defines an Eclipse plugin designed to support
+a range of Git operations that are not yet supported by JGit/Egit. It does
 this by launching command-line Git.
 
-This is is not at all a replacement for EGit, it's a place-holder that patches a few holes.
+This is not a replacement for EGit, it's more like a set of extensions to it.
 
+The major supported operations are as follows:
 
-The currently supported operations are as follows:
-
--SVN bridging: pull commits from SVN; push commits to SVN; fetch commits from SVN; SVN info; ref -> SVN rev; SVN rev -> SHA
+- SVN bridging: pull commits from SVN; push commits to SVN; fetch commits from SVN; SVN info; ref -> SVN rev; SVN rev -> SHA
 
 - Bisect: start (optional bad & good commits); mark good; mark bad; mark from run; skip; log (optional file); replay; reset
 
@@ -25,6 +24,7 @@ The currently supported operations are as follows:
 
 - Listing orphan commits
 
+- Trivial command line to run any other Git operation you want without leaving Eclipse.
 
 - Also includes command-line Git versions of push, pull,fetch and checkout, as these can be significantly more efficient vis-a-vis JGit.
 
