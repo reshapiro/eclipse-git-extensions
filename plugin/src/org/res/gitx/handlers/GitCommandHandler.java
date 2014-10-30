@@ -85,6 +85,7 @@ abstract class GitCommandHandler
          console.displayLine(NO_GIT_EXEC_VAR_MSG);
          return null;
       }
+      Launcher.setCorePath(gitExec);
 
       String repoPath = Resolver.resolveVariable(EGIT_WORK_TREE_VAR);
       if (repoPath.isEmpty()) {

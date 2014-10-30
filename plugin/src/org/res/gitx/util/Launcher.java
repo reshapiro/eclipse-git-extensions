@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ProcessBuilder.Redirect;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 
@@ -12,6 +13,7 @@ public class Launcher {
 
    private static final int COMPLETION_CHECK_MILLIS = 50;
    private static final int STREAMING_TEXT_BUFFER_SIZE = 10;
+   private static String CORE_PATH;
 
    private final ConsoleWriter console;
    private final ProcessBuilder builder;
@@ -37,11 +39,24 @@ public class Launcher {
    public Launcher(File repoRoot, ConsoleWriter console, File saveTo, String... args) {
       this.console = console;
       builder = new ProcessBuilder(args);
+      
+      if (CORE_PATH != null) {
+         configureEnvironment();
+      }
+      
       if (saveTo != null) {
          builder.redirectOutput(saveTo);
       }
       builder.redirectErrorStream(true);
       builder.directory(repoRoot);
+   }
+
+   private void configureEnvironment() {
+      Map<String, String> environment = builder.environment();
+      String path = environment.get("PATH");
+      if (path != null) {
+         environment.put("PATH", path + ":" + CORE_PATH);
+      }
    }
 
    /**
@@ -92,6 +107,15 @@ public class Launcher {
       }
    }
 
+   public static void setCorePath(String gitExec) {
+      File gitBase = new File(gitExec).getParentFile().getParentFile();
+      File libexec = new File (gitBase, "libexec");
+      File coreDir = new File(libexec, "git-core");
+      if (coreDir.isDirectory()) {
+         CORE_PATH = coreDir.getAbsolutePath();
+      }
+   }
+   
    private final class Sender
          implements Runnable {
       final String message;
