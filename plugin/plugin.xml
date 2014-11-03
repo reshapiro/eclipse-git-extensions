@@ -562,18 +562,21 @@
                id="org.res.gitx.toolbars.gitToolbar">
             <command
                   commandId="org.res.gitx.SvnDcommitCommand"
+                  icon="icons/svn-push.png"
                   id="org.res.gitx.SvnDcommitCommand"
                   label="Push to SVN"
                   tooltip="Push new commits to SVN">
             </command>
             <command
                   commandId="org.res.gitx.SvnFetchCommand"
+                  icon="icons/svn-fetch.png"
                   id="org.res.gitx.SvnFetchCommand"
-                  label="Fetch  from SVN"
+                  label="Fetch from SVN"
                   tooltip="Fetch new commits from SVN">
             </command>
             <command
                   commandId="org.res.gitx.SvnRebaseCommand"
+                  icon="icons/svn-pull.png"
                   id="org.res.gitx.SvnRebaseCommand"
                   label="Pull from SVN"
                   tooltip="Pull new commits from SVN">
