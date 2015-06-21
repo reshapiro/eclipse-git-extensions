@@ -283,6 +283,12 @@
             id="org.res.gitx.handlers.UserCommand"
             name="user command">
       </command>
+      <command
+            categoryId="org.res.gitx.commands.category"
+            defaultHandler="org.res.gitx.handlers.GuiCommand"
+            id="org.res.gitx.handlers.GuiCommand"
+            name="gui">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -324,6 +330,11 @@
             <command
                   commandId="org.res.gitx.handlers.PushCommand"
                   label="Push"
+                  style="push">
+            </command>
+            <command
+                  commandId="org.res.gitx.handlers.GuiCommand"
+                  label="Gui"
                   style="push">
             </command>
             <command
